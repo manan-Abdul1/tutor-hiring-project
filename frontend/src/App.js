@@ -1,3 +1,4 @@
+import SubjectSelect from "./components/SubjectChanges/SubjectChanges";
 import Header from "./pages/Header/Header";
 import HomeSection from "./pages/HomeSection/HomeSection";
 
