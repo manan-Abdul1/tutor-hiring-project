@@ -1,12 +1,16 @@
-import SubjectSelect from "./components/SubjectChanges/SubjectChanges";
 import Header from "./pages/Header/Header";
-import HomeSection from "./pages/HomeSection/HomeSection";
+import Homepage from "./pages/Homepage/Homepage";
+import Tutor from "./pages/Tutors/Tutor";
+import {Routes,Route} from 'react-router-dom'
 
 function App() {
   return (
     <>
       <Header/>
-      <HomeSection/>
+      <Routes>
+      <Route path="/" exact element={<Homepage/>}/>
+      <Route path="/tutors" element={<Tutor/>}/>
+      </Routes>
     </>
   );
 }

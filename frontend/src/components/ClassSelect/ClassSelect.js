@@ -5,6 +5,7 @@ function ClassSelect() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
+    { value: 'all', label: 'ALL' },
     { value: 'pg', label: 'PG' },
     { value: 'nursery', label: 'NURSERY' },
     { value: 'prep', label: 'Prep' },
@@ -31,9 +32,11 @@ function ClassSelect() {
     setSelectedOption(option);
   };
 
+  const placeholder = 'Select Class';
+
   return (
     <div className="w-full">
-      <SearchSelect options={options} onSelect={handleSelect} />
+      <SearchSelect placeholder={placeholder} options={options} onSelect={handleSelect} />
     </div>
   );
 }

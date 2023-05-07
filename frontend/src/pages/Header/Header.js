@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -14,51 +15,48 @@ function Header() {
           <div className="flex space-x-7">
             <div>
               {/* Website Logo */}
-              <a href="#" className="flex items-center py-4 px-2">
+              <Link to="/" className="flex items-center py-4 px-2">
                 <span className="font-semibold text-gray-500 text-lg">
                   Navigation
                 </span>
-              </a>
+              </Link>
             </div>
             {/* Primary Navbar items */}
             <div className="hidden md:flex items-center space-x-1">
-              <div className="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">
+              <Link to='/' className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300 border-b-4 border-green-500 ">
                 Home
-              </div>
-              <a
-                href="#"
+              </Link>
+              <Link to="/tutors"
                 className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
               >
-                Services
-              </a>
-              <a
-                href=""
+                Tutors
+              </Link>
+              <Link to='/about'
                 className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
               >
-                About
-              </a>
-              <a
-                href=""
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
-              >
-                Contact Us
-              </a>
+                About Us
+              </Link>
             </div>
           </div>
           {/* Secondary Navbar items */}
           <div className="hidden md:flex items-center space-x-3 ">
-            <a
-              href=""
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"
+            <Link to='/login'
+              className="py-2 px-2 font-medium text-gray-500 rounded hover:text-green-500 transition duration-300"
             >
-              Log In
-            </a>
-            <a
+            <i className="fa-solid fa-user mr-1"></i>
+              Login
+            </Link>
+            <Link to='/registertutor'
               href=""
-              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-white hover:text-black transition duration-300"
+              className="py-2 px-2 font-medium bg-blue-500 text-white rounded hover:bg-green-500 hover:text-white transition duration-300"
             >
-              Sign Up
-            </a>
+              Register As Tutor
+            </Link>
+            <Link to='/tutors'
+              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
+            >
+              Hire a Tutor
+            </Link>
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -99,43 +97,32 @@ function Header() {
       {/* Mobile menu */}
       {showMenu && (
         <div className="md:hidden mobile-menu p-7">
-          <a
-            href=""
+          <Link to='/'
             className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
           >
             Home
-          </a>
-          <a
-            href=""
+          </Link>
+          <Link to='/tutors'
             className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
           >
-            Services
-          </a>
-          <a
-            href=""
+            Tutors
+          </Link>
+          <Link to='/about'
             className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
           >
-            About
-          </a>
-          <a
-            href=""
-            className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
-          >
-            Contact Us
-          </a>
+            About Us
+          </Link>
           <div className="py-3">
-            <a
-              href=""
-              className="py-2 px-4 mr-4 bg-green-500 hover:bg-white text-white font-semibold rounded-lg shadow-md transition duration-300"
+            <Link to='/registertutor'
+              className="py-2 px-4 mr-4 bg-green-500 hover:bg-white hover:text-gray-500 text-white font-semibold rounded-lg shadow-md transition duration-300"
             >
-              Sign Up
-            </a>
-            <a
-              href=""
+              Register As Tutor
+            </Link>
+            <Link to='/tutors'
               className="py-2 px-4 border border-green-500 text-green-500 font-semibold rounded-lg shadow-md transition duration-300"
             >
-              Log In
-            </a>
+              Hire a Teacher
+            </Link>
           </div>
         </div>
       )}

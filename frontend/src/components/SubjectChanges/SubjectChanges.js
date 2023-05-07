@@ -30,9 +30,11 @@ function SubjectSelect() {
     setSelectedOption(option);
   };
 
+  const placeholder = 'Select Subject';
+
   return (
     <div className="w-full">
-      <SearchSelect options={options} onSelect={handleSelect} />
+      <SearchSelect options={options} placeholder={placeholder}  onSelect={handleSelect} />
     </div>
   );
 }
