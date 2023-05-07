@@ -4,7 +4,7 @@ import Tutor from './Tutor'
 export default function MainPageTutors() {
   return (
     <>
-        <SearchFilterCard/>
+        {/* <SearchFilterCard/> */}
         <Tutor/>
     </>
   )

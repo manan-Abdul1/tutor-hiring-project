@@ -4,7 +4,7 @@ import TutorCard from '../TutorCard/TutorCard';
 export default function TutorList({tutors}) {
   return (
     <>
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-4 mt-4">
+     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mb-4 mt-4">
       {tutors.map(tutor => (
         <TutorCard
           key={tutor.name}
