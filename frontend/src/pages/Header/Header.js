@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
+
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -23,16 +25,31 @@ function Header() {
             </div>
             {/* Primary Navbar items */}
             <div className="hidden md:flex items-center space-x-1">
-              <Link to='/' className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300 border-b-4 border-green-500 ">
+              <Link
+                to="/"
+                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                  location.pathname === "/" ? "border-b-4 border-green-500" : ""
+                }`}
+              >
                 Home
               </Link>
-              <Link to="/tutors"
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+              <Link
+                to="/tutors"
+                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                  location.pathname === "/tutors"
+                    ? "border-b-4 border-green-500"
+                    : ""
+                }`}
               >
                 Tutors
               </Link>
-              <Link to='/about'
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+              <Link
+                to="/about"
+                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                  location.pathname === "/about"
+                    ? "border-b-4 border-green-500"
+                    : ""
+                }`}
               >
                 About Us
               </Link>

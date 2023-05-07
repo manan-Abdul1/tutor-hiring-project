@@ -1,6 +1,6 @@
 import Header from "./pages/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
-import Tutor from "./pages/Tutors/Tutor";
+import MainPageTutors from "./pages/Tutors/MainPageTutors";
 import {Routes,Route} from 'react-router-dom'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Header/>
       <Routes>
       <Route path="/" exact element={<Homepage/>}/>
-      <Route path="/tutors" element={<Tutor/>}/>
+      <Route path="/tutors" element={<MainPageTutors/>}/>
       </Routes>
     </>
   );

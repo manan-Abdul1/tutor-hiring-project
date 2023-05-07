@@ -13,7 +13,7 @@ export default function TutorCard({ name, image, qualification, experience, clas
   return (
     <>
         
-    <div className="relative inline-block bg-white overflow-hidden rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer">
+    <div className="relative mb-4 inline-block bg-white overflow-hidden rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer">
         <img className="object-cover absolute rounded-full top-1 left-20" src={image} alt={name} loading="lazy" />
       <div className="relative pt-32">
         {verified && <div className="absolute top-0 right-0 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
