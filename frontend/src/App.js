@@ -1,3 +1,4 @@
+import Faq from "./pages/Faq/Faq";
 import Header from "./pages/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import MainPageTutors from "./pages/Tutors/MainPageTutors";
@@ -10,7 +11,9 @@ function App() {
       <Routes>
       <Route path="/" exact element={<Homepage/>}/>
       <Route path="/tutors" element={<MainPageTutors/>}/>
+      <Route path="/faq" element={<Faq/>}/>
       </Routes>
+      
     </>
   );
 }

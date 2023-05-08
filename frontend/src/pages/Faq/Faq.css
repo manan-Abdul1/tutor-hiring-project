@@ -1,0 +1,27 @@
+a{
+    color: green;
+    margin-bottom: 10px;
+}
+  
+.question {
+    transition: color 0.2s ease-in-out;
+
+  }
+  
+  .question:hover {
+    color: rgb(2, 60, 2);
+  }
+  .card {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .cardsul li{
+    margin-bottom: 10px;
+  }
+   
+  
+
+  
