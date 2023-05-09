@@ -124,7 +124,7 @@ function Header() {
           >
             Tutors
           </Link>
-          <Link to='/about'
+          <Link to='/aboutus'
             className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
           >
             About Us

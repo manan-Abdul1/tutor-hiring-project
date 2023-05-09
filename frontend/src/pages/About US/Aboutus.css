@@ -1,0 +1,21 @@
+ul {
+    list-style-type: disc;
+    color: black;
+  }
+  .heading {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .heading::after {
+    
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    height: 4px;
+    background-color: green;
+    border-radius: 2px;
+  }
+  

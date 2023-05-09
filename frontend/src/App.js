@@ -1,3 +1,4 @@
+import Aboutus from "./pages/About US/Aboutus";
 import Faq from "./pages/Faq/Faq";
 import Footer from "./pages/Footer/Footer";
 import Header from "./pages/Header/Header";
@@ -13,6 +14,7 @@ function App() {
       <Route path="/" exact element={<Homepage/>}/>
       <Route path="/tutors" element={<MainPageTutors/>}/>
       <Route path="/faq" element={<Faq/>}/>
+      <Route path="/about" element={<Aboutus/>}/>
       </Routes>
       <Footer/>
     </>
