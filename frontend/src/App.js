@@ -1,4 +1,5 @@
 import Faq from "./pages/Faq/Faq";
+import Footer from "./pages/Footer/Footer";
 import Header from "./pages/Header/Header";
 import Homepage from "./pages/Homepage/Homepage";
 import MainPageTutors from "./pages/Tutors/MainPageTutors";
@@ -13,7 +14,7 @@ function App() {
       <Route path="/tutors" element={<MainPageTutors/>}/>
       <Route path="/faq" element={<Faq/>}/>
       </Routes>
-      
+      <Footer/>
     </>
   );
 }
