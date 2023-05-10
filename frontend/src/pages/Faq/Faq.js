@@ -33,7 +33,7 @@ const Faq = () => {
       };
   return (
     <div className='container'>
-      <div class="relative h-64 flex items-center justify-center ">
+      <div class="relative h-64 flex items-center justify-center">
   <img  src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fG9ubGluZSUyMGVkdWNhdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="faq" class="w-full h-full opacity-75"/>
   <div class="absolute inset-0 flex items-center justify-center">
     <h1 class="text-5xl font-bold text-white">FAQ's</h1>
@@ -95,7 +95,7 @@ const Faq = () => {
       </ul></p>
 </div>
   </div>
-  <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4">
+  <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 ">
   <div class="bg-white rounded-lg shadow-lg p-6 mt-10 mb-10 card">
   <h2 class="text-lg font-medium mb-2">For Tutors <br/></h2>
   <p class="text-gray-600"><ul className='cardsul'>

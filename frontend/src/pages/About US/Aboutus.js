@@ -4,7 +4,7 @@ const Aboutus = () => {
   return (
     <div>
       <div class="relative h-64 flex items-center justify-center mb-5 ">
-  <img  src="https://media.istockphoto.com/id/1221847261/photo/school-girl-student-studying-with-online-teacher-on-computer-screen.jpg?s=612x612&w=0&k=20&c=HKxltreNEZtV9En2F-S9wVjS0YOe7GTH-cO-t4LN0x4=" alt="faq" class="w-full h-full"/>
+  <img  src="https://media.istockphoto.com/id/1221847261/photo/school-girl-student-studying-with-online-teacher-on-computer-screen.jpg?s=612x612&w=0&k=20&c=HKxltreNEZtV9En2F-S9wVjS0YOe7GTH-cO-t4LN0x4=" alt="faq" className="w-full h-full"/>
   <div class="absolute inset-0 flex items-center justify-center">
     <h1 class="text-5xl font-bold text-white">About Us</h1>
   </div>

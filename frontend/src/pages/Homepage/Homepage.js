@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import HomeSection from '../HomeSection/HomeSection';
 import HomeTutorSection from '../HomeTutorSection/HomeTutorSection';
 import './Homepage.css';
+import Faq from '../Faq/Faq';
 
 export default function Homepage() {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -11,6 +12,9 @@ export default function Homepage() {
   });
 
   const { ref: tutorRef, inView: tutorInView } = useInView({
+    threshold: 0.6
+  }); 
+  const { ref: faqRef, inView: faqInView } = useInView({
     threshold: 0.6
   });
 
@@ -43,6 +47,21 @@ export default function Homepage() {
       y: 50
     }
   };
+  const faqVariant = {
+    visible: {
+      opacity: 1,
+      x: 0, // changed from y to x
+      transition: {
+        duration: 0.7,
+        ease: 'easeInOut'
+      }
+    },
+    hidden: {
+      opacity: 0,
+      x: 80, // changed from y to x
+    }
+  };
+  
 
   return (
     <>
@@ -64,6 +83,15 @@ export default function Homepage() {
           animate={tutorInView ? 'visible' : 'hidden'}
         >
           <HomeTutorSection />
+        </motion.div>
+      </div> <div className='p-1 my-5 rounded-lg shadow-2xl' ref={faqRef}>
+        <motion.div
+          className='fade-in'
+          variants={faqVariant}
+          initial='hidden'
+          animate={faqInView ? 'visible' : 'hidden'}
+        >
+          <Faq />
         </motion.div>
       </div>
     </>
