@@ -5,6 +5,7 @@ ul {
   .heading {
     position: relative;
     display: inline-block;
+    font-size: 1.25rem;
   }
   
   .heading::after {

@@ -4,8 +4,6 @@ export default function ViewProfile() {
   return (
     <>
       <div className="container mx-auto my-20">
-        <h1 className="text-center text-3xl ">View Profile</h1>
-        <div>
           <div className="container">
             <div className="row">
               <div className="col-md-1"></div>
@@ -14,12 +12,12 @@ export default function ViewProfile() {
                   <div className="col-md-2 text-center">
                     <img
                       src="https://thetutors.pk/avatars/1571828057FF00B2E4-8C2F-4E90-A7CA-3CCB6AF37BD6.jpeg"
-                      className="user-avatar"
+                      className="rounded-full"
                       alt="User Avatar"
                     />
                   </div>
                   <div className="col-md-7">
-                    <h4 className="black text-left font-bold">
+                    <h4 className="black text-left text-2xl mb-2 font-bold">
                       <i
                         className="fa fa-check-circle text-success"
                         title="Featured &amp; Verified Tutor"
@@ -27,8 +25,8 @@ export default function ViewProfile() {
                       Muhammad Adeel
                     </h4>
                     <div className="row">
-                      <div className="col-lg-8 col-sm-12 col-12 text-left">
-                        <h6 className="text-warning font-semibold" id="stars">
+                      <div className="col-lg-8 col-sm-12 col-12 text-left ">
+                        <h6 className="text-warning font-semibold mb-2" id="stars">
                           <i className="fa fa-star"></i>{" "}
                           <i className="fa fa-star"></i>{" "}
                           <i className="fa fa-star"></i>{" "}
@@ -60,27 +58,103 @@ export default function ViewProfile() {
                     </button>
                   </div>
                 </div>
-                <h6 className="black font-bold mt-4 uppercase">Introduction</h6>
-                <div className="separator"></div>
-                <ul className="single-tour-container" style={{ padding: "0px" }}>
-                  <li>
-                    <div className="tour-item-title font-semibold">About Tutor</div>
-                    <div className="tour-item-description font-medium">32yrs, Male</div>
-                  </li>
-                  <li>
-                    <div className="tour-item-title font-medium">Qualification</div>
-                    <div className="tour-item-description font-medium">CA Finalist</div>
-                  </li>
-                  <li>
-                    <div className="tour-item-title font-medium">Experience</div>
-                    <div className="tour-item-description font-medium">4 years</div>
-                  </li>
-                  <li>
-                    <div className="tour-item-title font-medium">English Skills</div>
-                    <div className="tour-item-description font-medium">Medium</div>
-                </li>
-                </ul>
+                <section className="">
+                <h6 className="heading font-semibold mt-4 uppercase">Introduction</h6>
+                <div className="mt-6">
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">About Tutor </p>
+                  <p className="text-left ml-60 text-gray-500">32yrs, Male </p>
                 </div>
+                <hr/>
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">Qualification </p>
+                  <p className="text-left ml-60 text-gray-500">CA Finalist </p>
+                </div>
+                <hr/>
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">Experience </p>
+                  <p className="text-left ml-60 text-gray-500">4 years </p>
+                </div>
+                <hr/>
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">English Skills </p>
+                  <p className="text-left ml-60 text-gray-500">Medium</p>
+                </div>
+                <hr/>
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">Teaching in </p>
+                  <p className="text-left ml-60 text-gray-500">Not specified </p>
+                </div>
+                <hr/>
+                </div>
+                </section>
+                <section className="">
+                <h6 className="heading font-semibold mt-4 uppercase">Classes and Subjects</h6>
+                <div className="mt-6">
+                <div className="flex my-2">
+                  <p className="font-semibold text-lg">A Level </p>
+                  <div className="flex flex-col ml-60">
+
+                  <p className="text-left my-1 text-gray-500">
+                  <i className="fa mx-2 fa-check-circle text-success" title="Featured &amp; Verified Tutor"></i>
+                  Computers</p>
+                  <p className="text-left my-1 text-gray-500">
+                  <i className="fa mx-2 fa-check-circle text-success" title="Featured &amp; Verified Tutor"></i>
+                  Accounting</p>
+                  <p className="text-left my-1 text-gray-500">
+                  <i className="fa mx-2 fa-check-circle text-success" title="Featured &amp; Verified Tutor"></i>
+                  Economics</p>
+                  <p className="text-left my-1 text-gray-500">
+                  <i className="fa mx-2 fa-check-circle text-success" title="Featured &amp; Verified Tutor"></i>
+                  Business Study</p>
+                  <div className="flex">
+
+                  <p className="my-2 ">
+                    <small>
+                      <span className="alert alert-info p-1 m-0">
+                        Fee starts from{" "}
+                        <u className="font-bold">18000</u>
+                        <small> /Per Month</small>
+                      </span>{" "}
+                    </small>
+                  </p> <p className="my-2 mx-2">
+                    <small>
+                      <span className="alert alert-info p-1 m-0">
+                        Fee starts from{" "}
+                        <u className="font-bold">18000</u>
+                        <small> /Per Month</small>
+                      </span>{" "}
+                    </small>
+                  </p>
+                  </div>
+                  </div>
+                </div>
+                <hr/>
+                </div>
+                </section>
+                <section className="">
+                <h6 className="heading font-semibold mt-4 mb-4 uppercase">Preferred Locations</h6>
+                <div className="flex flex-col my-2">
+                <p className="text-left my-3 text-gray-500">
+                <i class="fa-solid mx-2 fa-location-dot fa-beat text-success"></i>
+                  Lahore Cantt, Lahore, Pakistan</p>
+                <hr/>
+                <p className="text-left my-3 text-gray-500">
+                <i class="fa-solid mx-2 fa-location-dot fa-beat text-success"></i>
+                Gulberg 2, Lahore, Pakistan</p>
+                <hr/>
+
+                <p className="text-left my-3 text-gray-500">
+                <i class="fa-solid mx-2 fa-location-dot fa-beat text-success"></i>
+                Mughalpura, Lahore, Pakistan</p>
+                <hr/>
+                <p className="text-left my-3 text-gray-500">
+                <i class="fa-solid mx-2 fa-location-dot fa-beat text-success"></i>
+                DHA Phase 8, Lahore, Pakistan</p>
+                <hr/>
+
+                </div>
+                </section>
                 </div>
                 </div>
                 </div>
