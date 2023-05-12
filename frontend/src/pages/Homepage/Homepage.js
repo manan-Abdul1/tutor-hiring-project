@@ -50,7 +50,7 @@ export default function Homepage() {
   const faqVariant = {
     visible: {
       opacity: 1,
-      x: 0, // changed from y to x
+      y: 0, // changed from y to x
       transition: {
         duration: 0.7,
         ease: 'easeInOut'
@@ -58,7 +58,7 @@ export default function Homepage() {
     },
     hidden: {
       opacity: 0,
-      x: 80, // changed from y to x
+      y: 80, // changed from y to x
     }
   };
   
