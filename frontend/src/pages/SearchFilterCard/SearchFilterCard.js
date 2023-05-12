@@ -37,7 +37,7 @@ function SearchFilterCard() {
   };
 
   return (
-    <div className="p-4 bg-gray-100 w-1/5 mx-4 mt-20 mb-20 rounded-lg shadow-2xl">
+    <div className="p-4 bg-gray-100 mx-4 mt-20 mb-20 rounded-lg shadow-2xl min-h-fit">
   <h3 className="text-2xl font-semibold mb-4 text-center">Refine Search</h3>
   <div className="my-2">
     <input
