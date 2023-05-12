@@ -145,9 +145,13 @@ const tutors = [
   return (
     <>
       <div className="flex">
+        <div class="row">
+          <div class="col-md-3">
         <SearchFilterCard />
-        <div>
+        </div>
+        <div class="col-md-9">
         <TutorList tutors={tutors} />
+        </div>
         </div>
     </div>
 

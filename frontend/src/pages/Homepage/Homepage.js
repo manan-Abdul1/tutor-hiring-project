@@ -5,6 +5,7 @@ import HomeSection from '../HomeSection/HomeSection';
 import HomeTutorSection from '../HomeTutorSection/HomeTutorSection';
 import './Homepage.css';
 import Faq from '../Faq/Faq';
+import SearchBelowCards from '../../components/Search Below Cards/SearchBelowCards';
 
 export default function Homepage() {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -74,7 +75,10 @@ export default function Homepage() {
         >
           <HomeSection />
         </motion.div>
+        
       </div>
+      <div><SearchBelowCards/></div>
+      
       <div className='bg-gray-100 p-1 my-5 rounded-lg shadow-2xl' ref={tutorRef}>
         <motion.div
           className='fade-in'
