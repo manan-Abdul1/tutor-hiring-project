@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import MainPageTutors from "./pages/Tutors/MainPageTutors";
 import {Routes,Route} from 'react-router-dom'
 import ViewProfile from "./pages/ViewProfile/ViewProfile";
+import MainPageRegister from "./pages/Register/MainPageRegister";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/faq" element={<Faq/>}/>
       <Route path="/about" element={<Aboutus/>}/>
       <Route path="/viewprofile" element={<ViewProfile/>}/>
+      <Route path="/registertutor" element={<MainPageRegister/>}/>
       </Routes>
       <Footer/>
     </>
