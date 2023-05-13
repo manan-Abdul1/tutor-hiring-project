@@ -12,9 +12,9 @@ const StepTwo = ({ formData, setFormData, navigation }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="px-6 py-4">
-        <h2 className="text-2xl font-bold mb-2">Step Two: Contact Information</h2>
+        <h2 className="text-2xl text-green-700 font-bold mb-5 text-center">Personal Information</h2>
         <form>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="phoneNumber">
@@ -39,6 +39,33 @@ const StepTwo = ({ formData, setFormData, navigation }) => {
               name="address"
               id="address"
               value={formData.address}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="phoneNumber">
+              Date of Birth
+            </label>
+            <input
+              id="dateOfBirth"
+              name="dateOfBirth"
+              type="date"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="phoneNumber">
+              Phone Number:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="cnic"
+              name="cnic"
+              type="text"
+              value={formData.cnic}
               onChange={handleInputChange}
             />
           </div>

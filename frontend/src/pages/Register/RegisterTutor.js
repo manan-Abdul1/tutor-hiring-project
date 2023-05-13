@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
+import PersonalInformation from './StepOne/StepOne';
 
 const RegisterTutor = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -9,6 +10,7 @@ const RegisterTutor = () => {
     firstName: '',
     lastName: '',
     email: '',
+    cnic: '',
     password: '',
     confirmPassword: '',
     phone: '',
@@ -47,15 +49,19 @@ const RegisterTutor = () => {
   };
 
   return (
+
     <form onSubmit={handleSubmit}>
+    <div className="my-12">
       {currentStep === 1 && (
-        <StepOne
+        <PersonalInformation
           formData={formData}
           setFormData={setFormData}
           handleInputChange={handleInputChange}
-          handleNextStep={handleNextStep}
+          navigation={navigation}
+          // handleNextStep={handleNextStep}
         />
       )}
+      </div>
       {currentStep === 2 && (
         <StepTwo
           formData={formData}
