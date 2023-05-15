@@ -7,6 +7,7 @@ import MainPageTutors from "./pages/Tutors/MainPageTutors";
 import {Routes,Route} from 'react-router-dom'
 import ViewProfile from "./pages/ViewProfile/ViewProfile";
 import MainPageRegister from "./pages/Register/MainPageRegister";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/about" element={<Aboutus/>}/>
       <Route path="/viewprofile" element={<ViewProfile/>}/>
       <Route path="/registertutor" element={<MainPageRegister/>}/>
+      <Route path="/login" element={<Login/>}/>
       </Routes>
       <Footer/>
     </>
