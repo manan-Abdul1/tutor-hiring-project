@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "./Login.css"
 
 const Login = () => {
   const [isStudent, setIsStudent] = useState(true);
@@ -16,26 +15,26 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center h-screen ">
       <div className="bg-white rounded-xl shadow-2xl w-96 h-[550px] shadow-gray-500 mt-5">
-        <div className='loginhead  rounded-t-xl'>
+        <div className='loginhead bg-green-500 width-full h-[120px] rounded-t-xl'>
         <h1 className="font-bold text-4xl text-center text-white pt-[30px]">
           Login
         </h1>
         </div>
         
         <div className="flex mt-2 justify-center  p-8">
-  <button
-    className={` font-bold px-4 py-2 rounded-l-md ${isStudent ? 'button-green' : 'button-gray'}`}
-    onClick={handleToggle}
-  >
-    Student
-  </button>
-  <button
-    className={`font-bold px-4 py-2 rounded-r-md ${!isStudent ? 'button-green' : 'button-gray'}`}
-    onClick={handleToggle}
-  >
-    Tutor
-  </button>
-</div>
+          <button
+            className={` font-bold px-4 py-2 rounded-l-md ${isStudent ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+            onClick={handleToggle}
+          >
+            Student
+          </button>
+          <button
+            className={`font-bold px-4 py-2 rounded-r-md ${!isStudent ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+            onClick={handleToggle}
+          >
+            Tutor
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className={`mt-2 ${isStudent ? '' : 'hidden'} m-auto w-[250px]`}>
@@ -88,7 +87,7 @@ const Login = () => {
           </div>
         <div className='m-auto w-[100px] mt-4'>
           <button
-            className="submit  text-white text-xl font-bold py-2 px-4 rounded-md mt-4 w-[100px]"
+            className="submit bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-2 px-4 rounded-md mt-4 w-[100px]"
             type="submit"
           >
             Login
