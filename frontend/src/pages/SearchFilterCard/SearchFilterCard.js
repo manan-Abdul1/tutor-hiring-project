@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function SearchFilterCard() {
+
+function SearchFilterCard({handleFilterChange}) {
   const [location, setLocation] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
@@ -8,10 +9,23 @@ function SearchFilterCard() {
   const [gender, setGender] = useState("Any");
   const [fee, setFee] = useState("");
 
+  const handleSearch = () => {
+    const filterValues = {
+      location,
+      selectedClass,
+      selectedSubject,
+      experience,
+      gender,
+      fee
+    };
+    handleFilterChange(filterValues);
+  };
+  
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
 
+  
   const handleClassChange = (event) => {
     setSelectedClass(event.target.value);
   };
@@ -32,12 +46,13 @@ function SearchFilterCard() {
     setFee(event.target.value);
   };
 
-  const handleSearch = () => {
-    // TODO: Implement search functionality
-  };
+  // const handleSearch = () => {
+  //   // TODO: Implement search functionality
+  // };
 
   return (
-    <div className="p-4 bg-gray-100 mx-4 mt-20 mb-20 rounded-lg shadow-2xl min-h-fit">
+    
+    <div className="p-4 bg-gray-100 mx-2 mt-20 mb-20 rounded-lg shadow-2xl ">
   <h3 className="text-2xl font-semibold mb-4 text-center">Refine Search</h3>
   <div className="my-2">
     <input
@@ -112,7 +127,7 @@ function SearchFilterCard() {
     </select>
   </div>
   <div className="mt-3">
-    <button type="submit" className="text-white bg-green-600 hover:bg-green-500 md:w-full w-max px-10 py-2 md:px-6 rounded-full">
+    <button onClick={handleSearch} className="text-white bg-green-600 hover:bg-green-500 md:w-full w-max px-10 py-2 md:px-6 rounded-full">
      Search
     </button>
   </div>

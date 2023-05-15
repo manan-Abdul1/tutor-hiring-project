@@ -1,11 +1,11 @@
 import React from 'react'
-import TutorCard from '../../components/TutorCard/TutorCard'
+import HomeTutorSectionCard from './HomeTutorSectionCard'
 
 export default function HomeTutorSectionList({tutor}) {
   return (
     <>
-     <div className="mb-4 mt-4">
-     <TutorCard
+     <div className="mt-3">
+     <HomeTutorSectionCard
           key={tutor.name}
           name={tutor.name}
           image={tutor.image}

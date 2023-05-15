@@ -90,7 +90,7 @@ export default function HomeTutorSection() {
 
   return (
     <>
-      <div className="container mt-20 mb-20 ">
+      <div className="container mt-20 mb-20 px-6 ">
         <div className="row mb-3">
           <div className="col-md-2"></div>
           <div className="col-md-8 text-center">
@@ -105,7 +105,7 @@ export default function HomeTutorSection() {
           </div>
           <div className="col-md-2"></div>
         </div>
-        <div>
+        <div className=''>
         <Slider {...settings}>
             {tutors.map((tutor, index) => (
             <HomeTutorSectionList key={index} tutor={tutor} />

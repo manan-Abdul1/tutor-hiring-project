@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
 import PersonalInformation from './StepOne/StepOne';
@@ -7,8 +6,7 @@ import PersonalInformation from './StepOne/StepOne';
 const RegisterTutor = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     cnic: '',
     password: '',
@@ -16,6 +14,10 @@ const RegisterTutor = () => {
     phone: '',
     address: '',
     city: '',
+    gender:'',
+    bio: '',
+    location:'',
+    language:'',
     state: '',
     zip: '',
     education: '',

@@ -31,8 +31,8 @@ export default function TestInformationTable() {
             <td>None</td>
             <td>New student's information</td>
             <td>A new student account is created with the entered information</td>
-            <td>pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -44,8 +44,8 @@ export default function TestInformationTable() {
             <td>An existing student account Test</td>
             <td> Student's username and password </td>
             <td>Student is logged in to their account </td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -57,8 +57,8 @@ export default function TestInformationTable() {
             <td>Logged in as a tutor</td>
             <td>Tutor's education, experience, qualifications, availability, and teaching subjects/topics </td>
             <td>Tutor profile is created with the entered information </td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -70,8 +70,8 @@ export default function TestInformationTable() {
             <td>Logged in as a student</td>
             <td>Education field</td>
             <td> List of tutors with matching education is displayed</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -83,8 +83,8 @@ export default function TestInformationTable() {
             <td>Logged in as a student</td>
             <td>Experience Field</td>
             <td>List of tutors with matching experience level is displayed</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -96,8 +96,8 @@ export default function TestInformationTable() {
             <td>Logged in as a student</td>
             <td>Tutor and student availability, session topic</td>
             <td> Session is scheduled for the chosen time and topic</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -109,8 +109,8 @@ export default function TestInformationTable() {
             <td>Logged in as a student</td>
             <td>Tutor and student availability, session topic</td>
             <td>Session is scheduled for the chosen time, topic, and locationic</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -122,8 +122,8 @@ export default function TestInformationTable() {
             <td>Tutor account login credentials, student account login credentials, tutoring request details</td>
             <td>The tutor should be able to view the tutoring request and accept it.</td>
             <td>The tutor is able to view the tutoring request and accepts it</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -135,8 +135,8 @@ export default function TestInformationTable() {
             <td>A tutor and a student account must be created, and a tutoring request must be sent by the student to the tutor.</td>
             <td>Tutor account login credentials, student account login credentials, tutoring request details</td>
             <td>The tutor should be able to view the tutoring request and reject it.</td>
-            <td>Pass</td>
-            <td>Pass</td>
+            <td></td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
           </tr>
@@ -149,7 +149,7 @@ export default function TestInformationTable() {
             <td>Tutor account login credentials, tutor profile page</td>
             <td>The tutor should be able to view their ratings and reviews on their profile page.</td>
             <td>The tutor is able to view their ratings and reviews on their profile page.</td>
-            <td>Pass</td>
+            <td></td>
             <td>Development</td>
             <td>2023-06-05 10:30 AM</td>`
             </tr>

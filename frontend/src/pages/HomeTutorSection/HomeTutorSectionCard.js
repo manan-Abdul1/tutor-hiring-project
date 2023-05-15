@@ -1,22 +1,20 @@
-import React from 'react';
+import React from 'react'
 
-export default function TutorCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
-  const MAX_LENGTH = 20;
+export default function HomeTutorSectionCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
+    const MAX_LENGTH = 12;
 
-  const shortenText = (text) => {
-    if (text.length <= MAX_LENGTH) {
-      return text;
+    const shortenText = (text) => {
+      if (text.length <= MAX_LENGTH) {
+        return text;
+      }
+      return text.slice(0, MAX_LENGTH) + '...';
     }
-    return text.slice(0, MAX_LENGTH) + '...';
-  }
-  
   return (
     <>
-        
-    <div className="relative mb-4 inline-block px-[10px] py-[24px] bg-white overflow-hidden rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer">
+         <div className="relative mb-4 overflow-hidden mx-2 py-[20px] bg-white rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-2xl cursor-pointer">
         <img className="object-cover absolute rounded-full top-1 left-20" src={image} alt={name} loading="lazy" />
       <div className="relative pt-32">
-        {verified && <div className="absolute -top-7 -right-3 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
+        {verified && <div className="absolute -top-2 -right-0 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
       </div>
       <div className="px-4 py-2 bg-white">
         <h6 className="text-xl font-bold text-center">{name}</h6>
@@ -64,5 +62,5 @@ export default function TutorCard({ name, image, qualification, experience, clas
       </div>
     </div>
     </>
-  );
+  )
 }

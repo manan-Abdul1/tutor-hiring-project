@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TutorCard from "../../components/TutorCard/TutorCard";
 import TutorList from "../../components/TutorList.js/TutorList";
 import SearchFilterCard from "../SearchFilterCard/SearchFilterCard";
 
@@ -114,7 +113,7 @@ const tutors = [
       subjects:"Math",
       rating:4,
       age: 21,
-      gender:"Male",
+      gender:"Female",
       verified:true,
     },
     {
@@ -126,7 +125,7 @@ const tutors = [
       subjects:"Math",
       rating:4,
       age: 21,
-      gender:"Male",
+      gender:"Female",
       verified:true,
     },
     {
@@ -142,56 +141,52 @@ const tutors = [
       verified:true,
     }
   ];
+  const [filterValues, setFilterValues] = useState({});
+  const handleFilterChange = (values) => {
+    setFilterValues(values);
+  };
+  const filteredTutors = tutors.filter((tutor) => {
+    // Location filter
+    // if (filterValues.location && tutor.location !== filterValues.location) {
+    //   return false;
+    // }
+    // // Class filter
+    // if (filterValues.selectedClass && tutor.classes !== filterValues.selectedClass) {
+    //   return false;
+    // }
+    // // Subject filter
+    // if (filterValues.selectedSubject && tutor.subjects !== filterValues.selectedSubject) {
+    //   return false;
+    // }
+    // // Experience filter
+    // if (filterValues.experience && tutor.experience !== filterValues.experience) {
+    //   return false;
+    // }
+    // Gender filter
+    if (filterValues.gender && tutor.gender !== filterValues.gender) {
+      return false;
+    }
+    // Fee filter
+    // if (filterValues.fee && tutor.fee !== filterValues.fee) {
+    //   return false;
+    // }
+    return true;
+  });
+
   return (
     <>
-      <div className="flex">
+      <div className="container">
         <div class="row">
           <div class="col-md-3">
-        <SearchFilterCard />
+        <SearchFilterCard handleFilterChange={handleFilterChange} />
         </div>
         <div class="col-md-9">
-        <TutorList tutors={tutors} />
+        <TutorList tutors={filteredTutors} />
         </div>
         </div>
     </div>
 
 
     </>
-    // <div className="max-w-6xl mx-auto px-4 py-10">
-    //   <div className="flex justify-between">
-    //     <div className="w-1/3">
-    //       <input
-    //         type="text"
-    //         value={searchQuery}
-    //         onChange={handleSearch}
-    //         placeholder="Search for a tutor..."
-    //         className="w-full rounded-md border-gray-300 shadow-sm px-4 py-2 focus:outline-none focus:ring-green-500 focus:border-green-500"
-    //       />
-    //     </div>
-    //     <div className="w-2/3 pl-10">
-    //       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-    //         {currentTutors.map((tutor, index) => (
-    //           <TutorCard key={index} tutor={tutor} />
-    //         ))}
-    //       </div>
-    //       <div className="flex justify-center mt-4">
-    //         {pageNumbers.map((pageNumber) => (
-    //           <button
-    //             key={pageNumber}
-    //             className={`mx-2 px-2 py-1 rounded-full ${
-    //               currentPage === pageNumber
-    //                 ? "bg-green-500 text-white"
-    //                 : "bg-gray-200 text-gray-500"
-    //             }`}
-    //             onClick={() => setCurrentPage(pageNumber)}
-    //           >
-    //             {pageNumber}
-    //           </button>
-    //         ))}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
- 
   );}
   export default Tutor;

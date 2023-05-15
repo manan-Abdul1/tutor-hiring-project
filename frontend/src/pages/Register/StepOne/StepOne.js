@@ -1,24 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const PersonalInformation = ({ formData, setFormData, navigation }) => {
-  const { name, address, emailAddress, password,
-  confirmPassword,  phoneNumber, dateOfBirth, cnic } = formData;
+  const { name, emailAddress, password,
+  confirmPassword, } = formData;
   const { next } = navigation;
+  const [passwordError, setPasswordError] = useState('');
+  // const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleChange = (e) => {
+  const handleNext = (e) => {
+    e.preventDefault();
+
+      // Check if all required fields are filled
+      if (!name || !emailAddress || !password || !confirmPassword) {
+        return;
+      }
+  
+     // Check if password meets the minimum length requirement
+     if (password.length < 8) {
+      setPasswordError('Password must be at least 8 characters long');
+      return;
+    }
+
+    // Check if the password and confirm password match
+    if (password !== confirmPassword) {
+      setPasswordError('Passwords do not match');
+      return;
+    }
+
+    setPasswordError('');
+    next();
+  }
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
     });
+  
+    // Check if all required fields are filled
+    // const isFormFilled =
+    //   formData.name !== '' &&
+    //   formData.emailAddress !== '' &&
+    //   formData.password !== '' &&
+    //   formData.confirmPassword !== '';
+  
+    // setIsFormValid(isFormFilled);
   }
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    next();
-  }
+  
+  
 
   return (
+    <>
     <form className="flex flex-col shadow-2xl max-w-xl p-4 mx-auto items-center">
       <h1 className="text-2xl mr-auto text-white px-5 rounded-xl bg-green-700 font-bold mb-8  p-3">General</h1>
       <div className="w-full mb-4">
@@ -27,103 +60,67 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
           id="name"
           name="name"
           type="text"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          autoComplete='off'
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={name}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
       <div className="w-full mb-4">
-        <label htmlFor="emailAddress" className="block text-gray-700 font-bold mb-2">Email Address:</label>
+        <label htmlFor="emailAddress" className="block text-gray-700 font-bold mb-2">Email Address: *</label>
         <input
+          autoComplete='off'
           id="emailAddress"
           name="emailAddress"
           type="email"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full h-10 py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={emailAddress}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
       <div className="w-full mb-4">
-        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password:</label>
+        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password: *</label>
         <input
           id="password"
           name="password"
           type="password"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="
+          shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={password}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
       <div className="w-full mb-4">
-        <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">Confirm Password:</label>
+        <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">Confirm Password: *</label>
         <input
           id="confirmPassword"
           name="confirmPassword"
-          type="confirmPassword"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="password"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={confirmPassword}
-          onChange={handleChange}
+          onChange={handleInputChange}
           required
         />
       </div>
-      {/* <div className="w-full mb-4">
-        <label htmlFor="phoneNumber" className="block text-gray-700 font-bold mb-2">Phone Number:</label>
-        <input
-          id="phoneNumber"
-          name="phoneNumber"
-          type="tel"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={phoneNumber}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="address" className="block text-gray-700 font-bold mb-2">Address:</label>
-        <input
-          id="address"
-          name="address"
-          type="text"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={address}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="dateOfBirth" className="block text-gray-700 font-bold mb-2">Date of Birth:</label>
-        <input
-          id="dateOfBirth"
-          name="dateOfBirth"
-          type="date"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={dateOfBirth}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="cnic" className="block text-gray-700 font-bold mb-2">CNIC:</label>
-        <input
-          id="cnic"
-          name="cnic"
-          type="text"
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={cnic}
-          onChange={handleChange}
-          required
-          />
-        </div> */}
+      {passwordError && (
+        <p className="text-red-500 text-sm mb-4">{passwordError}</p>
+      )}
+      {/* { */}
+        {/* isFormValid && ( */}
         <button
-          className="bg-blue-500 ml-auto text-right hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-blue-500 ml-auto mt-2 text-right hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={handleNext}
         >
               Next
         </button>
+
+        {/* ) */}
+      {/* } */}
         </form>
+    </>
   );
 }
 export default PersonalInformation;
