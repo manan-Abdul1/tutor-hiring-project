@@ -19,9 +19,12 @@ function Header() {
             <div>
               {/* Website Logo */}
               <Link to="/" className="flex items-center py-4 px-2">
-                <span className="font-semibold text-gray-500 text-lg">
-                  Navigation
-                </span>
+<i class="fa-solid fa-user-graduate fa-beat fa-3x text-green-500" ></i>
+                {/* <img src="https://wallpaper.dog/large/20591261.jpg" width={30 }/> */}
+                {/* <img src="/assets/home-logo.png" alt="home-logo" width={30}/> */}
+                {/* <span className="font-semibold text-gray-500 text-lg"> */}
+                  {/* Navigation */}
+                {/* </span> */}
               </Link>
             </div>
             {/* Primary Navbar items */}
