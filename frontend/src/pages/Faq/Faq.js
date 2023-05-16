@@ -40,7 +40,7 @@ const Faq = () => {
   </div>
 </div> */}
 <h2 className="mx-2 font-bold md:my-5 md:text-center md:text-3xl mb-3 banner-heading">
-          FREQUENTLY <span className="text-warning"> ASKED</span> QUESTIONS
+          FREQUENTLY <span className="text-green-500 border-b-4 border-green-500"> ASKED</span> QUESTIONS
         </h2>
 <div class="flex flex-wrap -mx-4 justify-center items-center">
   <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 transform translate-y-2">
