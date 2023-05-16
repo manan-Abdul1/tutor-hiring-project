@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import InputForm from '../../components/Hire Input Field/InputForm';
 export default function HomeTutorSectionCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
   const [show,setShow]=useState(false)  
   const MAX_LENGTH = 12;
@@ -74,7 +75,7 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
 <Modal.Title>Hire Now</Modal.Title>
 </Modal.Header>
 <Modal.Body>
-<p>Modal body text goes here.</p>
+<InputForm/>
 </Modal.Body>
 <Modal.Footer>
 <Button variant="btn btn-primary text-blue-500" onClick={handleClose}>
