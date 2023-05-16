@@ -1,13 +1,21 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 export default function HomeTutorSectionCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
-    const MAX_LENGTH = 12;
+  const [show,setShow]=useState(false)  
+  const MAX_LENGTH = 12;
 
     const shortenText = (text) => {
       if (text.length <= MAX_LENGTH) {
         return text;
       }
       return text.slice(0, MAX_LENGTH) + '...';
+    }
+    function handleShow(){
+      setShow(true)
+    }
+    function handleClose(){
+      setShow(false)
     }
   return (
     <>
@@ -57,10 +65,24 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
               View profile
             </button>
         {/* <a href="https://thetutors.pk/tutor/muneeb-ur-rehman-3043" className="px-4 py-2 text-white bg-blue-600 mr-2 rounded-md hover:bg-blue-700">View Profile</a> */}
-        <button className="px-3 py-1 text-white bg-green-500 rounded-md hover:bg-green-600" data-toggle="modal" data-target="#send-request-popup" data-tutor="NDQw" data-tutorname={name}>Hire Now</button>
+        <button className="px-3 py-1 text-white bg-green-500 rounded-md hover:bg-green-600" data-toggle="modal" data-target="#send-request-popup" data-tutor="NDQw" data-tutorname={name} onClick={handleShow}>Hire Now</button>
         </div>
       </div>
     </div>
+    <Modal show={show} onHide={handleClose} size="lg">
+<Modal.Header className='btn btn-primary' closeButton>
+<Modal.Title>Hire Now</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+<p>Modal body text goes here.</p>
+</Modal.Body>
+<Modal.Footer>
+<Button variant="btn btn-primary text-blue-500" onClick={handleClose}>
+Close
+</Button>
+<Button variant="primary text-blue-500">Save changes</Button>
+</Modal.Footer>
+</Modal>
     </>
   )
 }
