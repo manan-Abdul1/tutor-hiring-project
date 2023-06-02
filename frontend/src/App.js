@@ -12,17 +12,18 @@ import Login from "./pages/Login/Login";
 function App() {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
+      <MainPageRegister/>
       <Routes>
-      <Route path="/" exact element={<Homepage/>}/>
+      <Route path="/home" exact element={<Homepage/>}/>
       <Route path="/tutors" element={<MainPageTutors/>}/>
       <Route path="/faq" element={<Faq/>}/>
       <Route path="/about" element={<Aboutus/>}/>
       <Route path="/viewprofile" element={<ViewProfile/>}/>
-      <Route path="/registertutor" element={<MainPageRegister/>}/>
+      {/* <Route path="/" element={<MainPageRegister/>}/> */}
       <Route path="/login" element={<Login/>}/>
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 }
