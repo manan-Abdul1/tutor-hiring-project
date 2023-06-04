@@ -3,7 +3,7 @@ import RegisterTutor from "./RegisterTutor"; // Import your RegisterTutor compon
 import Login from "../Login/Login";
 import RegisterStudent from "./RegisterStudent";
 
-function Form() {
+function Form({setIsRegistered}) {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [registerType, setRegisterType] = useState(null);
@@ -59,7 +59,7 @@ function Form() {
         </div>
       )}
       {showSignIn && (
-          <Login/>
+          <Login setIsRegistered={setIsRegistered} />
       )}
     </>
   );

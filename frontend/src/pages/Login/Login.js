@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+
+const Login = ({setIsRegistered}) => {
   const [isStudent, setIsStudent] = useState(true);
+  const navigate = useNavigate();
+
 
   const handleToggle = () => {
     setIsStudent(!isStudent);
@@ -10,6 +14,8 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // TODO: Handle form submission
+    setIsRegistered(true);
+    navigate('/home');
   };
 
   return (
@@ -46,7 +52,7 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              required
+              autoComplete='off'
             />
           </div>
           <div className={`mt-2 ${isStudent ? '' : 'hidden'} m-auto w-[250px]`}>
@@ -58,7 +64,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              required
+              autoComplete='off'
             />
           </div>
           <div className={`mt-2 ${!isStudent ? '' : 'hidden'} m-auto w-[250px]`}>
@@ -70,7 +76,7 @@ const Login = () => {
               type="text"
               id="email"
               name="email"
-              required
+              autoComplete='off'
             />
           </div>
           <div className={`mt-2 ${!isStudent ? '' : 'hidden'}  m-auto w-[250px]`}>
@@ -82,7 +88,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              required
+              autoComplete='off'
             />
           </div>
         <div className='m-auto w-[100px] mt-4'>
