@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import RegisterTutor from "./RegisterTutor"; // Import your RegisterTutor component
+import RegisterTutor from "./RegisterTutor";
 import Login from "../Login/Login";
 import RegisterStudent from "./RegisterStudent";
 import { useNavigate } from "react-router-dom";
 
-function Form({setIsRegistered}) {
+function Form({ setIsRegistered }) {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [registerType, setRegisterType] = useState(null);
@@ -14,18 +14,23 @@ function Form({setIsRegistered}) {
     setShowRegistration(true);
     setShowSignIn(false);
     setRegisterType(type);
-    navigate('/register-tutor')
+
+    if (type === "tutor") {
+      navigate("/register-tutor");
+    } else if (type === "student") {
+      navigate("/register-student");
+    }
   };
 
   const handleSignInClick = () => {
     setShowRegistration(false);
     setShowSignIn(true);
-    navigate('/login')
+    navigate("/login");
   };
 
   return (
     <>
-      {(!showRegistration && !showSignIn) && (
+      {!showRegistration && !showSignIn && (
         <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
           <div className="max-w-md w-full bg-white mx-auto p-6 rounded shadow-md">
             <h1 className="text-3xl text-center mb-7">Welcome to Our Website</h1>
@@ -52,19 +57,15 @@ function Form({setIsRegistered}) {
           </div>
         </div>
       )}
-      {showRegistration && registerType === "tutor" && (
-            <RegisterTutor />
-      )}
-      {showRegistration && registerType !== "tutor" && (
+      {showRegistration && registerType === "tutor" && <RegisterTutor />}
+      {showRegistration && registerType === "student" && (
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full mx-auto p-6 rounded shadow-2xl">
-            <RegisterStudent/>
+            <RegisterStudent />
           </div>
         </div>
       )}
-      {showSignIn && (
-          <Login setIsRegistered={setIsRegistered} />
-      )}
+      {showSignIn && <Login setIsRegistered={setIsRegistered} />}
     </>
   );
 }

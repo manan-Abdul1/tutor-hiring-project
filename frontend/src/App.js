@@ -10,6 +10,7 @@ import MainPageRegister from "./pages/Register/MainPageRegister";
 import Login from "./pages/Login/Login";
 import { useState } from "react";
 import RegisterTutor from "./pages/Register/RegisterTutor";
+import RegisterStudent from "./pages/Register/RegisterStudent";
 
 function App() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPageRegister setIsRegistered={setIsRegistered} />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />
+        <Route path="/register-student" element={<RegisterStudent />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/"
