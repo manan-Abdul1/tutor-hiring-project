@@ -18,7 +18,7 @@ function Header() {
           <div className="flex space-x-7">
             <div>
               {/* Website Logo */}
-              <Link to="/" className="flex items-center py-4 px-2">
+              <Link to="/home" className="flex items-center py-4 px-2">
 <i class="fa-solid fa-user-graduate fa-beat fa-3x text-green-500" ></i>
                 {/* <img src="https://wallpaper.dog/large/20591261.jpg" width={30 }/> */}
                 {/* <img src="/assets/home-logo.png" alt="home-logo" width={30}/> */}
@@ -30,7 +30,7 @@ function Header() {
             {/* Primary Navbar items */}
             <div className="hidden md:flex items-center space-x-1">
               <Link
-                to="/"
+                to="/home"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
                   location.pathname === "/" ? "border-b-4 border-green-500" : ""
                 }`}
