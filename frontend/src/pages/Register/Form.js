@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import RegisterTutor from "./RegisterTutor"; // Import your RegisterTutor component
 import Login from "../Login/Login";
 import RegisterStudent from "./RegisterStudent";
+import { useNavigate } from "react-router-dom";
 
 function Form({setIsRegistered}) {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [registerType, setRegisterType] = useState(null);
+  const navigate = useNavigate();
 
   const handleRegisterClick = (type) => {
     setShowRegistration(true);
     setShowSignIn(false);
     setRegisterType(type);
+    navigate('/register-tutor')
   };
 
   const handleSignInClick = () => {
     setShowRegistration(false);
     setShowSignIn(true);
+    navigate('/login')
   };
 
   return (
