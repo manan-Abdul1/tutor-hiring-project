@@ -3,6 +3,8 @@ import React from 'react'
 function RegisterStudent() {
   return (
     <>
+     <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
+     <div className="max-w-md w-full bg-white mx-auto p-6 rounded shadow-2xl">
      <h2 className="text-3xl  font-bold mb-4">Register as Student</h2>
        <form>
         <div className="mb-4">
@@ -53,6 +55,8 @@ function RegisterStudent() {
           </button>
         </div>
       </form>
+      </div>
+      </div>
     </>
   )
 }

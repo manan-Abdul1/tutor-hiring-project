@@ -32,10 +32,18 @@ function Header() {
               <Link
                 to="/home"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/" ? "border-b-4 border-green-500" : ""
+                  location.pathname === "/home" ? "border-b-4 border-green-500" : ""
                 }`}
               >
                 Home
+              </Link>
+              <Link
+                to="/teacher-home"
+                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                  location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
+                }`}
+              >
+                Teacher-home
               </Link>
               <Link
                 to="/tutors"
@@ -67,8 +75,7 @@ function Header() {
             <i className="fa-solid fa-user mr-1"></i>
               Login
             </Link>
-            <Link to='/registertutor'
-              href=""
+            <Link to='/register-tutor'
               className="py-2 px-2 font-medium bg-blue-500 text-white rounded hover:bg-green-500 hover:text-white transition duration-300"
             >
               Register As Tutor
@@ -134,7 +141,7 @@ function Header() {
             About Us
           </Link>
           <div className="py-3">
-            <Link to='/registertutor'
+            <Link to='/register-tutor'
               className="py-2 px-4 mr-4 bg-green-500 hover:bg-white hover:text-gray-500 text-white font-semibold rounded-lg shadow-md transition duration-300"
             >
               Register As Tutor
