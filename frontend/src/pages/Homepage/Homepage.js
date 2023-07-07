@@ -15,9 +15,6 @@ export default function Homepage() {
   const { ref: tutorRef, inView: tutorInView } = useInView({
     threshold: 0.6
   }); 
-  const { ref: faqRef, inView: faqInView } = useInView({
-    threshold: 0.6
-  });
 
   const sectionVariant = {
     visible: {
@@ -48,21 +45,7 @@ export default function Homepage() {
       y: 50
     }
   };
-  const faqVariant = {
-    visible: {
-      opacity: 1,
-      y: 0, // changed from y to x
-      transition: {
-        duration: 0.7,
-        ease: 'easeInOut'
-      }
-    },
-    hidden: {
-      opacity: 0,
-      y: 80, // changed from y to x
-    }
-  };
-  
+ 
 
   return (
     <>
@@ -88,15 +71,9 @@ export default function Homepage() {
         >
           <HomeTutorSection />
         </motion.div>
-      </div> <div className='p-1 my-5 rounded-lg shadow-2xl' ref={faqRef}>
-        <motion.div
-          className='fade-in'
-          variants={faqVariant}
-          initial='hidden'
-          animate={faqInView ? 'visible' : 'hidden'}
-        >
+      </div> 
+      <div className='py-20 rounded-lg shadow-2xl' >
           <Faq />
-        </motion.div>
       </div>
     </>
   );

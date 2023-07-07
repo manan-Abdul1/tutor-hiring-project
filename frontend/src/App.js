@@ -20,8 +20,7 @@ function App() {
     <>
       {isRegistered && <Header />}
       <Routes>
-        <Route path="/" element={<MainPageRegister setIsRegistered={setIsRegistered} />} />
-        {isRegistered && (
+        {isRegistered ? (
           <>
             <Route path="/home" element={<Homepage />} />
             <Route path="/tutors" element={<MainPageTutors />} />
@@ -30,6 +29,8 @@ function App() {
             <Route path="/viewprofile" element={<ViewProfile />} />
             <Route path="/teacher-home" element={<TeacherDashboard />} />
           </>
+        ) : (
+          <Route path="/" element={<MainPageRegister setIsRegistered={setIsRegistered} />} />
         )}
         <Route path="/register-tutor" element={<RegisterTutor />} />
         <Route path="/register-student" element={<RegisterStudent />} />

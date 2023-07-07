@@ -27,20 +27,22 @@ const TeacherDashboard = () => {
     },
   ]);
   const [messages, setMessages] = useState([
-    {
-        sennderName:'Abdul',
-        content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus"
-    },
-    {
-        sennderName:'Abdul',
-        content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus"
-    },
-    {
-        sennderName:'Abdul',
-        content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus"
-    }
-
-  ]);
+  {
+    id: 1,
+    senderName: "Abdul",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus",
+  },
+  {
+    id: 2,
+    senderName: "Abdul",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus",
+  },
+  {
+    id: 3,
+    senderName: "Abdul",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus",
+  },
+]);
 
   // Fetch requests, feedbacks, and messages from API or set them manually
 //   useEffect(() => {
@@ -98,7 +100,7 @@ const TeacherDashboard = () => {
         </div>
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-4">Messages</h2>
-          <TeacherMessageList messages={messages} />
+          <TeacherMessageList messages={messages} setMessages={setMessages} />
         </div>
         {/* Add other components and sections of the teacher dashboard */}
       </div>
