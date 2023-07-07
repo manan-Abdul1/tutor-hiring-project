@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MobileHeader from "./MobileHeader";
 
-
-function Header() {
+function Header({handleLogout}) {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
   const location = useLocation();
   const currentUser = JSON.parse(localStorage.getItem("currentuser"));
 
@@ -16,17 +14,11 @@ function Header() {
     };
 
     handleResize(); // Check initial screen size
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const handleLogout = () => {
-    // Clear the current user from local storage and redirect to the login page
-    localStorage.removeItem("currentuser");
-    window.location.href = "/login";
-  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -40,7 +32,7 @@ function Header() {
             <div>
               {/* Website Logo */}
               <Link to="/home" className="flex items-center py-4 px-2">
-                <i class="fa-solid fa-user-graduate fa-beat fa-3x text-green-500" ></i>
+                <i className="fa-solid fa-user-graduate fa-beat fa-3x text-green-500"></i>
               </Link>
             </div>
             {/* Primary Navbar items */}
@@ -53,20 +45,18 @@ function Header() {
               >
                 Home
               </Link>
-              <Link
+              {/* <Link
                 to="/teacher-home"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
                   location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
                 }`}
               >
                 Teacher-home
-              </Link>
+              </Link> */}
               <Link
                 to="/tutors"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/tutors"
-                    ? "border-b-4 border-green-500"
-                    : ""
+                  location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
                 }`}
               >
                 Tutors
@@ -74,9 +64,7 @@ function Header() {
               <Link
                 to="/about"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/about"
-                    ? "border-b-4 border-green-500"
-                    : ""
+                  location.pathname === "/about" ? "border-b-4 border-green-500" : ""
                 }`}
               >
                 About Us
@@ -84,24 +72,22 @@ function Header() {
             </div>
           </div>
           {/* Secondary Navbar items */}
-          <div className="hidden md:flex items-center space-x-3 ">
-            <Link to='/tutors'
-              className="py-2 px-2  font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
+          <div className="hidden md:flex items-center space-x-3">
+            <Link
+              to="/tutors"
+              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
             >
               Hire a Tutor
             </Link>
             {currentUser && (
               <div className="relative">
-                <button
-                  className="py-2 px-3 font-medium"
-                  onClick={toggleMenu}
-                >
+                <button className="py-2 px-3 font-medium" onClick={toggleMenu}>
                   {currentUser.name}
                   <i className="fa-solid fa-user ml-1"></i>
                   <i className="fa-solid fa-caret-down mx-1"></i>
                 </button>
                 {showMenu && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg" style={{zIndex: 9999}}>
                     <Link
                       to="/profile"
                       className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -159,14 +145,15 @@ function Header() {
       </div>
       {/* Mobile menu */}
       {isMobile && (
-      <MobileHeader
-        showMenu={showMenu}
-        handleLogout={handleLogout}
-        toggleMenu={toggleMenu}
-        currentUser={currentUser}
-      />
+        <MobileHeader
+          showMenu={showMenu}
+          handleLogout={handleLogout}
+          toggleMenu={toggleMenu}
+          currentUser={currentUser}
+        />
       )}
     </nav>
   );
 }
+
 export default Header;

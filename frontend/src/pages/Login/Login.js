@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setIsRegistered }) => {
+const Login = ({ handleLogin }) => {
   const [isStudent, setIsStudent] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +31,7 @@ const Login = ({ setIsRegistered }) => {
       // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
       const result = response.data;
       localStorage.setItem('currentuser', JSON.stringify(result));
-      setIsRegistered(true);
+      handleLogin();
       navigate('/home');
       toast.success('Login successful');
     } catch (error) {

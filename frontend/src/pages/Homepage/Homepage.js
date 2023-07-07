@@ -6,6 +6,7 @@ import HomeTutorSection from '../HomeTutorSection/HomeTutorSection';
 import './Homepage.css';
 import Faq from '../Faq/Faq';
 import SearchBelowCards from '../../components/Search Below Cards/SearchBelowCards';
+import { useNavigate } from 'react-router-dom';
 
 export default function Homepage() {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -45,7 +46,15 @@ export default function Homepage() {
       y: 50
     }
   };
- 
+  const navigate = useNavigate();
+  const currentUser = JSON.parse(localStorage.getItem("currentuser"));
+
+  if (!currentUser) {
+    // User is not registered, redirect to login page
+    navigate("/login");
+    return null;
+  }
+
 
   return (
     <>

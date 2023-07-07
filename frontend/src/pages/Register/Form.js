@@ -4,7 +4,7 @@ import Login from "../Login/Login";
 import RegisterStudent from "./RegisterStudent";
 import { useNavigate } from "react-router-dom";
 
-function Form({ setIsRegistered }) {
+function Form({ setIsLoggedIn }) {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [registerType, setRegisterType] = useState(null);
@@ -65,7 +65,7 @@ function Form({ setIsRegistered }) {
           </div>
         </div>
       )}
-      {showSignIn && <Login setIsRegistered={setIsRegistered} />}
+      {showSignIn && <Login />}
     </>
   );
 }

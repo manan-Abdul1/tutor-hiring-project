@@ -90,7 +90,7 @@ export default function HomeTutorSection() {
 
   return (
     <>
-      <div className="container mt-20 mb-20 px-6 ">
+      <div className="mt-20 mb-20 px-6 ">
         <div className="row mb-3">
           <div className="col-md-2"></div>
           <div className="col-md-8 text-center">
