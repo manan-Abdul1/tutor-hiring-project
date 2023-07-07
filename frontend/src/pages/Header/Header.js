@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
+  const currentUser = JSON.parse(localStorage.getItem("currentuser"));
 
+  const handleLogout = () => {
+    // Clear the current user from local storage and redirect to the login page
+    localStorage.removeItem("currentuser");
+    window.location.href = "/login";
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -69,22 +75,41 @@ function Header() {
           </div>
           {/* Secondary Navbar items */}
           <div className="hidden md:flex items-center space-x-3 ">
-            <Link to='/login'
-              className="py-2 px-2 font-medium text-gray-500 rounded hover:text-green-500 transition duration-300"
-            >
-            <i className="fa-solid fa-user mr-1"></i>
-              Login
-            </Link>
-            <Link to='/register-tutor'
-              className="py-2 px-2 font-medium bg-blue-500 text-white rounded hover:bg-green-500 hover:text-white transition duration-300"
-            >
-              Register As Tutor
-            </Link>
             <Link to='/tutors'
-              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
+              className="py-2 px-2  font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
             >
               Hire a Tutor
             </Link>
+            {currentUser && (
+              <div className="relative">
+                <button
+                  className="py-2 px-3 font-medium"
+                  onClick={toggleMenu}
+                >
+                  {currentUser.name}
+                  <i className="fa-solid fa-user ml-1"></i>
+                  <i className="fa-solid fa-caret-down mx-1"></i>
+                </button>
+                {showMenu && (
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
+                    <Link
+                      to="/profile"
+                      className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    >
+                      Profile
+                    </Link>
+                    <a
+                      id="logout-link"
+                      href="/login"
+                      className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -141,11 +166,6 @@ function Header() {
             About Us
           </Link>
           <div className="py-3">
-            <Link to='/register-tutor'
-              className="py-2 px-4 mr-4 bg-green-500 hover:bg-white hover:text-gray-500 text-white font-semibold rounded-lg shadow-md transition duration-300"
-            >
-              Register As Tutor
-            </Link>
             <Link to='/tutors'
               className="py-2 px-4 border border-green-500 text-green-500 font-semibold rounded-lg shadow-md transition duration-300"
             >

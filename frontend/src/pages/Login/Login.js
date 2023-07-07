@@ -14,41 +14,38 @@ const Login = ({ setIsRegistered }) => {
     setIsStudent(!isStudent);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
     // Create an object with the form data
     const formData = {
       email,
       password,
     };
-
+  
     // Set the appropriate login route based on the toggle state
     const loginRoute = isStudent ? 'http://localhost:5500/api/users/student-login' : '/api/users/teacher-login';
-
-    // Send the form data to the server for login
-    axios
-      .post(loginRoute, formData)
-      .then((response) => {
-        console.log(response)
-        // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
-        const result = response.data
-        localStorage.setItem('currentuser', JSON.stringify(result));
-        setIsRegistered(true);
-        navigate('/home');
-        toast.success('Login successful');
-      })
-      .catch((error) => {
-        if (error.response) {
-          // Display an error message or perform any other necessary actions
-          const errorMessage = error.response.data.message;
-          toast.error(`Login failed: ${errorMessage}`);
-        } else {
-          // Display a generic error message or perform any other necessary actions
-          toast.error('Login failed. An error occurred.');
-        }
-      });
+  
+    try {
+      // Send the form data to the server for login
+      const response = await axios.post(loginRoute, formData);  
+      // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
+      const result = response.data;
+      localStorage.setItem('currentuser', JSON.stringify(result));
+      setIsRegistered(true);
+      navigate('/home');
+      toast.success('Login successful');
+    } catch (error) {
+      if (error.response) {
+        // Display an error message or perform any other necessary actions
+        const errorMessage = error.response.data.message;
+        toast.error(`Login failed: ${errorMessage}`);
+      } else {
+        // Display a generic error message or perform any other necessary actions
+        toast.error('Login failed. An error occurred.');
+      }
+    }
   };
+  
 
   return (
     <div className="flex items-center justify-center h-screen">
