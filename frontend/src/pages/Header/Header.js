@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import MobileHeader from "./MobileHeader";
 
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const location = useLocation();
   const currentUser = JSON.parse(localStorage.getItem("currentuser"));
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust the breakpoint as needed
+    };
+
+    handleResize(); // Check initial screen size
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleLogout = () => {
     // Clear the current user from local storage and redirect to the login page
@@ -25,12 +40,7 @@ function Header() {
             <div>
               {/* Website Logo */}
               <Link to="/home" className="flex items-center py-4 px-2">
-<i class="fa-solid fa-user-graduate fa-beat fa-3x text-green-500" ></i>
-                {/* <img src="https://wallpaper.dog/large/20591261.jpg" width={30 }/> */}
-                {/* <img src="/assets/home-logo.png" alt="home-logo" width={30}/> */}
-                {/* <span className="font-semibold text-gray-500 text-lg"> */}
-                  {/* Navigation */}
-                {/* </span> */}
+                <i class="fa-solid fa-user-graduate fa-beat fa-3x text-green-500" ></i>
               </Link>
             </div>
             {/* Primary Navbar items */}
@@ -148,31 +158,13 @@ function Header() {
         </div>
       </div>
       {/* Mobile menu */}
-      {showMenu && (
-        <div className="md:hidden mobile-menu p-7">
-          <Link to='/'
-            className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
-          >
-            Home
-          </Link>
-          <Link to='/tutors'
-            className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
-          >
-            Tutors
-          </Link>
-          <Link to='/aboutus'
-            className="block py-2 font-medium text-gray-500 hover:text-green-500 transition duration-300"
-          >
-            About Us
-          </Link>
-          <div className="py-3">
-            <Link to='/tutors'
-              className="py-2 px-4 border border-green-500 text-green-500 font-semibold rounded-lg shadow-md transition duration-300"
-            >
-              Hire a Teacher
-            </Link>
-          </div>
-        </div>
+      {isMobile && (
+      <MobileHeader
+        showMenu={showMenu}
+        handleLogout={handleLogout}
+        toggleMenu={toggleMenu}
+        currentUser={currentUser}
+      />
       )}
     </nav>
   );
