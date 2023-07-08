@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function StudentProfile() {
   const currentUser = JSON.parse(localStorage.getItem("currentuser"));
@@ -32,18 +34,21 @@ function StudentProfile() {
 
     // Send a PUT request to update the student using Axios
     axios
-      .put(`http://localhost:5500/api/users/students/${studentId}`, updatedStudent)
+    .put(`http://localhost:5500/api/users/students/${studentId}`, updatedStudent)
       .then((response) => {
+        toast.success("Student Profile Updated");
         console.log("Student updated:", response.data);
         // Handle any necessary actions after successful update
         // Example: localStorage.setItem("currentuser", JSON.stringify(response.data));
       })
       .catch((error) => {
-        console.error("Error updating student:", error);
+        toast.error("Error updating student:", error);
         // Handle error case
       });
   };
   return (
+    <>
+        <ToastContainer />
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border border-gray-300 rounded shadow">
       <h1 className="text-2xl text-center text-cyan-700  font-bold mb-4">Student Profile</h1>
       <form onSubmit={handleSubmit}>
@@ -92,6 +97,7 @@ function StudentProfile() {
         </button>
       </form>
     </div>
+    </>
   );
 }
 
