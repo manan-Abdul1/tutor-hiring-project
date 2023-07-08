@@ -22,7 +22,9 @@ const RegisterTutor = () => {
     zip: '',
     education: '',
     experience: '',
-    skills: '',
+    skills: [],
+    subjects:[],
+    classes:[]
   });
 
   const handleInputChange = (event) => {
@@ -60,8 +62,8 @@ const RegisterTutor = () => {
           setFormData={setFormData}
           handleInputChange={handleInputChange}
           navigation={navigation}
-          // handleNextStep={handleNextStep}
         />
+          // handleNextStep={handleNextStep}
       )}
       </div>
       {currentStep === 2 && (

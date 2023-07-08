@@ -12,15 +12,15 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
     e.preventDefault();
 
       // Check if all required fields are filled
-      if (!name || !emailAddress || !password || !confirmPassword) {
-        return;
-      }
+      // if (!name || !emailAddress || !password || !confirmPassword) {
+      //   return;
+      // }
   
      // Check if password meets the minimum length requirement
-     if (password.length < 8) {
-      toast.error('Password must be at least 8 characters long');
-      return;
-    }
+    //  if (password.length < 8) {
+    //   toast.error('Password must be at least 8 characters long');
+    //   return;
+    // }
 
     // Check if the password and confirm password match
     if (password !== confirmPassword) {
@@ -55,7 +55,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
     <>
       <ToastContainer />
     <form className="flex flex-col shadow-2xl max-w-xl p-4 mx-auto items-center">
-      <h1 className="text-2xl text-center text-green-700 font-bold mb-4">General</h1>
+      <h1 className="text-2xl text-center text-green-700 font-bold mb-4">General Information</h1>
       <div className="w-full mb-4">
         <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Full Name: *</label>
         <input
@@ -66,7 +66,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={name}
           onChange={handleInputChange}
-          required
+          //required
         />
       </div>
       <div className="w-full mb-4">
@@ -79,7 +79,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
           className="shadow appearance-none border rounded w-full h-10 py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={emailAddress}
           onChange={handleInputChange}
-          required
+          //required
         />
       </div>
       <div className="w-full mb-4">
@@ -92,7 +92,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
           shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={password}
           onChange={handleInputChange}
-          required
+          //required
         />
       </div>
       <div className="w-full mb-4">
@@ -104,7 +104,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={confirmPassword}
           onChange={handleInputChange}
-          required
+          //required
         />
       </div>
       {passwordError && (
