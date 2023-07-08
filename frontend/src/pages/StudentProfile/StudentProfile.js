@@ -45,7 +45,7 @@ function StudentProfile() {
   };
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border border-gray-300 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Student Profile</h1>
+      <h1 className="text-2xl text-center text-cyan-700  font-bold mb-4">Student Profile</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -80,6 +80,7 @@ function StudentProfile() {
             id="password"
             value={password}
             onChange={handlePasswordChange}
+            required
             className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500 focus:border-green-500"
           />
         </div>
