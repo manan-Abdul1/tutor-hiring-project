@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PersonalInformation = ({ formData, setFormData, navigation }) => {
-  const { name, emailAddress, password,
-  confirmPassword, } = formData;
+  const { name, emailAddress, password, confirmPassword, } = formData;
   const { next } = navigation;
   const [passwordError, setPasswordError] = useState('');
   // const [isFormValid, setIsFormValid] = useState(false);
@@ -17,13 +18,13 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
   
      // Check if password meets the minimum length requirement
      if (password.length < 8) {
-      setPasswordError('Password must be at least 8 characters long');
+      toast.error('Password must be at least 8 characters long');
       return;
     }
 
     // Check if the password and confirm password match
     if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match');
+      toast.error('Passwords do not match');
       return;
     }
 
@@ -52,8 +53,9 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
 
   return (
     <>
+      <ToastContainer />
     <form className="flex flex-col shadow-2xl max-w-xl p-4 mx-auto items-center">
-      <h1 className="text-2xl mr-auto text-white px-5 rounded-xl bg-green-700 font-bold mb-8  p-3">General</h1>
+      <h1 className="text-2xl text-center text-green-700 font-bold mb-4">General</h1>
       <div className="w-full mb-4">
         <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Full Name: *</label>
         <input
