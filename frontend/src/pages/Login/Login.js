@@ -23,7 +23,7 @@ const Login = ({ handleLogin }) => {
     };
   
     // Set the appropriate login route based on the toggle state
-    const loginRoute = isStudent ? 'http://localhost:5500/api/users/student-login' : '/api/users/teacher-login';
+    const loginRoute = isStudent ? 'http://localhost:5500/api/users/student-login' : 'http://localhost:5500/api/tutors/tutors-login';
   
     try {
       // Send the form data to the server for login

@@ -27,7 +27,6 @@ const RegisterTutor = () => {
     education: '',
     city: '',
     bio: '',
-    language:'',
     classes:[],
     subjects:[],
     allSubjectFee: '',
