@@ -111,10 +111,10 @@ const StepTwo = ({ formData, setFormData, navigation }) => {
             </label>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="details"
-              id="details"
+              name="bio"
+              id="bio"
               rows="5"
-              value={formData.details}
+              value={formData.bio}
               onChange={handleInputChange}
             ></textarea>
           </div>

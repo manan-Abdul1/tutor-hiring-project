@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const StepThree = ({ formData, setFormData, navigation, handleSubmit }) => {
-  const { previous, next } = navigation;
+  const { previous } = navigation;
   const [subjects, setSubjects] = useState(formData.subjects || []);
   const [classes, setClasses] = useState(formData.classes || []);
   const [newSubject, setNewSubject] = useState('');
@@ -17,33 +17,62 @@ const StepThree = ({ formData, setFormData, navigation, handleSubmit }) => {
 
   const handleAddSubject = () => {
     if (newSubject.trim() !== '') {
-      setSubjects((prevSubjects) => [...prevSubjects, newSubject]);
+      setSubjects((prevSubjects) => {
+        const updatedSubjects = [...prevSubjects, newSubject];
+        setFormData((prevState) => ({
+          ...prevState,
+          subjects: updatedSubjects,
+        }));
+        return updatedSubjects;
+      });
       setNewSubject('');
     }
   };
-
+  
   const handleRemoveSubject = (index) => {
-    setSubjects((prevSubjects) => prevSubjects.filter((_, i) => i !== index));
+    setSubjects((prevSubjects) => {
+      const updatedSubjects = prevSubjects.filter((_, i) => i !== index);
+      setFormData((prevState) => ({
+        ...prevState,
+        subjects: updatedSubjects,
+      }));
+      return updatedSubjects;
+    });
   };
-
+  
   const handleAddClass = () => {
     if (newClass.trim() !== '') {
-      setClasses((prevClasses) => [...prevClasses, newClass]);
+      setClasses((prevClasses) => {
+        const updatedClasses = [...prevClasses, newClass];
+        setFormData((prevState) => ({
+          ...prevState,
+          classes: updatedClasses,
+        }));
+        return updatedClasses;
+      });
       setNewClass('');
     }
   };
-
+  
   const handleRemoveClass = (index) => {
-    setClasses((prevClasses) => prevClasses.filter((_, i) => i !== index));
+    setClasses((prevClasses) => {
+      const updatedClasses = prevClasses.filter((_, i) => i !== index);
+      setFormData((prevState) => ({
+        ...prevState,
+        classes: updatedClasses,
+      }));
+      return updatedClasses;
+    });
   };
-  const handleSubmitForm = (event)=>{
-    event.preventDefault();
-    handleSubmit();
-  }
+  
+  // const handleSubmitForm = (event)=>{
+  //   event.preventDefault();
+  //   handleSubmit();
+  // }
   return (
     <div className="mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8 mb-4 w-[700px]">
       <h1 className="text-2xl text-center text-green-600 font-bold mb-8">Areas & Subjects</h1>
-      <form onSubmit={handleSubmitForm}>
+      <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label htmlFor="class" className="block text-gray-700 font-bold mb-2">
