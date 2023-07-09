@@ -7,24 +7,24 @@ const RegisterTutor = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
+    phone: '',
     email: '',
     cnic: '',
     password: '',
     confirmPassword: '',
-    phone: '',
     address: '',
-    city: '',
     gender:'',
+    age: '',
+    city: '',
     bio: '',
-    location:'',
-    language:'',
-    state: '',
-    zip: '',
     education: '',
     experience: '',
-    skills: [],
+    language:'',
+    classes:[],
     subjects:[],
-    classes:[]
+    allSubjectFee: '',
+    perSubjectFee:'',
+    location:'',
   });
 
   const handleInputChange = (event) => {

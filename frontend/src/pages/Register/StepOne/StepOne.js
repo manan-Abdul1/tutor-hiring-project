@@ -3,126 +3,174 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PersonalInformation = ({ formData, setFormData, navigation }) => {
-  const { name, emailAddress, password, confirmPassword, } = formData;
+  const { name, phone, email, cnic, password, confirmPassword, address, gender, age } = formData;
   const { next } = navigation;
-  const [passwordError, setPasswordError] = useState('');
-  // const [isFormValid, setIsFormValid] = useState(false);
 
   const handleNext = (e) => {
     e.preventDefault();
 
-      // Check if all required fields are filled
-      // if (!name || !emailAddress || !password || !confirmPassword) {
-      //   return;
-      // }
-  
-     // Check if password meets the minimum length requirement
-    //  if (password.length < 8) {
-    //   toast.error('Password must be at least 8 characters long');
-    //   return;
-    // }
-
-    // Check if the password and confirm password match
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
       return;
     }
-
-    setPasswordError('');
     next();
   }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  
-    // Check if all required fields are filled
-    // const isFormFilled =
-    //   formData.name !== '' &&
-    //   formData.emailAddress !== '' &&
-    //   formData.password !== '' &&
-    //   formData.confirmPassword !== '';
-  
-    // setIsFormValid(isFormFilled);
+
+    if (name === 'gender') {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value === 'male' ? 'male' : 'female',
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   }
-  
-  
 
   return (
     <>
       <ToastContainer />
-    <form className="flex flex-col shadow-2xl max-w-xl p-4 mx-auto items-center">
-      <h1 className="text-2xl text-center text-green-700 font-bold mb-4">General Information</h1>
-      <div className="w-full mb-4">
-        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Full Name: *</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          autoComplete='off'
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={name}
-          onChange={handleInputChange}
-          //required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="emailAddress" className="block text-gray-700 font-bold mb-2">Email Address: *</label>
-        <input
-          autoComplete='off'
-          id="emailAddress"
-          name="emailAddress"
-          type="email"
-          className="shadow appearance-none border rounded w-full h-10 py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={emailAddress}
-          onChange={handleInputChange}
-          //required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password: *</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          className="
-          shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={password}
-          onChange={handleInputChange}
-          //required
-        />
-      </div>
-      <div className="w-full mb-4">
-        <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">Confirm Password: *</label>
-        <input
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={confirmPassword}
-          onChange={handleInputChange}
-          //required
-        />
-      </div>
-      {passwordError && (
-        <p className="text-red-500 text-sm mb-4">{passwordError}</p>
-      )}
-      {/* { */}
-        {/* isFormValid && ( */}
+      <form className="flex flex-col shadow-2xl max-w-2xl p-4 mx-auto items-center">
+        <h1 className="text-2xl text-center text-green-700 font-bold mb-4">Personal Information</h1>
+        <div className="grid w-full grid-cols-2 gap-4 mb-4">
+          <div>
+            <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name: *</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete='off'
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={name}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="block text-gray-700 font-bold mb-2">Phone: *</label>
+            <input
+              id="phone"
+              name="phone"
+              type="text"
+              autoComplete='off'
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={phone}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-2 gap-4 mb-4">
+          <div>
+            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email: *</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete='off'
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="cnic" className="block text-gray-700 font-bold mb-2">CNIC: *</label>
+            <input
+              id="cnic"
+              name="cnic"
+              type="text"
+              autoComplete='off'
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={cnic}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-2 gap-4 mb-4">
+          <div>
+            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password: *</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={password}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">Confirm Password: *</label>
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={confirmPassword}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="mb-4 w-full">
+          <label htmlFor="address" className="block text-gray-700 font-bold mb-2">Address: *</label>
+          <input
+            id="address"
+            name="address"
+            type="text"
+            autoComplete='off'
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            value={address}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="grid grid-cols-2 w-full gap-4 mb-4">
+          <div className='flex items-center'>
+            <label htmlFor="gender" className="block text-gray-700 font-bold mb-2 mx-2">Gender: </label>
+            <div className='pb-1'>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                checked={gender === 'male'}
+                onChange={handleInputChange}
+              />
+              <label htmlFor="male" className="ml-2 mr-4">Male</label>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                checked={gender === 'female'}
+                onChange={handleInputChange}
+              />
+              <label htmlFor="female" className="ml-2">Female</label>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="age" className="block text-gray-700 font-bold mb-2">Age: *</label>
+            <input
+              id="age"
+              name="age"
+              type="text"
+              autoComplete='off'
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={age}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
         <button
           className="bg-blue-500 ml-auto mt-2 text-right hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={handleNext}
         >
-              Next
+          Next
         </button>
-
-        {/* ) */}
-      {/* } */}
-        </form>
+      </form>
     </>
   );
 }
+
 export default PersonalInformation;
