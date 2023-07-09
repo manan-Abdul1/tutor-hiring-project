@@ -65,14 +65,14 @@ const StepTwo = ({ formData, setFormData, navigation }) => {
             </div>
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="currentStudyInstitute">
-                Current Institute (Studying):
+                Alumni:
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="currentStudyInstitute"
-                id="currentStudyInstitute"
-                value={formData.currentStudyInstitute}
+                name="alumni"
+                id="alumni"
+                value={formData.alumni}
                 onChange={handleInputChange}
               />
             </div>

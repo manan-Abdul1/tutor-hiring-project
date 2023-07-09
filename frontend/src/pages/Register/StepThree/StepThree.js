@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const StepThree = ({ formData, setFormData, navigation }) => {
+const StepThree = ({ formData, setFormData, navigation, handleSubmit }) => {
   const { previous, next } = navigation;
   const [subjects, setSubjects] = useState(formData.subjects || []);
   const [classes, setClasses] = useState(formData.classes || []);
@@ -36,15 +36,14 @@ const StepThree = ({ formData, setFormData, navigation }) => {
   const handleRemoveClass = (index) => {
     setClasses((prevClasses) => prevClasses.filter((_, i) => i !== index));
   };
-
-  const handleSubmit = () => {
-    console.log('submitted');
-  };
-
+  const handleSubmitForm = (event)=>{
+    event.preventDefault();
+    handleSubmit();
+  }
   return (
     <div className="mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8 mb-4 w-[700px]">
       <h1 className="text-2xl text-center text-green-600 font-bold mb-8">Areas & Subjects</h1>
-
+      <form onSubmit={handleSubmitForm}>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label htmlFor="class" className="block text-gray-700 font-bold mb-2">
@@ -195,12 +194,13 @@ const StepThree = ({ formData, setFormData, navigation }) => {
         </button>
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button"
-          onClick={handleSubmit}
+          type="submit"
+          // onClick={handleSubmitForm}
         >
           Submit
         </button>
       </div>
+</form>
     </div>
   );
 };

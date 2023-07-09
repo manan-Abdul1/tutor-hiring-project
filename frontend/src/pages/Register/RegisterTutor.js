@@ -3,6 +3,7 @@ import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
 import PersonalInformation from './StepOne/StepOne';
 
+
 const RegisterTutor = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -15,10 +16,13 @@ const RegisterTutor = () => {
     address: '',
     gender:'',
     age: '',
+    timing:'',
+    experience: '',
+    currentTeachInstitute:'',
+    alumni:'',
+    education: '',
     city: '',
     bio: '',
-    education: '',
-    experience: '',
     language:'',
     classes:[],
     subjects:[],
@@ -29,63 +33,60 @@ const RegisterTutor = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
+    setCurrentStep((prevStep) => prevStep + 1);
   };
 
   const handlePrevStep = () => {
-    setCurrentStep(currentStep - 1);
+    setCurrentStep((prevStep) => prevStep - 1);
   };
 
+  const handleFormSubmit = () => {
+    // Send form data to backend for storage
+    console.log(formData);
+  };
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Send form data to backend for storage
+    handleFormSubmit();
   };
+
   const navigation = {
     previous: handlePrevStep,
-    next: handleNextStep
+    next: handleNextStep,
   };
 
   return (
-
-    <form onSubmit={handleSubmit}>
-    <div className="my-12">
-      {currentStep === 1 && (
-        <PersonalInformation
-          formData={formData}
-          setFormData={setFormData}
-          handleInputChange={handleInputChange}
-          navigation={navigation}
-        />
-          // handleNextStep={handleNextStep}
-      )}
+      <div className="my-12">
+        {currentStep === 1 && (
+          <PersonalInformation
+            formData={formData}
+            setFormData={setFormData}
+            navigation={navigation}
+          />
+        )}
+        {currentStep === 2 && (
+          <StepTwo
+            formData={formData}
+            setFormData={setFormData}
+            navigation={navigation}
+          />
+        )}
+        {currentStep === 3 && (
+          <StepThree
+            formData={formData}
+            setFormData={setFormData}
+            navigation={navigation}
+            handleSubmit={handleFormSubmit}
+          />
+        )}
       </div>
-      {currentStep === 2 && (
-        <StepTwo
-          formData={formData}
-          setFormData={setFormData}
-          handleInputChange={handleInputChange}
-          navigation={navigation}
-        //   handleNextStep={handleNextStep}
-        //   handlePrevStep={handlePrevStep}
-        />
-      )}
-      {currentStep === 3 && (
-        <StepThree
-          formData={formData}
-          setFormData={setFormData}
-          handleInputChange={handleInputChange}
-          navigation={navigation}
-        //   handlePrevStep={handlePrevStep}
-        />
-      )}
-    </form>
   );
 };
 
