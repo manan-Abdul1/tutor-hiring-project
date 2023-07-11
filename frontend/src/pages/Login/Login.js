@@ -32,7 +32,12 @@ const Login = ({ handleLogin }) => {
       const result = response.data;
       localStorage.setItem('currentuser', JSON.stringify(result));
       handleLogin();
-      navigate('/home');
+      if(result?.role==='tutor'){
+        navigate('/teacher-home');
+      }
+      else{
+        navigate('/home');
+      }
       toast.success('Login successful');
     } catch (error) {
       if (error.response) {

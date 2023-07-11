@@ -26,6 +26,7 @@ const TeacherDashboard = () => {
         comment:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sunt sed dicta minus aspernatur cum obcaecati non sapiente rem est.' 
     },
   ]);
+  
   const [messages, setMessages] = useState([
   {
     id: 1,

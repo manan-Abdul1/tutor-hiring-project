@@ -50,7 +50,7 @@ function StudentProfile() {
     <>
         <ToastContainer />
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border border-gray-300 rounded shadow">
-      <h1 className="text-2xl text-center text-cyan-700  font-bold mb-4">Student Profile</h1>
+      <h1 className="text-2xl text-center text-cyan-700  font-bold mb-4">{currentUser.role} Profile</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">

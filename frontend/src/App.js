@@ -25,7 +25,7 @@ function App() {
     const checkUserLogin = () => {
       const currentUser = JSON.parse(localStorage.getItem("currentuser"));
       setIsLoggedIn(!!currentUser);
-      setIsTeacher(currentUser?.role === "teacher");
+      setIsTeacher(currentUser?.role === "tutor");
     };
 
     checkUserLogin();
@@ -33,8 +33,6 @@ function App() {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    setIsTeacher(false);
-    navigate("/home");
   };
 
   const handleLogout = () => {
@@ -43,10 +41,11 @@ function App() {
     setIsTeacher(false);
     navigate("/login");
   };
+  console.log(isTeacher)
 
   return (
     <>
-      {isLoggedIn && <Header isTeacher={isTeacher} handleLogout={handleLogout} />}
+      {isLoggedIn && <Header isTeacher={isTeacher}  handleLogout={handleLogout} />}
       <Routes>
         {isLoggedIn ? (
           <>
@@ -82,6 +81,7 @@ function App() {
       {isLoggedIn && <Footer />}
     </>
   );
+  
 }
 
 export default App;

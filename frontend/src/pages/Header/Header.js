@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MobileHeader from "./MobileHeader";
 
-function Header({handleLogout}) {
+function Header({ handleLogout, isTeacher }) {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
@@ -37,6 +37,26 @@ function Header({handleLogout}) {
             </div>
             {/* Primary Navbar items */}
             <div className="hidden md:flex items-center space-x-1">
+              {isTeacher && (
+                <>
+                  <Link
+                    to="/teacher-home"
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                      location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
+                    }`}
+                  >
+                    Teacher Home
+                  </Link>
+                  <Link
+                    to="/tutors"
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                      location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
+                    }`}
+                  >
+                    Tutors
+                  </Link>
+                </>
+              )}
               <Link
                 to="/home"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -45,22 +65,16 @@ function Header({handleLogout}) {
               >
                 Home
               </Link>
-              {/* <Link
-                to="/teacher-home"
-                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
-                }`}
-              >
-                Teacher-home
-              </Link> */}
-              <Link
-                to="/tutors"
-                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
-                }`}
-              >
-                Tutors
-              </Link>
+              {!isTeacher && (
+                <Link
+                  to="/tutors"
+                  className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
+                    location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
+                  }`}
+                >
+                  Tutors
+                </Link>
+              )}
               <Link
                 to="/about"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -87,7 +101,7 @@ function Header({handleLogout}) {
                   <i className="fa-solid fa-caret-down mx-1"></i>
                 </button>
                 {showMenu && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg" style={{zIndex: 9999}}>
+                  <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg" style={{ zIndex: 9999 }}>
                     <Link
                       to="/profile"
                       className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -116,7 +130,7 @@ function Header({handleLogout}) {
               <svg
                 className={`w-6 h-6 text-gray-500 hover:text-green-500 ${
                   showMenu ? "hidden" : ""
-                }`}
+                  }`}
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -129,7 +143,7 @@ function Header({handleLogout}) {
               <svg
                 className={`w-6 h-6 text-gray-500 hover:text-green-500 ${
                   showMenu ? "" : "hidden"
-                }`}
+                  }`}
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
