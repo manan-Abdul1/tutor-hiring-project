@@ -22,7 +22,7 @@ function App() {
 
   return (
     <>
-      {/* {isAuthenticated && <Header />} */}
+      {isAuthenticated && <Header />}
       <Routes>
         <Route path="/home" element={<PrivateRouting><Homepage /></PrivateRouting>} />
         <Route path="/tutors" element={<PrivateRouting><MainPageTutors /></PrivateRouting>} />
@@ -34,9 +34,9 @@ function App() {
         <Route path="/" element={<MainPageRegister />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />
         <Route path="/register-student" element={<RegisterStudent />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
       </Routes>
-      {/* {isAuthenticated && <Footer />} */}
+      {isAuthenticated && <Footer />}
     </>
   );
 

@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/features/auth/authSlice';
 
 const Login = () => {
   const [isStudent, setIsStudent] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleToggle = () => {
     setIsStudent(!isStudent);
@@ -29,8 +32,9 @@ const Login = () => {
       // Send the form data to the server for login
       const response = await axios.post(loginRoute, formData);  
       // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
+      console.log(response,'response')
       const result = response.data;
-      localStorage.setItem('currentuser', JSON.stringify(result));
+      dispatch(setUser(result))
       // handleLogin();
       if(result?.role==='tutor'){
         navigate('/teacher-home');

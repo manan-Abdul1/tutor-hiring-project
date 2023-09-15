@@ -57,15 +57,15 @@ function Form() {
           </div>
         </div>
       )}
-      {showRegistration && registerType === "tutor" && <RegisterTutor />}
+      {/* {showRegistration && registerType === "tutor" && <RegisterTutor />} */}
       {showRegistration && registerType === "student" && (
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full mx-auto p-6 rounded shadow-2xl">
-            <RegisterStudent />
+            {/* <RegisterStudent /> */}
           </div>
         </div>
       )}
-      {showSignIn && <Login />}
+      {/* {showSignIn && <Login />} */}
     </>
   );
 }

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import MobileHeader from "./MobileHeader";
+import { useSelector } from "react-redux";
 
-function Header({ handleLogout, isTeacher }) {
+function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
-  const currentUser = JSON.parse(localStorage.getItem("currentuser"));
-
+  // const currentUser = JSON.parse(localStorage.getItem("currentuser"));
+  useSelector(state=>console.log(state))
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768); // Adjust the breakpoint as needed
@@ -37,7 +38,7 @@ function Header({ handleLogout, isTeacher }) {
             </div>
             {/* Primary Navbar items */}
             <div className="hidden md:flex items-center space-x-1">
-              {isTeacher && (
+              {/* {isTeacher && (
                 <>
                   <Link
                     to="/teacher-home"
@@ -56,7 +57,7 @@ function Header({ handleLogout, isTeacher }) {
                     Tutors
                   </Link>
                 </>
-              )}
+              )} */}
               <Link
                 to="/home"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -65,7 +66,7 @@ function Header({ handleLogout, isTeacher }) {
               >
                 Home
               </Link>
-              {!isTeacher && (
+              {/* {!isTeacher && (
                 <Link
                   to="/tutors"
                   className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -74,7 +75,7 @@ function Header({ handleLogout, isTeacher }) {
                 >
                   Tutors
                 </Link>
-              )}
+              )} */}
               <Link
                 to="/about"
                 className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -93,7 +94,7 @@ function Header({ handleLogout, isTeacher }) {
             >
               Hire a Tutor
             </Link>
-            {currentUser && (
+            {/* {currentUser && (
               <div className="relative">
                 <button className="py-2 px-3 font-medium" onClick={toggleMenu}>
                   {currentUser.name}
@@ -119,7 +120,7 @@ function Header({ handleLogout, isTeacher }) {
                   </div>
                 )}
               </div>
-            )}
+            )} */}
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
@@ -158,14 +159,14 @@ function Header({ handleLogout, isTeacher }) {
         </div>
       </div>
       {/* Mobile menu */}
-      {isMobile && (
+      {/* {isMobile && (
         <MobileHeader
           showMenu={showMenu}
           handleLogout={handleLogout}
           toggleMenu={toggleMenu}
           currentUser={currentUser}
         />
-      )}
+      )} */}
     </nav>
   );
 }
