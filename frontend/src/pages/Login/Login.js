@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ handleLogin }) => {
+const Login = () => {
   const [isStudent, setIsStudent] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +31,7 @@ const Login = ({ handleLogin }) => {
       // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
       const result = response.data;
       localStorage.setItem('currentuser', JSON.stringify(result));
-      handleLogin();
+      // handleLogin();
       if(result?.role==='tutor'){
         navigate('/teacher-home');
       }

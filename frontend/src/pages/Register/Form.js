@@ -4,7 +4,7 @@ import Login from "../Login/Login";
 import RegisterStudent from "./RegisterStudent";
 import { useNavigate } from "react-router-dom";
 
-function Form({ setIsLoggedIn }) {
+function Form() {
   const [showRegistration, setShowRegistration] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [registerType, setRegisterType] = useState(null);

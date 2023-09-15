@@ -2,10 +2,10 @@ import React from 'react'
 // import RegisterTutor from './RegisterTutor'
 import Form from './Form'
 
-export default function MainPageRegister({setIsLoggedIn}) {
+export default function MainPageRegister() {
   return (
     <>
-        <Form setIsLoggedIn={setIsLoggedIn}/>
+        <Form />
     </>
   )
 }
