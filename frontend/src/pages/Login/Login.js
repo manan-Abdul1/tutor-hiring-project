@@ -32,7 +32,7 @@ const Login = () => {
       // Send the form data to the server for login
       const response = await axios.post(loginRoute, formData);  
       // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
-      console.log(response,'response')
+      // console.log(response,'response')
       const result = response.data;
       console.log(result,'result')
       if(!result.ok){

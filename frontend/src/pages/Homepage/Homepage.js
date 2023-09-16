@@ -7,6 +7,7 @@ import './Homepage.css';
 import Faq from '../Faq/Faq';
 import SearchBelowCards from '../../components/Search Below Cards/SearchBelowCards';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Homepage() {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -47,9 +48,9 @@ export default function Homepage() {
     }
   };
   const navigate = useNavigate();
-  const currentUser = JSON.parse(localStorage.getItem("currentuser"));
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
-  if (!currentUser) {
+  if (!isLoggedIn) {
     // User is not registered, redirect to login page
     navigate("/login");
     return null;

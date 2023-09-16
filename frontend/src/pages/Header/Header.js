@@ -7,13 +7,14 @@ import { logOut } from "../../redux/features/auth/authSlice";
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileToggle, setMobileToggle] = useState(false);
   const location = useLocation();
   const currentUser = useSelector(state => state.auth.userData);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust the breakpoint as needed
+      setIsMobile(window.innerWidth < 768);
     };
 
     handleResize(); // Check initial screen size
@@ -26,9 +27,12 @@ function Header() {
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
-  const handleLogout = () =>{
+  const handleLogout = () => {
     dispatch(logOut());
   }
+  console.log(isMobile, 'is Mobile')
+  console.log(showMenu,'showMenu')
+  console.log(currentUser,'current User')
 
   return (
     <nav className="bg-white shadow-lg">
@@ -47,45 +51,43 @@ function Header() {
                 <>
                   <Link
                     to="/teacher-home"
-                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                      location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
-                    }`}
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
+                      }`}
                   >
-                    Teacher Home
+                    Home
                   </Link>
                   <Link
                     to="/tutors"
-                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                      location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
-                    }`}
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
+                      }`}
                   >
                     Tutors
                   </Link>
                 </>
               )}
-              <Link
-                to="/home"
-                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/home" ? "border-b-4 border-green-500" : ""
-                }`}
-              >
-                Home
-              </Link>
               {currentUser.role !== 'tutor' && (
-                <Link
-                  to="/tutors"
-                  className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                    location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
-                  }`}
-                >
-                  Tutors
-                </Link>
+                <>
+                  <Link
+                    to="/home"
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/home" ? "border-b-4 border-green-500" : ""
+                      }`}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/tutors"
+                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
+                      }`}
+                  >
+                    Tutors
+                  </Link>
+                </>
+
               )}
               <Link
                 to="/about"
-                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
-                  location.pathname === "/about" ? "border-b-4 border-green-500" : ""
-                }`}
+                className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/about" ? "border-b-4 border-green-500" : ""
+                  }`}
               >
                 About Us
               </Link>
@@ -93,13 +95,12 @@ function Header() {
           </div>
           {/* Secondary Navbar items */}
           <div className="hidden md:flex items-center space-x-3">
-            <Link
-              to="/tutors"
-              className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300"
-            >
-              Hire a Tutor
-            </Link>
-            {currentUser &&  (
+            {currentUser.role !== 'tutor' && (
+              <Link to="/tutors" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300">
+                Hire a Tutor
+              </Link>
+            )}
+            {currentUser && (
               <div className="relative">
                 <button className="py-2 px-3 font-medium" onClick={toggleMenu}>
                   {currentUser.name}
@@ -131,11 +132,10 @@ function Header() {
           <div className="md:hidden flex items-center">
             <button
               className="outline-none mobile-menu-button"
-              onClick={toggleMenu}
+              onClick={()=>setMobileToggle(!mobileToggle)}
             >
               <svg
-                className={`w-6 h-6 text-gray-500 hover:text-green-500 ${
-                  showMenu ? "hidden" : ""
+                className={`w-6 h-6 text-gray-500 hover:text-green-500 ${mobileToggle ? "hidden" : ""
                   }`}
                 fill="none"
                 strokeLinecap="round"
@@ -147,8 +147,7 @@ function Header() {
                 <path d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
               <svg
-                className={`w-6 h-6 text-gray-500 hover:text-green-500 ${
-                  showMenu ? "" : "hidden"
+                className={`w-6 h-6 text-gray-500 hover:text-green-500 ${mobileToggle ? "" : "hidden"
                   }`}
                 fill="none"
                 strokeLinecap="round"
@@ -164,7 +163,7 @@ function Header() {
         </div>
       </div>
       {/* Mobile menu */}
-      {isMobile && (
+      {isMobile && mobileToggle && (
         <MobileHeader
           showMenu={showMenu}
           handleLogout={handleLogout}
