@@ -18,21 +18,22 @@ const RegisterTutor = () => {
     password: '',
     confirmPassword: '',
     address: '',
-    gender:'',
+    gender: '',
     age: '',
-    timing:'',
+    timing: '',
     experience: '',
-    currentTeachInstitute:'',
-    alumni:'',
+    currentTeachInstitute: '',
+    alumni: '',
     education: '',
     city: '',
     bio: '',
-    classes:[],
-    subjects:[],
+    classes: [],
+    subjects: [],
     allSubjectFee: '',
-    perSubjectFee:'',
-    location:'',
+    perSubjectFee: '',
+    location: '',
   });
+  const [imageUrl, setImageUrl] = useState();
 
   const handleNextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
@@ -41,28 +42,29 @@ const RegisterTutor = () => {
   const handlePrevStep = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
-
-  const handleFormSubmit = () => {
-    // Send form data to backend for storage
+  console.log(imageUrl, 'imageUrl')
+  const handleFormSubmit = async () => {
     // Create an object with the form data
-    // Send the form data to the server for student registration
-    axios
-    .post('http://localhost:5500/api/tutors/register', formData)
-    .then((response) => {
+    const requestData = imageUrl === undefined ? formData : { ...formData, profileImageUrl: imageUrl };
+
+    try {
+      // Send the form data to the server for student registration
+      const response = await axios.post('http://localhost:5500/api/tutors/register', requestData);
       console.log('Student registration successful:', response.data);
       toast.success('Registration successful. Please log in.');
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error('Student registration error:', error);
       if (error.response) {
         toast.error(error.response.data.message);
       } else {
         toast.error('Error occurred during student registration');
       }
-    });
+    }
+
     console.log(formData);
   };
-  
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     handleFormSubmit();
@@ -92,13 +94,14 @@ const RegisterTutor = () => {
           />
         )}
         {currentStep === 3 && (
-          <StepThree
-            formData={formData}
-            setFormData={setFormData}
-            navigation={navigation}
-            handleSubmit={handleSubmit}
-          />
-        )}
+        <StepThree
+          formData={formData}
+          setFormData={setFormData}
+          navigation={navigation}
+          handleSubmit={handleSubmit}
+          setImageUrl={setImageUrl}
+        />
+         )}
       </div>
     </>
   );
