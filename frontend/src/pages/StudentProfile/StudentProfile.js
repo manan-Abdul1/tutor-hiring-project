@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
 
 function StudentProfile() {
-  const currentUser = JSON.parse(localStorage.getItem("currentuser"));
+  const currentUser = useSelector(state => state.auth.userData);
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
   const [password, setPassword] = useState("");
-  const [studentId, setStudentId] = useState(currentUser.id);
-
+  const studentId = currentUser.id;
+  
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
