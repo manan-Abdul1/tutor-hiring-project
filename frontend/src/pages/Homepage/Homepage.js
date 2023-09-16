@@ -6,6 +6,8 @@ import HomeTutorSection from '../HomeTutorSection/HomeTutorSection';
 import './Homepage.css';
 import Faq from '../Faq/Faq';
 import SearchBelowCards from '../../components/Search Below Cards/SearchBelowCards';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function Homepage() {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -15,9 +17,6 @@ export default function Homepage() {
   const { ref: tutorRef, inView: tutorInView } = useInView({
     threshold: 0.6
   }); 
-  const { ref: faqRef, inView: faqInView } = useInView({
-    threshold: 0.6
-  });
 
   const sectionVariant = {
     visible: {
@@ -48,21 +47,15 @@ export default function Homepage() {
       y: 50
     }
   };
-  const faqVariant = {
-    visible: {
-      opacity: 1,
-      y: 0, // changed from y to x
-      transition: {
-        duration: 0.7,
-        ease: 'easeInOut'
-      }
-    },
-    hidden: {
-      opacity: 0,
-      y: 80, // changed from y to x
-    }
-  };
-  
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+
+  if (!isLoggedIn) {
+    // User is not registered, redirect to login page
+    navigate("/login");
+    return null;
+  }
+
 
   return (
     <>
@@ -88,15 +81,9 @@ export default function Homepage() {
         >
           <HomeTutorSection />
         </motion.div>
-      </div> <div className='p-1 my-5 rounded-lg shadow-2xl' ref={faqRef}>
-        <motion.div
-          className='fade-in'
-          variants={faqVariant}
-          initial='hidden'
-          animate={faqInView ? 'visible' : 'hidden'}
-        >
+      </div> 
+      <div className='py-20 rounded-lg shadow-2xl' >
           <Faq />
-        </motion.div>
       </div>
     </>
   );

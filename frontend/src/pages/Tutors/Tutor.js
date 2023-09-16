@@ -175,12 +175,12 @@ const tutors = [
 
   return (
     <>
-      <div className="container">
+      <div className="mx-10">
         <div class="row">
           <div class="col-md-3">
         <SearchFilterCard handleFilterChange={handleFilterChange} />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 pt-5">
         <TutorList tutors={filteredTutors} />
         </div>
         </div>

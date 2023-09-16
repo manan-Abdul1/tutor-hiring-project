@@ -5,7 +5,7 @@ import ClassSelect from "../../components/ClassSelect/ClassSelect";
 export default function HomeSection() {
   return (
     <>
-    <div className="search-form mt-12">
+    <div className="search-form mt-16">
       <div className="container shadow-gray-500 shadow-2xl border rounded-lg  md:text-center justify-center">
         <h2 className="mx-2 md:my-5 md:text-center md:text-3xl mb-3 banner-heading">
           FIND YOUR <span className="text-warning"> DESIRED</span> HOME TUTOR
