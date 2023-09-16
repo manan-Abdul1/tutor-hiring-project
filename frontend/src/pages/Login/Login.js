@@ -34,14 +34,17 @@ const Login = () => {
       // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
       console.log(response,'response')
       const result = response.data;
-      dispatch(setUser(result))
-      // handleLogin();
-      if(result?.role==='tutor'){
-        navigate('/teacher-home');
+      console.log(result,'result')
+      if(!result.ok){
+        toast.error(result.message)
       }
-      else{
+      if(result.student){
+        dispatch(setUser(result.student))
         navigate('/home');
-      }
+      }else{
+        dispatch(setUser(result.tutor));
+        navigate('/teacher-home');
+      }     
       toast.success('Login successful');
     } catch (error) {
       if (error.response) {

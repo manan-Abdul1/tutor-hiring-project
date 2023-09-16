@@ -8,7 +8,7 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
-  const currentUser = useSelector(state => state.auth.userData.role);
+  const currentUser = useSelector(state => state.auth.userData);
   const dispatch = useDispatch();
 
   useEffect(() => {

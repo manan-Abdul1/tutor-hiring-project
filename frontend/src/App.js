@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import Header from "./pages/Header/Header";
 import Footer from "./pages/Footer/Footer";
@@ -18,7 +17,6 @@ import PrivateRouting from "./components/PrivateRouting/PrivateRouting";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
-
 
   return (
     <>
