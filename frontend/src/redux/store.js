@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './features/auth/authSlice';
 // import usersReducer from './usersSlice';
-// import teachersReducer from './teachersSlice';
+import teachersReducer from './features/teachers/teacherSlice';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     // users: usersReducer,
-    // teachers: teachersReducer, 
+    tutor: teachersReducer, 
   },
 });
 

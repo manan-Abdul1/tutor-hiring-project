@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  teachers: [], // Store teacher profiles here
+  teachers: [], 
 };
 
 const teachersSlice = createSlice({
   name: 'teachers',
   initialState,
   reducers: {
-    addTeacher: (state, action) => {
-      state.teachers.push(action.payload);
+    addTeachers: (state, action) => {
+      state.teachers = action.payload;
     },
     updateTeacher: (state, action) => {
       // Find and update the teacher in the array based on teacher ID
@@ -30,5 +30,5 @@ const teachersSlice = createSlice({
   },
 });
 
-export const { addTeacher, updateTeacher, deleteTeacher } = teachersSlice.actions;
+export const { addTeachers, updateTeacher, deleteTeacher } = teachersSlice.actions;
 export default teachersSlice.reducer;
