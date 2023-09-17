@@ -35,7 +35,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
   return (
     <>
       <ToastContainer />
-      <form className="flex flex-col shadow-2xl max-w-2xl p-4 mx-auto items-center">
+      <form className="bg-white rounded-lg flex flex-col shadow-2xl max-w-2xl p-4 mx-auto items-center">
         <h1 className="text-2xl text-center text-green-700 font-bold mb-4">Personal Information</h1>
         <div className="grid w-full grid-cols-2 gap-4 mb-4">
           <div>

@@ -19,6 +19,8 @@ function Form() {
       navigate("/register-tutor");
     } else if (type === "student") {
       navigate("/register-student");
+    }else{
+      navigate("/login");
     }
   };
 
@@ -30,7 +32,7 @@ function Form() {
 
   return (
     <>
-      {!showRegistration && !showSignIn && (
+      {/* {!showRegistration && !showSignIn && ( */}
         <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
           <div className="max-w-md w-full bg-white mx-auto p-6 rounded shadow-md">
             <h1 className="text-3xl text-center mb-7">Welcome to Our Website</h1>
@@ -49,23 +51,23 @@ function Form() {
               </button>
               <button
                 className="bg-gray-500 font-bold hover:bg-gray-600 text-white py-2 px-4 rounded"
-                onClick={handleSignInClick}
+                onClick={() => handleRegisterClick("signin")}
               >
                 Sign In
               </button>
             </div>
           </div>
         </div>
-      )}
-      {/* {showRegistration && registerType === "tutor" && <RegisterTutor />} */}
+      {/* )} */}
+      {/* {showRegistration && registerType === "tutor" && <RegisterTutor />}
       {showRegistration && registerType === "student" && (
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full mx-auto p-6 rounded shadow-2xl">
-            {/* <RegisterStudent /> */}
+            <RegisterStudent />
           </div>
         </div>
       )}
-      {/* {showSignIn && <Login />} */}
+      {showSignIn && <Login />} */}
     </>
   );
 }
