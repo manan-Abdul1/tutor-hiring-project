@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputForm from '../Hire Input Field/InputForm';
+import { useNavigate } from 'react-router-dom';
 
-export default function TutorCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
+export default function TutorCard({ id, name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const MAX_LENGTH = 20;
 
   const shortenText = (text) => {
@@ -21,7 +23,9 @@ export default function TutorCard({ name, image, qualification, experience, clas
   const handleClose = () => {
     setShow(false);
   };
-
+  const handleViewProfile = () => {
+    navigate(`/viewprofile/${id}`);
+  }
   return (
     <>
       <div className="relative mb-4 inline-block px-[10px] py-[24px] bg-white overflow-hidden rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer">
@@ -66,7 +70,7 @@ export default function TutorCard({ name, image, qualification, experience, clas
             </table>
           </div>
           <div className="flex justify-between mt-4">
-            <button className="rounded-md bg-blue-600 px-[0.60rem] py-2 text-white mr-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+            <button onClick={handleViewProfile} className="rounded-md bg-blue-600 px-[0.60rem] py-2 text-white mr-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
               View profile
             </button>
             <button

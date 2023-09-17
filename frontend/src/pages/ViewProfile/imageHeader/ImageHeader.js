@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function ImageHeader() {
+export default function ImageHeader({teachersData}) {
+    
   return (
     <>
          <div className="row">
@@ -9,9 +10,9 @@ export default function ImageHeader() {
         <div className="row">
             <div className="col-md-2 text-center">
             <img
-                src="https://thetutors.pk/avatars/1571828057FF00B2E4-8C2F-4E90-A7CA-3CCB6AF37BD6.jpeg"
+                src={teachersData.profileImageUrl}
                 className="rounded-full"
-                alt="User Avatar"
+                alt={`${teachersData.name}'s Avatar`}
             />
             </div>
             <div className="col-md-7">
@@ -20,7 +21,7 @@ export default function ImageHeader() {
                 className="fa fa-check-circle text-success"
                 title="Featured &amp; Verified Tutor"
                 ></i>{" "}
-                Muhammad Adeel
+                {teachersData.name}
             </h4>
             <div className="row">
                 <div className="col-lg-8 col-sm-12 col-12 text-left ">
@@ -35,7 +36,7 @@ export default function ImageHeader() {
                     <small>
                     <span className="alert alert-info p-1 m-0">
                         Fee starts from{" "}
-                        <u className="font-bold">18000</u>
+                        <u className="font-bold">{teachersData.allSubjectFee}</u>
                         <small> /Per Month</small>
                     </span>{" "}
                     </small>
@@ -47,12 +48,8 @@ export default function ImageHeader() {
             <button
                 type="submit"
                 className="bg-green-500 text-white rounded-full hover:bg-blue-500 mb-2  px-4 py-2 mt-4 f"
-                data-toggle="modal"
-                data-target="#send-request-popup"
-                data-tutor="MjY5"
-                data-tutorname="Muhammad Adeel"
             >
-                Hire <u>Muhammad</u>
+                Hire <u>{teachersData.name?.split(' ')[0]}</u>
             </button>
             </div>
         </div>

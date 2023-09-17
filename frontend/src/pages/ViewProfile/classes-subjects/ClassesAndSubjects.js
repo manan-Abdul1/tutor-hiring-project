@@ -29,15 +29,15 @@ export default function ClassesAndSubjects() {
                       <span className="alert alert-info p-1 m-0">
                         Fee starts from{" "}
                         <u className="font-bold">18000</u>
-                        <small> /Per Month</small>
-                      </span>{" "}
+                        <small> /Per Month <bold>(For all subjects)</bold></small>
+                      </span>{" "} 
                     </small>
                   </p> <p className="my-2 mx-2">
                     <small>
                       <span className="alert alert-info p-1 m-0">
                         Fee starts from{" "}
                         <u className="font-bold">18000</u>
-                        <small> /Per Month</small>
+                        <small> /Per Month <span className='text-black-500'>(Per Subject)</span></small>
                       </span>{" "}
                     </small>
                   </p>

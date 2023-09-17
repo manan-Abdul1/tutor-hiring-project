@@ -19,6 +19,7 @@ export default function TutorList({ tutors }) {
             age={tutor.age}
             verified={tutor.isVerified}
             gender={tutor.gender}
+            id={tutor._id}
           />
         ))}
       </div>
