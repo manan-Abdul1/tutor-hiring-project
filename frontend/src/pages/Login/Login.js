@@ -60,6 +60,7 @@ const Login = () => {
   
 
   return (
+    <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
     <div className="flex items-center justify-center h-screen">
       <div className="bg-white rounded-xl shadow-2xl w-96 h-[550px] shadow-gray-500 mt-5">
         <div className="loginhead bg-green-500 width-full h-[120px] rounded-t-xl">
@@ -153,6 +154,7 @@ const Login = () => {
         </form>
       </div>
       <ToastContainer />
+    </div>
     </div>
   );
 };

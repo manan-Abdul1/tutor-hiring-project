@@ -78,30 +78,32 @@ const RegisterTutor = () => {
   return (
     <>
       <ToastContainer />
-      <div className="my-12">
-        {currentStep === 1 && (
-          <PersonalInformation
-            formData={formData}
-            setFormData={setFormData}
-            navigation={navigation}
-          />
-        )}
-        {currentStep === 2 && (
-          <StepTwo
-            formData={formData}
-            setFormData={setFormData}
-            navigation={navigation}
-          />
-        )}
-        {currentStep === 3 && (
-        <StepThree
-          formData={formData}
-          setFormData={setFormData}
-          navigation={navigation}
-          handleSubmit={handleSubmit}
-          setImageUrl={setImageUrl}
-        />
-         )}
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="w-full">
+          {currentStep === 1 && (
+            <PersonalInformation
+              formData={formData}
+              setFormData={setFormData}
+              navigation={navigation}
+            />
+          )}
+          {currentStep === 2 && (
+            <StepTwo
+              formData={formData}
+              setFormData={setFormData}
+              navigation={navigation}
+            />
+          )}
+          {currentStep === 3 && (
+            <StepThree
+              formData={formData}
+              setFormData={setFormData}
+              navigation={navigation}
+              handleSubmit={handleSubmit}
+              setImageUrl={setImageUrl}
+            />
+          )}
+        </div>
       </div>
     </>
   );
