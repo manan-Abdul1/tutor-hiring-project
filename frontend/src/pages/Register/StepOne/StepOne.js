@@ -36,7 +36,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
     <>
       <ToastContainer />
       <form className="flex flex-col shadow-2xl max-w-2xl p-4 mx-auto items-center">
-        <h1 className="text-2xl text-center text-green-700 font-bold mb-4">Personal Information</h1>
+        <h1 className="text-2xl text-center text-green-600 font-bold mb-4">Personal Information</h1>
         <div className="grid w-full grid-cols-2 gap-4 mb-4">
           <div>
             <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name: *</label>
@@ -45,7 +45,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               name="name"
               type="text"
               autoComplete='off'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={name}
               onChange={handleInputChange}
             />
@@ -57,7 +57,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               name="phone"
               type="text"
               autoComplete='off'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={phone}
               onChange={handleInputChange}
             />
@@ -71,7 +71,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               name="email"
               type="email"
               autoComplete='off'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={email}
               onChange={handleInputChange}
             />
@@ -83,7 +83,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               name="cnic"
               type="text"
               autoComplete='off'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={cnic}
               onChange={handleInputChange}
             />
@@ -96,7 +96,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               id="password"
               name="password"
               type="password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={password}
               onChange={handleInputChange}
             />
@@ -107,7 +107,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               id="confirmPassword"
               name="confirmPassword"
               type="password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={confirmPassword}
               onChange={handleInputChange}
             />
@@ -120,7 +120,7 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
             name="address"
             type="text"
             autoComplete='off'
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             value={address}
             onChange={handleInputChange}
           />
@@ -156,14 +156,15 @@ const PersonalInformation = ({ formData, setFormData, navigation }) => {
               name="age"
               type="text"
               autoComplete='off'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={age}
               onChange={handleInputChange}
             />
           </div>
         </div>
         <button
-          className="bg-blue-500 ml-auto mt-2 text-right hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-auto mt-2 text-right"
+          
           onClick={handleNext}
         >
           Next
