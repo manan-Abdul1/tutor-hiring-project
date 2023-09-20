@@ -8,7 +8,7 @@ export default function Introduction({teachersData}) {
                 <div className="mt-6">
                 <div className="flex my-2">
                   <p className="font-semibold text-lg">About Tutor </p>
-                  <p className="text-left ml-60 text-gray-500">{teachersData.age}yrs, {teachersData.gender} </p>
+                  <p className="text-left ml-60 pl-2 text-gray-500">{teachersData.age}yrs, {teachersData.gender} </p>
                 </div>
                 <hr/>
                 <div className="flex my-2">
@@ -18,7 +18,7 @@ export default function Introduction({teachersData}) {
                 <hr/>
                 <div className="flex my-2">
                   <p className="font-semibold text-lg">Experience </p>
-                  <p className="text-left ml-60 text-gray-500">{teachersData.experience} </p>
+                  <p className="text-left ml-64 text-gray-500">{teachersData.experience} </p>
                 </div>
                 <hr/>
                 <div className="flex my-2">
@@ -28,7 +28,7 @@ export default function Introduction({teachersData}) {
                 <hr/>
                 <div className="flex my-2">
                   <p className="font-semibold text-lg">Alumni </p>
-                  <p className="text-left ml-60 text-gray-500">{teachersData.alumni}</p>
+                  <p className="text-left ml-72 text-gray-500">{teachersData.alumni}</p>
                 </div>
                 <hr/>
                 </div>
