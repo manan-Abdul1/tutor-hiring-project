@@ -26,7 +26,7 @@ function App() {
         <Route path="/tutors" element={<PrivateRouting><MainPageTutors /></PrivateRouting>} />
         <Route path="/faq" element={<PrivateRouting><Faq /></PrivateRouting>} />
         <Route path="/about" element={<PrivateRouting><Aboutus /></PrivateRouting>} />
-        <Route path="/viewprofile" element={<PrivateRouting><ViewProfile /></PrivateRouting>} />
+        <Route path="/viewprofile/:id" element={<PrivateRouting><ViewProfile /></PrivateRouting>} />
         <Route path="/profile" element={<PrivateRouting><StudentProfile /></PrivateRouting>} />
         <Route path="/teacher-home" element={<PrivateRouting><TeacherDashboard /></PrivateRouting>} />
         <Route path="/" element={<MainPageRegister />} />
