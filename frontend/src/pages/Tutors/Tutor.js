@@ -175,16 +175,47 @@ function Tutor() {
   // });
   const tutors = useSelector(state=>state.tutor.teachers)
   console.log(tutors,'tutors')
+  // const [filterValues, setFilterValues] = useState({
+  //   location: '',
+  //   selectedClass: '',
+  //   selectedSubject: '',
+  //   experience: '',
+  //   gender: 'Any',
+  //   fee: '',
+  // });
 
+  const [filteredTutors, setFilteredTutors] = useState(tutors); // State to store filtered tutors
+
+  // Callback function to update filter values
+  // const handleFilterChange = (newFilterValues) => {
+  //   setFilterValues(newFilterValues);
+  // };
+  // // Filter your tutors based on filterValues and update filteredTutors state
+  // const applyFilters = () => {
+  //   // Implement filtering logic here based on filterValues
+  //   // Update the filteredTutors state with the filtered list of tutors
+  //   const filteredTutorsResult = tutors.filter((tutor) => {
+  //     // Implement your filtering logic here
+  //     // Example: filter by location
+  //     return tutor.location.includes(filterValues.location);
+  //   });
+
+  //   setFilteredTutors(filteredTutorsResult);
+  // };
+console.log(filteredTutors,'filtered-ttuotors')
   return (
     <>
       <div className="mx-10">
         <div class="row">
           <div class="col-md-3">
-        <SearchFilterCard  />
+          <SearchFilterCard tutors={tutors} setFilteredTutors={setFilteredTutors} />
+
+        {/* <SearchFilterCard handleFilterChange={handleFilterChange} /> */}
         </div>
         <div class="col-md-9 pt-5">
-        <TutorList tutors={tutors} />
+        <TutorList tutors={filteredTutors} />
+
+        {/* <TutorList tutors={filteredTutors.length > 0 ? filteredTutors : tutors} /> */}
         </div>
         </div>
     </div>
