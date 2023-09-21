@@ -20,5 +20,8 @@ export const classesSelect = [
     { value: 'a-level', label: 'A-Level' },
     { value: 'fsc-eng', label: 'FSc-Eng' },
     { value: 'fsc-med', label: 'FSc-Med' },
+    { value: 'undergraduate', label: 'Under-Graduate' },
+    { value: 'graduate', label: 'Graduate' },
+    { value: 'phd', label: 'PHD' },
   ];
 
