@@ -18,7 +18,7 @@ function Tutor() {
             />
           </div>
           <div class="col-md-9 pt-5">
-            <TutorList tutors={filteredTutors} />
+            <TutorList tutors={filteredTutors.length > 0 ? filteredTutors: tutors} />
           </div>
         </div>
       </div>
