@@ -48,15 +48,15 @@ const Faq = () => {
   <h2 class="text-lg font-medium mb-2">For Students <br/></h2>
   <p class="text-gray-600"><ul className='cardsul'>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(1)}>
-          How can i find best qualified tutors in my area ?
-          </a>
+        <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(1); }}>
+  How can I find the best-qualified tutors in my area?
+</a>
           <p className={`answer ${answersVisible[1] ? '' : 'hidden'}`}>
           You can find best qualified tutors in your area by specifying your Location , Class and Subjects.
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(2)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(2)}}>
           What is the procedure after submitting my request ?
           </a>
           <p className={`answer ${answersVisible[2] ? '' : 'hidden'}`}>
@@ -64,7 +64,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(3)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(3)}}>
           What is trial class..?
           </a>
           <p className={`answer ${answersVisible[3] ? '' : 'hidden'}`}>
@@ -72,7 +72,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(4)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(4);}}>
           What is the fee procedure...?
           </a>
           <p className={`answer ${answersVisible[4] ? '' : 'hidden'}`}>
@@ -80,7 +80,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(5)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(5)}}>
           Course Tutors...?
           </a>
           <p className={`answer ${answersVisible[5] ? '' : 'hidden'}`}>
@@ -88,7 +88,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswer(6)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswer(6)}}>
           Trust and Security ....?
           </a>
           <p className={`answer ${answersVisible[6] ? '' : 'hidden'}`}>
@@ -103,7 +103,7 @@ const Faq = () => {
   <h2 class="text-lg font-medium mb-2">For Tutors <br/></h2>
   <p class="text-gray-600"><ul className='cardsul'>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(1)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(1)}}>
           How can i register myself as a home tutor ?
           </a>
           <p className={`answer ${answersVisibletutor[1] ? '' : 'hidden'}`}>
@@ -111,7 +111,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(2)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(2)}}>
           How can i get online tutorial jobs ?
           </a>
           <p className={`answer ${answersVisibletutor[2] ? '' : 'hidden'}`}>
@@ -119,7 +119,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(3)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(3)}}>
           How can i get verification tag with my profile ?
           </a>
           <p className={`answer ${answersVisibletutor[3] ? '' : 'hidden'}`}>
@@ -127,7 +127,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(4)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(4)}}>
           What is Introduction video..?
           </a>
           <p className={`answer ${answersVisibletutor[4] ? '' : 'hidden'}`}>
@@ -135,7 +135,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(5)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(5)}}>
           How long does it take to get a job at thetutors.pk ?
           </a>
           <p className={`answer ${answersVisibletutor[5] ? '' : 'hidden'}`}>
@@ -143,7 +143,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(6)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(6)}}>
           How my profile will be shown in the search results ?
           </a>
           <p className={`answer ${answersVisibletutor[6] ? '' : 'hidden'}`}>
@@ -151,7 +151,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(7)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(7)}}>
           how can i get listed in featured Tutors ?
           </a>
           <p className={`answer ${answersVisibletutor[7] ? '' : 'hidden'}`}>
@@ -159,7 +159,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnswertutor(8)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnswertutor(8)}}>
           What is the fee procedure...??
           </a>
           <p className={`answer ${answersVisibletutor[8] ? '' : 'hidden'}`}>
@@ -176,7 +176,7 @@ const Faq = () => {
   <h2 class="text-lg font-medium mb-2">For Online Tutors <br/></h2>
   <p class="text-gray-600"><ul className='cardsul'>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(1)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(1)}}>
           How can i find best qualified tutors in my area ?
 </a>
           <p className={`answer ${answersVisibleonline[1] ? '' : 'hidden'}`}>
@@ -184,7 +184,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(2)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(2)}}>
           What is the procedure after submitting my request ?
           </a>
           <p className={`answer ${answersVisibleonline[2] ? '' : 'hidden'}`}>
@@ -192,7 +192,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(3)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(3)}}>
           What is trial class..?
           </a>
           <p className={`answer ${answersVisibleonline[3] ? '' : 'hidden'}`}>
@@ -200,7 +200,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(4)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(4)}}>
           What is the fee procedure...?
           </a>
           <p className={`answer ${answersVisibleonline[4] ? '' : 'hidden'}`}>
@@ -208,7 +208,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(5)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(5)}}>
           Course Tutors...?
           </a>
           <p className={`answer ${answersVisibleonline[5] ? '' : 'hidden'}`}>
@@ -216,7 +216,7 @@ const Faq = () => {
           </p>
         </li>
         <li>
-          <a href="#" className="question" onClick={() => toggleAnsweronline(6)}>
+          <a href="#" className="question" onClick={(e) => { e.preventDefault(); toggleAnsweronline(6)}}>
           Trust and Security ....?
           </a>
           <p className={`answer ${answersVisibleonline[6] ? '' : 'hidden'}`}>
