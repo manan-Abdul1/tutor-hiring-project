@@ -34,7 +34,11 @@ export default function MainPageTutors() {
             />
           </div>
           <div class="col-md-9 pt-5">
-            <TutorList tutors={filteredTutors.length > 0 ? filteredTutors: tutors} />
+            {filteredTutors.length===0||tutors.length === 0 ?
+              <p className='mx-auto flex justify-center items-center h-96 '>No tutors found with the selected filters.</p>
+              :
+              <TutorList tutors={filteredTutors.length > 0 ? filteredTutors: tutors} />
+            }
           </div>
         </div>
       </div>
