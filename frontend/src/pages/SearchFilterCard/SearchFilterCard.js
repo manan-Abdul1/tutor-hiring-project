@@ -23,56 +23,69 @@ export default function SearchFilterCard({ tutors, setFilteredTutors }) {
 
   const applyFilters = (filterValues) => {
     console.log('Filter Values:', filterValues);
-
+  
     // Implement filtering logic based on filterValues
     const filteredTutorsResult = tutors.filter((tutor) => {
-      // Implement your filtering logic here
+      const lowercaseSubjects = tutor.subjects.map((subject) => subject.toLowerCase());
+      const lowercaseClasses = tutor.classes.map((classItem) => classItem.toLowerCase());
+      console.log(lowercaseSubjects,'lowercase')
       let isMatch = true;
-
+  
       if (filterValues.location) {
         isMatch = isMatch && tutor.location.includes(filterValues.location);
-        console.log(isMatch, 'ismatch-')
-        // isMatch = false;
       }
-
-      if (filterValues.selectedClass && !tutor.classes.includes(filterValues.selectedClass)) {
-        isMatch = false;
-      }
-
-      // Handle selectedSubject filter
-      if (Array.isArray(filterValues.selectedSubject) && filterValues.selectedSubject.length > 0) {
-        // Check if any of the selected subjects match the tutor's subjects
-        const subjectMatch = filterValues.selectedSubject.some((selectedSubject) =>
-          tutor.subjects.includes(selectedSubject.toLowerCase()) // convert to lowercase for case-insensitive comparison
+  
+      // if (filterValues.selectedClass && !tutor.classes.includes(filterValues.selectedClass)) {
+      //   isMatch = false;
+      // }
+      if (typeof filterValues.selectedClass === 'string' && filterValues.selectedClass.trim() !== '') {
+        // Check if the selected subject matches any of the tutor's subjects
+        const subjectMatch = lowercaseClasses.some((subject) =>
+          subject.includes(filterValues.selectedClass.toLowerCase())
         );
-
+  
         if (!subjectMatch) {
           isMatch = false;
         }
       }
-      console.log('filterValues.selectedSubject:', filterValues.selectedSubject);
-      console.log('tutor.subjects:', tutor.subjects);
+  
+      // Handle selectedSubject filter
+      if (typeof filterValues.selectedSubject === 'string' && filterValues.selectedSubject.trim() !== '') {
+        // Check if the selected subject matches any of the tutor's subjects
+        const subjectMatch = tutor.subjects.some((subject) =>
+          subject.toLowerCase() === filterValues.selectedSubject.toLowerCase()
+        );
       
-
+        if (!subjectMatch) {
+          isMatch = false;
+        }
+      }
+  
       if (filterValues.experience && !tutor.experience.includes(filterValues.experience)) {
         isMatch = false;
       }
-
+  
       if (filterValues.gender !== 'Any' && filterValues.gender !== tutor.gender) {
         isMatch = false;
       }
-
-      if (filterValues?.fee && !tutor?.fee?.includes(filterValues.fee)) {
-        isMatch = false;
+      if (filterValues.fee) {
+        const feeRange = filterValues.fee; // Assuming feeRange is a number
+        const tutorFee = tutor.perSubjectFee; // Assuming tutor.perSubjectFee is a number
+  
+        // Check if the tutor's fee is greater than or equal to the selected fee range
+        if (tutorFee < feeRange) {
+          isMatch = false;
+        }
       }
-
+  
       return isMatch;
     });
     console.log(filteredTutorsResult, 'filteredTutorsResult')
-
+  
     // Update the filteredTutors state with the filtered list of tutors
     setFilteredTutors(filteredTutorsResult);
   };
+  
 
 
   return (
@@ -115,6 +128,7 @@ export default function SearchFilterCard({ tutors, setFilteredTutors }) {
           <option value="english">English</option>
           <option value="science">Science</option>
           <option value="algebra">Algebra</option>
+          <option value="dsa">DSA</option>
         </select>
       </div>
       <div className="my-2">
@@ -147,9 +161,10 @@ export default function SearchFilterCard({ tutors, setFilteredTutors }) {
           onChange={(event) => setFee(event.target.value)}
         >
           <option value="">Fee</option>
-          <option value="5kto10k">5k to 10k</option>
-          <option value="10kto15k">10k to 15k</option>
-          <option value="15kto20k">15k to 20k</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+          <option value="2000">2000</option>
+          <option value="3000">3000</option>
         </select>
       </div>
       <div className="mt-3">
