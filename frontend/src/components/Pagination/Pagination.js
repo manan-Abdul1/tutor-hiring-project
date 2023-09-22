@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pagination({ itemsPerPage, totalItems, paginate }) {
+function Pagination({ itemsPerPage, totalItems, currentPage, paginate }) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
@@ -8,13 +8,16 @@ function Pagination({ itemsPerPage, totalItems, paginate }) {
   }
 
   return (
-    <nav>
+    <nav className="mt-4 flex justify-center">
       <ul className="pagination">
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
+          <li
+            key={number}
+            className={`page-item ${currentPage === number ? 'active' : ''}`}
+          >
             <button
               onClick={() => paginate(number)}
-              className="page-link"
+              className="page-link focus:outline-none"
             >
               {number}
             </button>
