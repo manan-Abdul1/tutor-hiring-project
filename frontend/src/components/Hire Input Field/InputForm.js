@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function InputForm() {
+export default function InputForm({ userId, teacherId }) {
   const [location, setLocation] = useState('');
   const [timing, setTiming] = useState('');
   const [topic, setTopic] = useState('');
