@@ -20,8 +20,7 @@ export default function InputForm({ userId, teacherId }) {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log(response.data)
-        console.log(response.data)
+        console.log(response.data);
       })
       .catch((error) => {
         console.error('Error fetching teacher data:', error);
