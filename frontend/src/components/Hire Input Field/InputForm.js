@@ -1,34 +1,48 @@
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
 
-export default function InputForm({ userId, teacherId }) {
+
+
+const InputForm = ({ userId, teacherId }) => {
   const [location, setLocation] = useState('');
-  const [timing, setTiming] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
   const [topic, setTopic] = useState('');
   const [payment, setPayment] = useState('');
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform your logic or submit the form data here
-    // You can access the input values using the state variables (location, timing, topic, payment)
-    // For example:
-    console.log('Location:', location);
-    console.log('Timing:', timing);
-    console.log('Topic:', topic);
-    console.log('Payment:', payment);
-    const apiUrl = 'http://localhost:5500/api/hiringRequest';
+
+    // Create a request payload with the form data, including the selectedDate
+    const requestData = {
+      studentId: userId,
+      teacherId: teacherId,
+      location: location,
+      timing: selectedDate, // Use selectedDate here
+      topic: topic,
+      payment: payment,
+    };
+
+    // Send a POST request to your backend API
     axios
-      .get(apiUrl)
+      .post('http://localhost:5500/api/hiringRequest', requestData)
       .then((response) => {
-        console.log(response.data);
+        // Handle success, you can show a success message or redirect here
+        console.log('Hiring request sent successfully:', response.data);
       })
       .catch((error) => {
-        console.error('Error fetching teacher data:', error);
+        // Handle errors, display an error message, or log the error
+        console.error('Error sending hiring request:', error);
       });
 
     // Reset the form fields
     setLocation('');
-    setTiming('');
+    // setSelectedDate(null); // Reset the date and time
     setTopic('');
     setPayment('');
   };
@@ -51,12 +65,13 @@ export default function InputForm({ userId, teacherId }) {
         <label htmlFor="timing" className="block mb-2 font-semibold">
           Timing:
         </label>
-        <input
-          type="text"
-          id="timing"
-          value={timing}
-          onChange={(e) => setTiming(e.target.value)}
+        <DateTimePicker
+          onChange={handleDateChange} // Use the onChange prop
+          value={selectedDate} // Set the value to the selectedDate
+          format="y-MM-dd HH:mm:ss"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
+          calendarClassName="bg-white border rounded-lg shadow-md p-2" // Customize the calendar's style
+          clockClassName="bg-white border rounded-lg shadow-md p-2"
         />
       </div>
       <div className="mb-4">
@@ -92,3 +107,5 @@ export default function InputForm({ userId, teacherId }) {
     </form>
   );
 }
+
+export default InputForm
