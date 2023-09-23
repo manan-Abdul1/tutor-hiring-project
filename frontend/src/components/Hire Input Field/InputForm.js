@@ -15,6 +15,16 @@ export default function InputForm({ userId, teacherId }) {
     console.log('Timing:', timing);
     console.log('Topic:', topic);
     console.log('Payment:', payment);
+    const apiUrl = 'http://localhost:5500/api/hiringRequest';
+    axios
+      .get(apiUrl)
+      .then((response) => {
+     
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching teacher data:', error);
+      });
 
     // Reset the form fields
     setLocation('');
