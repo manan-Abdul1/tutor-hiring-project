@@ -29,9 +29,17 @@ export default function TutorCard({ id, name, image, qualification, experience, 
   return (
     <>
       <div className="relative mb-4 inline-block px-[10px] py-[24px] bg-white overflow-hidden rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer">
-        <img className="object-cover absolute rounded-full top-1 left-20 w-50 " src={image} alt={name} loading="lazy" />
-        <div className="relative pt-32">
-          {verified && <div className="absolute -top-7 -right-3 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
+      <div className="rounded-full overflow-hidden w-40 h-40 mx-auto">
+          <img
+            className="object-cover w-full h-full"
+            src={image}
+            alt={name}
+            loading="lazy"
+          />
+        </div>
+       {/* <img className="object-cover absolute rounded-full top-1 left-20" src={image} width={150} alt={name} loading="lazy" /> */}
+        <div className="relative">
+          {verified && <div className="absolute bottom-36 -right-3 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
         </div>
         <div className="px-4 py-2 bg-white">
           <h6 className="text-xl font-bold text-center">{name}</h6>
