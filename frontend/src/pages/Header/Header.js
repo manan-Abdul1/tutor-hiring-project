@@ -94,10 +94,7 @@ function Header() {
                 Hire a Tutor
               </Link>
             )}
-            <Link
-              to="/tutors"
-              className="transition-bg hover:text-green-500"
-            >
+            <Link to="/tutors" className="transition-bg hover:text-green-500 ml-5">
               <i className="fa-regular fa-bell fa-lg"></i>
             </Link>
 
