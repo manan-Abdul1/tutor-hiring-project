@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputForm from '../Hire Input Field/InputForm';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function TutorCard({ id, name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
   const [show, setShow] = useState(false);
+  const userId = useSelector(state=>state.auth.userData._id);
   const navigate = useNavigate();
   const MAX_LENGTH = 20;
 
@@ -95,7 +97,7 @@ export default function TutorCard({ id, name, image, qualification, experience, 
           <Modal.Title>Hire Now</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <InputForm />
+          <InputForm userId={userId} teacherId={id} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="btn btn-primary text-blue-500" onClick={handleClose}>
