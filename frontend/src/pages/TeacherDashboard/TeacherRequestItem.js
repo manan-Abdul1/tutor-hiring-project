@@ -1,8 +1,8 @@
 import React from "react";
 
 const TeacherRequestItem = ({ request }) => {
-  const { studentName, subject, date, time } = request;
-
+  const { studentId, payment, topic, status, timing } = request;
+  const studentName = studentId ? studentId.name : "Unknown"; 
   const handleAccept = () => {
     // Handle accept logic here
     console.log("Request accepted");
@@ -18,11 +18,12 @@ const TeacherRequestItem = ({ request }) => {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-bold">{studentName}</h3>
-          <p className="text-gray-600">{subject}</p>
+          <p className="text-gray-600">Topic {topic}</p>
+          <p className="text-gray-600 font-bold">Payment {payment}</p>
         </div>
         <div>
-          <p className="text-gray-600">{date}</p>
-          <p className="text-gray-600">{time}</p>
+          <p className="text-gray-600">Status: {status}</p>
+          <p className="text-gray-600">Timing: {timing}</p>
         </div>
       </div>
       <div className="flex justify-end mt-4">

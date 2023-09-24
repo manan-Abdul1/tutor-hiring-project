@@ -31,8 +31,8 @@ function Header() {
     dispatch(logOut());
   }
   console.log(isMobile, 'is Mobile')
-  console.log(showMenu,'showMenu')
-  console.log(currentUser,'current User')
+  console.log(showMenu, 'showMenu')
+  console.log(currentUser, 'current User')
 
   return (
     <nav className="bg-white shadow-lg">
@@ -54,15 +54,9 @@ function Header() {
                     className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/teacher-home" ? "border-b-4 border-green-500" : ""
                       }`}
                   >
-                    Home
+                    Dashboard
                   </Link>
-                  <Link
-                    to="/tutors"
-                    className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${location.pathname === "/tutors" ? "border-b-4 border-green-500" : ""
-                      }`}
-                  >
-                    Tutors
-                  </Link>
+                
                 </>
               )}
               {currentUser.role !== 'tutor' && (
@@ -94,12 +88,19 @@ function Header() {
             </div>
           </div>
           {/* Secondary Navbar items */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center ">
             {currentUser.role !== 'tutor' && (
               <Link to="/tutors" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-blue-400 transition duration-300">
                 Hire a Tutor
               </Link>
             )}
+            <Link
+              to="/tutors"
+              className="transition-bg hover:text-green-500"
+            >
+              <i className="fa-regular fa-bell fa-lg"></i>
+            </Link>
+
             {currentUser && (
               <div className="relative">
                 <button className="py-2 px-3 font-medium" onClick={toggleMenu}>
@@ -132,7 +133,7 @@ function Header() {
           <div className="md:hidden flex items-center">
             <button
               className="outline-none mobile-menu-button"
-              onClick={()=>setMobileToggle(!mobileToggle)}
+              onClick={() => setMobileToggle(!mobileToggle)}
             >
               <svg
                 className={`w-6 h-6 text-gray-500 hover:text-green-500 ${mobileToggle ? "hidden" : ""
