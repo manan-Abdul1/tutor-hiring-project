@@ -26,7 +26,7 @@ const TeacherRequestList = () => {
       {requests.length > 0 ? (
         <ul className="space-y-4 w-[50%]">
           {requests.map((request) => (
-            <TeacherRequestItem key={request._id} request={request} />
+            <TeacherRequestItem key={request._id} request={request} teacherId={teacherId} />
           ))}
         </ul>
       ) : (
