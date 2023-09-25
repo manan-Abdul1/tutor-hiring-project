@@ -9,10 +9,7 @@ const TeacherRequestItem = ({ request, teacherId }) => {
     // Make an API call to update the request status as "accepted" and provide teacherId
     // Updated API call to include request ID in the URL path
     axios
-      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`, {
-        status: 'accepted',
-        teacherId: teacherId, 
-      })
+      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`)
       .then((response) => {
         // Handle success, you can show a success message or take further actions
         console.log('Request accepted:', response.data);
@@ -29,10 +26,7 @@ const TeacherRequestItem = ({ request, teacherId }) => {
 
   const handleReject = () => {
     axios
-    .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`, {
-      status: 'accepted',
-      teacherId: teacherId, 
-    })
+    .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`)
     .then((response) => {
       // Handle success, you can show a success message or take further actions
       console.log('Request accepted:', response.data);
