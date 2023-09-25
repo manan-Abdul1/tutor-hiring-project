@@ -1,16 +1,49 @@
+import axios from "axios";
 import React from "react";
 
-const TeacherRequestItem = ({ request }) => {
-  const { studentId, payment, topic, status, timing } = request;
-  const studentName = studentId ? studentId.name : "Unknown"; 
+const TeacherRequestItem = ({ request, teacherId }) => {
+  const { _id, studentId, payment, topic, status, timing } = request;
+  const studentName = studentId ? studentId.name : "Unknown";
+
   const handleAccept = () => {
-    // Handle accept logic here
-    console.log("Request accepted");
+    // Make an API call to update the request status as "accepted" and provide teacherId
+    // Updated API call to include request ID in the URL path
+    axios
+      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`, {
+        status: 'accepted',
+        teacherId: teacherId, 
+      })
+      .then((response) => {
+        // Handle success, you can show a success message or take further actions
+        console.log('Request accepted:', response.data);
+
+        // Optionally, send a reply to the student
+        // sendReplyToStudent(requestId, 'accepted');
+      })
+      .catch((error) => {
+        // Handle errors, display an error message, or log the error
+        console.error('Error accepting request:', error);
+      });
+
   };
 
   const handleReject = () => {
-    // Handle reject logic here
-    console.log("Request rejected");
+    axios
+    .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`, {
+      status: 'accepted',
+      teacherId: teacherId, 
+    })
+    .then((response) => {
+      // Handle success, you can show a success message or take further actions
+      console.log('Request accepted:', response.data);
+
+      // Optionally, send a reply to the student
+      // sendReplyToStudent(requestId, 'accepted');
+    })
+    .catch((error) => {
+      // Handle errors, display an error message, or log the error
+      console.error('Error accepting request:', error);
+    });
   };
 
   return (
