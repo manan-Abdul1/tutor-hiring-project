@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addRequests } from "../../redux/features/requests/requestSlice";
+import { addRequests, getAcceptedMeetings } from "../../redux/features/requests/requestSlice";
 import axios from "axios";
 
 const TeacherDashboard = () => {
@@ -16,6 +16,16 @@ const TeacherDashboard = () => {
         console.log(response.data.requests,'response')
         // setRequests(response.data.requests);
         dispatch(addRequests(response.data.requests));
+         // Fetch accepted meetings (you need to implement this endpoint on the server)
+         axios
+         .get(`http://localhost:5500/api/hiringRequest/getAcceptedMeetings?id=${teacherId}`)
+         .then((response) => {
+           console.log(response.data.acceptedRequests, 'meetingsResponse');
+           dispatch(getAcceptedMeetings(response.data.acceptedRequests));
+         })
+         .catch((error) => {
+           console.error("Error fetching accepted meetings:", error);
+         });
       })
       .catch((error) => {
         console.error("Error fetching teacher requests:", error);
