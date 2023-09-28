@@ -1,21 +1,23 @@
 import axios from "axios";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { requestAccepted, requestRejected } from "../../redux/features/requests/requestSlice";
 
-const TeacherRequestItem = ({ request, teacherId }) => {
+const TeacherRequestItem = ({ request }) => {
   const { _id, studentId, payment, topic, status, timing } = request;
   const studentName = studentId ? studentId.name : "Unknown";
+  const requestsData = useSelector(state=>state.requests.requests);
+  const dispatch =useDispatch();
+
+  console.log(requestsData,'requestdata')
 
   const handleAccept = () => {
-    // Make an API call to update the request status as "accepted" and provide teacherId
-    // Updated API call to include request ID in the URL path
     axios
       .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`)
       .then((response) => {
-        // Handle success, you can show a success message or take further actions
         console.log('Request accepted:', response.data);
+        dispatch(requestAccepted(response.data.updatedRequest))
 
-        // Optionally, send a reply to the student
-        // sendReplyToStudent(requestId, 'accepted');
       })
       .catch((error) => {
         // Handle errors, display an error message, or log the error
@@ -28,8 +30,8 @@ const TeacherRequestItem = ({ request, teacherId }) => {
     axios
     .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`)
     .then((response) => {
-      // Handle success, you can show a success message or take further actions
       console.log('Request accepted:', response.data);
+      dispatch(requestRejected(response.data.updatedRequest))
 
       // Optionally, send a reply to the student
       // sendReplyToStudent(requestId, 'accepted');
