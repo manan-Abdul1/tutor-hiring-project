@@ -29,6 +29,9 @@ const requestSlice = createSlice({
     addRequests: (state, action) => {
       state.requests = action.payload;
     },
+    getAcceptedMeetings: (state, action) => {
+        state.meetings = action.payload;
+      },
   },
 });
 
@@ -38,6 +41,7 @@ export const {
   requestRejected,
   getAcceptedRequests,
   addRequests,
+  getAcceptedMeetings
 } = requestSlice.actions;
 
 export default requestSlice.reducer;
