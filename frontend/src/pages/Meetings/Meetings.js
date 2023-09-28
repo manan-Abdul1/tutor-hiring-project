@@ -6,7 +6,7 @@ const Meetings = () => {
   
     return (
       <div className="h-screen flex flex-col items-center mt-36">
-        {meetings.length > 0 ? (
+        {meetings?.length > 0 ? (
           <ul className="space-y-4 w-[50%]">
             {meetings.map(meeting => (
               <MeetingItem key={meeting._id} meeting={meeting} />
