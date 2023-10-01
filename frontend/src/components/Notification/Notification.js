@@ -16,12 +16,12 @@ console.log(notifications,'notifications')
           <div
             key={notification._id}
             className={`notification-item ${
-              notification.read ? "bg-gray-200" : "bg-white"
-            } p-4 rounded-md mb-4 cursor-pointer hover:bg-gray-100`}
+              notification.isRead ? "bg-gray-200 " : "bg-white"
+            } mb-2 rounded-md cursor-pointer hover:bg-gray-300`}
           >
             <p
               className={`${
-                notification.read ? "text-gray-400" : "text-gray-500"
+                notification.isRead ? "text-gray-800" : "text-gray-500"
               } cursor-pointer`}
             >
               {notification.message}

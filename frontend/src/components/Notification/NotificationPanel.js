@@ -11,18 +11,10 @@ import NotificationList from "./Notification";
 
 function NotificationPanel() {
   const currentUserId = useSelector((state) => state.auth.userData._id);
+  const notifications = useSelector(
+    (state) => state.notifications.notifications
+  )
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5500/api/notifications?userId=${currentUserId}`)
-      .then((response) => {
-        dispatch(addNotification(response.data.notifications));
-      })
-      .catch((error) => {
-        console.error("Error fetching notifications:", error);
-      });
-  }, []);
 
   const handleMarkAllAsRead = () => {
     axios
@@ -37,7 +29,15 @@ function NotificationPanel() {
   };
 
   const handleDeleteAllNotifications = () => {
-    dispatch(deleteAllNotifications());
+    axios
+    .delete(`http://localhost:5500/api/notifications/deleteAllNotifications?userId=${currentUserId}`)
+    .then((response) => {
+        console.log(response,'response')
+        dispatch(deleteAllNotifications());
+    })
+    .catch((error) => {
+      console.error("Error fetching notifications:", error);
+    });
   };
 
   return (
@@ -45,6 +45,8 @@ function NotificationPanel() {
       <div className="notification-content">
         <NotificationList />
       </div>
+      {
+        notifications.length>0 &&
       <div className="notification-actions">
         <button className="mark-as-read-button text-blue-500 hover:text-blue-800 " onClick={handleMarkAllAsRead}>
           Mark All as Read
@@ -53,6 +55,7 @@ function NotificationPanel() {
           Delete All Notifications
         </button>
       </div>
+      }
     </div>
   );
 }

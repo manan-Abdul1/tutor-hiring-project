@@ -19,14 +19,14 @@ const notificationsSlice = createSlice({
         (notification) => notification._id === action.payload
       );
       if (notificationIndex !== -1) {
-        state.notifications[notificationIndex].read = true;
+        state.notifications[notificationIndex].isRead = true;
       }
     },
     // Mark all notifications as read
     markAllNotificationsAsRead: (state) => {
       state.notifications = state.notifications.map((notification) => ({
         ...notification,
-        read: true,
+        isRead: true,
       }));
     },
     // Delete a single notification
