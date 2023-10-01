@@ -2,10 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StudentHeader = ({ location, currentUser, toggleNotifications, showNotifications, handleLogout }) => {
+const StudentHeader = ({ location }) => {
   return (
-    <div>
-      {/* Your student-specific header content */}
+    <>
       <Link
         to="/home"
         className={`py-4 px-2 text-gray-500 hover:text-green-500 font-semibold transition duration-300 ${
@@ -36,7 +35,7 @@ const StudentHeader = ({ location, currentUser, toggleNotifications, showNotific
       >
         About Us
       </Link>
-    </div>
+    </>
   );
 };
 
