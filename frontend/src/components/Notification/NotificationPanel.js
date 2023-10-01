@@ -1,13 +1,11 @@
 // NotificationPanel.js
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addNotification,
   markAllNotificationsAsRead,
   deleteAllNotifications,
 } from "../../redux/features/notifications/notificationsSlice";
 import axios from "axios";
-import NotificationList from "./Notification";
+import NotificationList from "./NotificationList";
 
 function NotificationPanel() {
   const currentUserId = useSelector((state) => state.auth.userData._id);
@@ -47,7 +45,7 @@ function NotificationPanel() {
       </div>
       {
         notifications.length>0 &&
-      <div className="notification-actions">
+      <div className="notification-actions mt-2">
         <button className="mark-as-read-button text-blue-500 hover:text-blue-800 " onClick={handleMarkAllAsRead}>
           Mark All as Read
         </button>
