@@ -1,0 +1,53 @@
+/* Add your styles for notifications here */
+
+.notification-list {
+    max-height: 500px; /* Set a max height to limit the number of visible notifications */
+    overflow-y: auto; /* Add scroll when there are too many notifications */
+    /* border-radius: 10px; */
+  }
+  
+  .notification-item {
+    /* background-color: #fff; */
+    /* border: 1px solid #ccc; */
+    /* color: red; */
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .notification-item.read {
+    opacity: 0.7; /* Reduce opacity for read notifications */
+  }
+  
+  .notification-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .delete-button {
+    cursor: pointer;
+  }
+  
+  .mark-as-read-button:hover,
+  .delete-button:hover {
+    opacity: 0.8;
+  }
+  .notification-panel {
+    position: absolute;
+    top: 100%; /* Position it below the parent element */
+    right: 0; /* Adjust the horizontal position as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 350px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999; 
+    border-radius: 10px;
+    padding: 4px 2px;
+  }
+  .notification-actions{
+    margin-left: 25px;
+  }
+  
+  
