@@ -33,9 +33,9 @@ const TeacherDashboard = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center mt-32 h-screen ">
+    <div className="flex flex-wrap justify-center mt-36 h-screen ">
       <div className="w-full md:w-1/2 lg:w-1/4 p-4" onClick={() => navigate('/teacher-requests')}>
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-52 md:h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
           <div className="p-6">
             <h2 className="text-2xl text-center font-semibold mb-2">Requests</h2>
             {/* Add your content related to requests here */}
@@ -43,7 +43,7 @@ const TeacherDashboard = () => {
         </div>
       </div>
       <div className="w-full md:w-1/2 lg:w-1/4 p-4">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-52 md:h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
           <div className="p-6">
             <h2 className="text-2xl text-center font-semibold mb-2">Feedback</h2>
             {/* Add your content related to feedback here */}
@@ -51,7 +51,7 @@ const TeacherDashboard = () => {
         </div>
       </div>
       <div className="w-full md:w-1/2 lg:w-1/4 p-4" onClick={()=>navigate('/teacher-scheduled-meetings')}>
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden h-52 md:h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
           <div className="p-6">
             <h2 className="text-2xl text-center font-semibold mb-2" >Meetings</h2>
             {/* Add your content for the new card here */}
