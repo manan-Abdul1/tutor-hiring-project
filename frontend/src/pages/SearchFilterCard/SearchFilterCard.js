@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LocationSelect from "../../components/LocationSelect/LocationSelect";
 
 export default function SearchFilterCard({ tutors, setFilteredTutors }) {
   const [location, setLocation] = useState("");
@@ -72,21 +73,14 @@ export default function SearchFilterCard({ tutors, setFilteredTutors }) {
 
     setFilteredTutors(filteredTutorsResult);
   };
-
+  const handleLocationSelect = (location) => {
+    setLocation(location);
+  };
+  
   return (
     <div className="p-4 bg-gray-100 mx-2 mt-20 mb-20 rounded-lg shadow-2xl">
       <h3 className="text-2xl font-semibold mb-4 text-center">Refine Search</h3>
-      <div className="my-2">
-        <input
-          className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="location"
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          autoComplete="off"
-          placeholder="Enter Location"
-        />
-      </div>
+      <LocationSelect onSelect={handleLocationSelect} width='w-full'/>
       <div className="my-2">
         <select
           className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

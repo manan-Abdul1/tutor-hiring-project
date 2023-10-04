@@ -2,6 +2,7 @@ import React from "react";
 import './HomeSection.css'
 import SubjectSelect from "../../components/SubjectChanges/SubjectChanges";
 import ClassSelect from "../../components/ClassSelect/ClassSelect";
+import LocationSelect from "../../components/LocationSelect/LocationSelect";
 export default function HomeSection() {
   return (
     <>
@@ -15,18 +16,7 @@ export default function HomeSection() {
         //   action="https://thetutors.pk/tutors"
         >
           <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-            <div className="mb-2">
-              <input
-                className="md:px-16 py-2 md:w-full px-2 border rounded-lg"
-                // style={{ width: "281.646px;" }}
-                type="text"
-                placeholder="Your Location"
-                name="location"
-                autoComplete="off"
-              />
-              <input type="hidden" name="latitude" value="" />
-              <input type="hidden" name="longitude" value="" />
-            </div>
+            <LocationSelect/>
             <ClassSelect/>
             <SubjectSelect/>
 
