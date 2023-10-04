@@ -7,10 +7,10 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
   const MAX_LENGTH = 12;
 
     const shortenText = (text) => {
-      if (text.length <= MAX_LENGTH) {
+      if (text?.length <= MAX_LENGTH) {
         return text;
       }
-      return text.slice(0, MAX_LENGTH) + '...';
+      return text?.slice(0, MAX_LENGTH) + '...';
     }
     function handleShow(){
       setShow(true)
@@ -21,8 +21,15 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
   return (
     <>
          <div className="relative mb-4 overflow-hidden mx-2 py-[20px] bg-white rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-2xl cursor-pointer">
-        <img className="object-cover absolute rounded-full top-1 left-20" src={image} alt={name} loading="lazy" />
-      <div className="relative pt-32">
+         <div className="rounded-full overflow-hidden w-40 h-40 mx-auto">
+          <img
+            className="object-cover w-full h-full"
+            src={image}
+            alt={name}
+            loading="lazy"
+          />
+        </div>
+      <div className="relative">
         {verified && <div className="absolute -top-2 -right-0 p-2 bg-green-500 rounded-bl-md">{verified ? 'Verified' : 'Not verified'}</div>}
       </div>
       <div className="px-4 py-2 bg-white">

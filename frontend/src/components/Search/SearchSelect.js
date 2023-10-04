@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-function SearchSelect({ options, onSelect, placeholder }) {
+function SearchSelect({ options, onSelect, placeholder, width }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef(null);
 
   const filteredOptions = options.filter((option) =>
     option.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -25,12 +26,29 @@ function SearchSelect({ options, onSelect, placeholder }) {
     setSearchQuery('');
   };
 
+  // Add a click event listener to the document to handle clicks outside the component
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Unbind the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={selectRef}>
       <input
-        className="p-2 md:w-full border outline-none border-gray-300 rounded"
+        className={`p-2 md:w-full ${width || ''} border outline-none border-gray-300 rounded`}
         type="text"
-        placeholder= {placeholder}
+        placeholder={placeholder}
         value={selectedOption ? selectedOption.label : searchQuery}
         onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
@@ -43,7 +61,7 @@ function SearchSelect({ options, onSelect, placeholder }) {
         <i className="fa-sharp fa-solid fa-caret-down fa-lg absolute -right-48 px-1 top-5 md:right-2"></i>
       )}
       {isOpen && (
-        <div style={{zIndex:'99999'}} className="absolute z-20 w-full md:max-h-64 bg-white border border-gray-300 rounded md:overflow-y-auto h-fit">
+        <div style={{ zIndex: '99999' }} className="absolute z-20 w-full md:max-h-64 bg-white border border-gray-300 rounded md:overflow-y-auto h-fit">
           {filteredOptions.map((option) => (
             <div
               key={option.value}

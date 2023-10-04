@@ -11,6 +11,7 @@ import UserMenu from "./UserMenu";
 import MobileMenuButton from "./MobileMenuButton";
 import axios from "axios";
 import { addNotification } from "../../redux/features/notifications/notificationsSlice";
+import { addTeachers } from "../../redux/features/teachers/teacherSlice";
 
 
 function Header() {
@@ -55,7 +56,17 @@ function Header() {
         console.error("Error fetching notifications:", error);
       });
   }, []);
-
+  useEffect(() => {
+    const apiUrl = 'http://localhost:5500/api/tutors/get-all-teachers';
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        dispatch(addTeachers(response.data.teachers));
+      })
+      .catch((error) => {
+        console.error('Error fetching teacher data:', error);
+    });
+  }, []);
 
   return (
     <nav className="bg-white shadow-lg">

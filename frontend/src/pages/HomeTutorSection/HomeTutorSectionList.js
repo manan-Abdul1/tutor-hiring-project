@@ -8,8 +8,8 @@ export default function HomeTutorSectionList({tutor}) {
      <HomeTutorSectionCard
           key={tutor.name}
           name={tutor.name}
-          image={tutor.image}
-          qualification={tutor.qualification}
+          image={tutor.profileImageUrl}
+          qualification={tutor.education}
           experience={tutor.experience}
           classes={tutor.classes}
           subjects={tutor.subjects}

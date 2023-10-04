@@ -3,71 +3,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import HomeTutorSectionList from './HomeTutorSectionList';
-
-const tutors = [
-    {
-      name: 'John Doe',
-      image: 'https://thetutors.pk/avatars/1570165374581DA1A0-8960-49AC-9BCE-953EAF7240AF.jpeg',
-      qualification: 'BSC Engineering',
-      experience: '5 years',
-      classes: '6th to 10th grade',
-      subjects: 'Mathematics, Physics',
-      rating: 4.5,
-      age: 35,
-      gender: 'Female',
-      verified: true
-    },
-    {
-      name: 'Jane Smith',
-      image: 'https://thetutors.pk/avatars/1570165374581DA1A0-8960-49AC-9BCE-953EAF7240AF.jpeg',
-      qualification: 'Bachelors in English Literature',
-      experience: '3 years',
-      classes: '11th and 12th grade',
-      subjects: 'English',
-      rating: 4.0,
-      age: 28,
-      gender: 'Male',
-      verified: false
-    },
-    {
-      name: 'Jane Smith',
-      image: 'https://thetutors.pk/avatars/16804287502020_07_02%2010_53%20AM%20Office%20Lens_11zon.jpg',
-      qualification: 'Bachelors in English Literature',
-      experience: '3 years',
-      classes: '11th and 12th grade',
-      subjects: 'English',
-      rating: 4.0,
-      age: 28,
-      gender: 'Male',
-      verified: false
-    },
-    {
-      name:"Abdul Manan"   ,
-      image:"https://thetutors.pk/avatars/16804287502020_07_02%2010_53%20AM%20Office%20Lens_11zon.jpg",
-      qualification:"Bachelors in English Literature",
-      experience:"17 years",
-      classes:"9th",
-      subjects:"Math",
-      rating:4,
-      age: 21,
-      gender:"Male",
-      verified:true,
-    },
-    {
-      name:"Abdul Manan"   ,
-      image:"https://thetutors.pk/avatars/16804287502020_07_02%2010_53%20AM%20Office%20Lens_11zon.jpg",
-      qualification:"Bachelors in English Literature",
-      experience:"17 years",
-      classes:"9th",
-      subjects:"Math",
-      rating:4,
-      age: 21,
-      gender:"Male",
-      verified:true,
-    }
-  ];
+import { useSelector } from 'react-redux';
 
 export default function HomeTutorSection() {
+  const tutors = useSelector((state) => state?.tutor?.teachers);
+
+  const filteredTutors = tutors?.filter((tutor) => tutor.rating > 4).slice(10, 15);
+
+
     const settings = {
         dots: true,
         infinite: true,
@@ -107,7 +50,7 @@ export default function HomeTutorSection() {
         </div>
         <div className=''>
         <Slider {...settings}>
-            {tutors.map((tutor, index) => (
+            {filteredTutors?.map((tutor, index) => (
             <HomeTutorSectionList key={index} tutor={tutor} />
             ))}
         </Slider>
