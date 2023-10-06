@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchSelect from '../Search/SearchSelect';
 
-function SubjectSelect() {
+function SubjectSelect({onSelect}) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
@@ -28,6 +28,8 @@ function SubjectSelect() {
 
   const handleSelect = (option) => {
     setSelectedOption(option);
+    onSelect(option.value)
+
   };
 
   const placeholder = 'Select Subject';

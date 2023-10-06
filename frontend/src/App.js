@@ -25,7 +25,10 @@ function App() {
       {isAuthenticated && <Header />}
       <Routes>
         <Route path="/home" element={<PrivateRouting><Homepage /></PrivateRouting>} />
-        <Route path="/tutors" element={<PrivateRouting><MainPageTutors /></PrivateRouting>} />
+        <Route path="/tutors" >
+          <Route index  element={<PrivateRouting><MainPageTutors /></PrivateRouting>}/>
+          <Route path=":filter"  element={<PrivateRouting><MainPageTutors /></PrivateRouting>}/>
+        </Route>
         <Route path="/faq" element={<PrivateRouting><Faq /></PrivateRouting>} />
         <Route path="/about" element={<PrivateRouting><Aboutus /></PrivateRouting>} />
         <Route path="/viewprofile/:id" element={<PrivateRouting><ViewProfile /></PrivateRouting>} />

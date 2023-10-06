@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchSelect from '../Search/SearchSelect';
 
-function ClassSelect() {
+function ClassSelect({onSelect}) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
@@ -30,6 +30,7 @@ function ClassSelect() {
 
   const handleSelect = (option) => {
     setSelectedOption(option);
+    onSelect(option.value)
   };
 
   const placeholder = 'Select Class';
