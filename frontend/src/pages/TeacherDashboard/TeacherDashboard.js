@@ -9,14 +9,11 @@ const TeacherDashboard = () => {
   const teacherId = useSelector((state) => state.auth.userData._id);
   const dispatch = useDispatch();
   useEffect(() => {
-    // Make an API request to get teacher-specific requests
     axios
       .get(`http://localhost:5500/api/hiringRequest/getTeacherRequestsById?id=${teacherId}`)
       .then((response) => {
         console.log(response.data.requests,'response')
-        // setRequests(response.data.requests);
         dispatch(addRequests(response.data.requests));
-         // Fetch accepted meetings (you need to implement this endpoint on the server)
       })
       .catch((error) => {
         console.error("Error fetching teacher requests:", error);
@@ -25,7 +22,7 @@ const TeacherDashboard = () => {
 
   return (
     <div className="flex flex-wrap justify-center mt-36 h-screen ">
-      <div className="w-full md:w-1/2 lg:w-1/4 p-4" onClick={() => navigate('/teacher-requests')}>
+      <div className="w-full md:w-1/2 lg:w-1/4 p-4" onClick={() => navigate('/teacher-requests/pending')}>
         <div className="bg-white shadow-lg rounded-lg overflow-hidden h-52 md:h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
           <div className="p-6">
             <h2 className="text-2xl text-center font-semibold mb-2">Requests</h2>

@@ -37,10 +37,10 @@ function App() {
         <Route path="/viewprofile/:id" element={<PrivateRouting><ViewProfile /></PrivateRouting>} />
         <Route path="/profile" element={<PrivateRouting><StudentProfile /></PrivateRouting>} />
         <Route path="/teacher-home" element={<PrivateRouting><TeacherDashboard /></PrivateRouting>} />
-        <Route path="/teacher-requests" element={<PrivateRouting><TeacherRequestList /></PrivateRouting>} />
+        <Route path="/teacher-requests/:status" element={<PrivateRouting><TeacherRequestList /></PrivateRouting>} />
         <Route path="/user-requests/:status" element={<PrivateRouting><UserRequests/></PrivateRouting>} />
         <Route path="/teacher-scheduled-meetings" element={<PrivateRouting><TutorScheduledMeetings /></PrivateRouting>} />
-        <Route path="/student-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
+        <Route path="/user-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
         <Route path="/feedback" element={<FeedbackPage />}/>
         <Route path="/" element={<MainPageRegister />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />

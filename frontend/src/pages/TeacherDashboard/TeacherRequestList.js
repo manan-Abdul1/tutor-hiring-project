@@ -2,10 +2,14 @@ import { useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import TeacherRequestItem from './TeacherRequestItem';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const TeacherRequestList = () => {
+  const { status } = useParams();
+
   const allRequests = useSelector(state => state.requests.requests);
-  const pendingRequests = allRequests.filter(request => request.status === 'pending');
+
+  const pendingRequests = allRequests.filter(request => request.status === status);
   const itemsPerPage = 3;
 
   const [currentPage, setCurrentPage] = useState(1);
