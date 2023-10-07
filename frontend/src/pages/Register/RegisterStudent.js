@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 
 function RegisterStudent() {
   const [name, setName] = useState('');
@@ -56,7 +54,6 @@ function RegisterStudent() {
 
   return (
     <>
-      <ToastContainer />
      <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
      <div className="max-w-md w-full bg-white mx-auto p-6 rounded shadow-2xl">
      <h2 className="text-2xl text-center text-cyan-700 font-bold mb-4">Register as Student</h2>

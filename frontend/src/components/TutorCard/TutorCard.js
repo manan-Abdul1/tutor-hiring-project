@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputForm from '../Hire Input Field/InputForm';
 import { useNavigate } from 'react-router-dom';
@@ -97,14 +96,8 @@ export default function TutorCard({ id, name, image, qualification, experience, 
           <Modal.Title>Hire Now</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <InputForm userId={userId} teacherId={id} />
+          <InputForm userId={userId} teacherId={id} handleClose={handleClose} />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="btn btn-primary text-blue-500" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary text-blue-500">Save changes</Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

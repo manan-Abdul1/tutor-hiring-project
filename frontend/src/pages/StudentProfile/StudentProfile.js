@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 function StudentProfile() {
   const currentUser = useSelector(state => state.auth.userData);
@@ -49,7 +48,6 @@ function StudentProfile() {
   };
   return (
     <>
-        <ToastContainer />
     <div className="max-w-md mx-auto mt-10 p-6 bg-white border border-gray-300 rounded shadow">
       <h1 className="text-2xl text-center text-cyan-700  font-bold mb-4">{currentUser.role} Profile</h1>
       <form onSubmit={handleSubmit}>

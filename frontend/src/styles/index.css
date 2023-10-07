@@ -8,3 +8,6 @@ body {
 .tutor-icons{
     font-size: 80px;
 }
+.react-datepicker-wrapper{
+  width: 100%;
+}
