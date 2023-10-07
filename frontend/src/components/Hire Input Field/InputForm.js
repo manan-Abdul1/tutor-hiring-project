@@ -5,83 +5,99 @@ import 'react-datepicker/dist/react-datepicker.css';
 import toast from 'react-hot-toast';
 import LocationSelect from '../LocationSelect/LocationSelect';
 
-
-
-const InputForm = ({ userId, teacherId , handleClose}) => {
+const InputForm = ({ userId, teacherId, handleClose }) => {
   const [location, setLocation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [topic, setTopic] = useState('');
   const [payment, setPayment] = useState('');
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const [physicalLocation, setPhysicalLocation] = useState(''); 
+  const [message, setMessage] = useState(''); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if(location===''){
+      toast.error("Please Enter how you want to learn");
+      return;
+    }
     const currentDate = new Date();
     if (selectedDate <= currentDate) {
-      // Display an error message or prevent the form submission
-      console.error('Selected date must be in the future.');
-      toast.error("Selected date must be in the future.")
+      toast.error('Selected date must be in the future.');
       return;
     }
 
-    // Create a request payload with the form data, including the selectedDate
     const requestData = {
       studentId: userId,
       teacherId: teacherId,
       location: location,
-      timing: selectedDate, // Use selectedDate here
+      timing: selectedDate,
       topic: topic,
+      preferredLocation:physicalLocation,
       payment: payment,
+      message: message, 
     };
 
-    // Send a POST request to your backend API
     axios
       .post('http://localhost:5500/api/hiringRequest', requestData)
       .then((response) => {
-        // Handle success, you can show a success message or redirect here
-        console.log('Hiring request sent successfully:', response.data);
-        handleClose();
+        console.log(response,"request-send")
+        if(response.ok){
+          toast.success(response.data.message)
+          handleClose();
+        }
       })
       .catch((error) => {
-        // Handle errors, display an error message, or log the error
         console.error('Error sending hiring request:', error);
       });
 
-    // Reset the form fields
     setLocation('');
-    // setSelectedDate(null); // Reset the date and time
     setTopic('');
     setPayment('');
+    setPhysicalLocation('');
+    setMessage('');
   };
-  const handleLocationSelect = (location) => {
-    setLocation(location);
+
+  const handleLocationSelect = (selectedLocation) => {
+    setLocation(selectedLocation);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
       <div className="mb-4">
         <label htmlFor="location" className="block mb-2 font-semibold">
           Location:
         </label>
-        <LocationSelect onSelect={handleLocationSelect} width='w-full'/>
+        <LocationSelect onSelect={handleLocationSelect} width="w-full" />
       </div>
+      {(location === 'both' || location === 'physical') && (
+        <>
+          <div className="mb-4">
+            <label htmlFor="physicalLocation" className="block mb-2 font-semibold">
+              Physical Location Preference:
+            </label>
+            <input
+              type="text"
+              id="physicalLocation"
+              value={physicalLocation}
+              required
+              onChange={(e) => setPhysicalLocation(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm "
+            />
+          </div>
+        </>
+      )}
       <div className="mb-4">
         <label htmlFor="timing" className="block mb-2 font-semibold">
           Timing:
         </label>
         <DatePicker
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            dateFormat="MMMM d, yyyy h:mm aa"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
+          required
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          dateFormat="MMMM d, yyyy h:mm aa"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
         />
       </div>
       <div className="mb-4">
@@ -89,11 +105,12 @@ const InputForm = ({ userId, teacherId , handleClose}) => {
           Topic:
         </label>
         <input
+          required
           type="text"
           id="topic"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
         />
       </div>
       <div className="mb-4">
@@ -101,13 +118,27 @@ const InputForm = ({ userId, teacherId , handleClose}) => {
           Payment per Topic:
         </label>
         <input
+          required
           type="text"
           id="payment"
           value={payment}
           onChange={(e) => setPayment(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm "
         />
       </div>
+      <div className="mb-4">
+            <label htmlFor="message" className="block mb-2 font-semibold">
+              Explanation/Message:
+            </label>
+            <textarea
+              placeholder='Any Explanation about topic or other anything you want to add?'
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+              rows={2}
+            ></textarea>
+          </div>
       <button
         type="submit"
         className="block w-30 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -116,6 +147,6 @@ const InputForm = ({ userId, teacherId , handleClose}) => {
       </button>
     </form>
   );
-}
+};
 
-export default InputForm
+export default InputForm;
