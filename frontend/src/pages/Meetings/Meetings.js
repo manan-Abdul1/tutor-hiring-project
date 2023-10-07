@@ -24,7 +24,7 @@ const Meetings = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center mt-36">
+    <div className={`h-screen flex ${meetings.length>=4 && 'mb-36' } flex-col items-center mt-36`}>
       {currentMeetings.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">

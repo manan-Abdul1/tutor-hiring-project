@@ -1,4 +1,4 @@
-.modal {
+.feedback-modal {
     display: none;
     justify-content: center;
     align-items: center;
@@ -11,16 +11,16 @@
     z-index: 1000;
   }
   
-  .modal.active {
+  .feedback-modal.active {
     display: flex;
   }
   
-  .modal-content {
+  .feedback-modal-content {
     max-width: 500px;
     width: 100%;
   }
   
-  .close-button {
+  .feedback-close-button {
     font-size: 25px;
     position: absolute;
     top: 12px;

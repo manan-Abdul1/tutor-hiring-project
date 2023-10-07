@@ -10,7 +10,7 @@ const UserRequests = () => {
   const pendingRequests = allRequests.filter(
     (request) => request.status === status
   );
-  const itemsPerPage = 3;
+  const itemsPerPage = 5;
 
   const [currentPage, setCurrentPage] = useState(1);
 
