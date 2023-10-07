@@ -1,12 +1,44 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Notification.css";
+import { useNavigate } from "react-router-dom";
+import { markNotificationAsRead } from "../../redux/features/notifications/notificationsSlice";
+import axios from "axios";
 
 const NotificationList = () => {
   const notifications = useSelector(
     (state) => state.notifications.notifications
   );
-console.log(notifications,'notifications')
+  const currentUser = useSelector((state) => state.auth.userData);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const requestId = notifications?.eventDetails?.requestId;
+  const handleNotificationClick = async (notification) => {
+    console.log(notification._id,'notification')
+    if (!notification.isRead) {
+      // Dispatch action to mark the notification as read in Redux store
+      dispatch(markNotificationAsRead(notification._id));
+      
+      
+      try {
+        
+        axios
+        .put(`http://localhost:5500/api/notifications/mark-read?notificationId=${notification._id}`)
+        .then((response) => {
+          dispatch(markNotificationAsRead(notification._id));
+        })
+        .catch((error) => {
+          console.error("Error fetching notifications:", error);
+        });
+      } catch (error) {
+        console.error('Error marking notification as read:', error);
+      }
+    }
+    navigate(`${currentUser.role !== 'tutor' ? '/student-scheduled-meetings' : '/teacher-requests'}`);
+  
+  };
+  
+
   return (
     <div className="notification-list">
       {notifications?.length === 0 ? (
@@ -18,6 +50,7 @@ console.log(notifications,'notifications')
             className={`notification-item ${
               notification.isRead ? "bg-gray-200 " : "bg-white"
             } mb-2 rounded-md cursor-pointer hover:bg-gray-300`}
+            onClick={() => handleNotificationClick(notification)}
           >
             <p
               className={`${
