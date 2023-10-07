@@ -19,6 +19,7 @@ import FeedbackPage from "./pages/Feedback/FeedbackPage";
 import StudentScheduledMeetings from "./pages/Meetings/StudentScheduledMeetings";
 import TutorScheduledMeetings from "./pages/Meetings/TutorScheduledMeetings";
 import UserRequests from "./pages/UserRequests/UserRequests";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
       {isAuthenticated && <Footer />}
+      <Toaster position="top-right"/>
     </>
   );
 

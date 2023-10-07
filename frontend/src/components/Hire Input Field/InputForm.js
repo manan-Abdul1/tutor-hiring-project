@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import DateTimePicker from 'react-datetime-picker';
-import 'react-datetime-picker/dist/DateTimePicker.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import toast from 'react-hot-toast';
+import LocationSelect from '../LocationSelect/LocationSelect';
 
 
 
-const InputForm = ({ userId, teacherId }) => {
+const InputForm = ({ userId, teacherId , handleClose}) => {
   const [location, setLocation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [topic, setTopic] = useState('');
@@ -17,6 +19,14 @@ const InputForm = ({ userId, teacherId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const currentDate = new Date();
+    if (selectedDate <= currentDate) {
+      // Display an error message or prevent the form submission
+      console.error('Selected date must be in the future.');
+      toast.error("Selected date must be in the future.")
+      return;
+    }
 
     // Create a request payload with the form data, including the selectedDate
     const requestData = {
@@ -34,6 +44,7 @@ const InputForm = ({ userId, teacherId }) => {
       .then((response) => {
         // Handle success, you can show a success message or redirect here
         console.log('Hiring request sent successfully:', response.data);
+        handleClose();
       })
       .catch((error) => {
         // Handle errors, display an error message, or log the error
@@ -46,32 +57,31 @@ const InputForm = ({ userId, teacherId }) => {
     setTopic('');
     setPayment('');
   };
+  const handleLocationSelect = (location) => {
+    setLocation(location);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+
       <div className="mb-4">
         <label htmlFor="location" className="block mb-2 font-semibold">
           Location:
         </label>
-        <input
-          type="text"
-          id="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
-        />
+        <LocationSelect onSelect={handleLocationSelect} width='w-full'/>
       </div>
       <div className="mb-4">
         <label htmlFor="timing" className="block mb-2 font-semibold">
           Timing:
         </label>
-        <DateTimePicker
-          onChange={handleDateChange} // Use the onChange prop
-          value={selectedDate} // Set the value to the selectedDate
-          format="y-MM-dd HH:mm:ss"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
-          calendarClassName="bg-white border rounded-lg shadow-md p-2" // Customize the calendar's style
-          clockClassName="bg-white border rounded-lg shadow-md p-2"
+        <DatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm text-center"
         />
       </div>
       <div className="mb-4">

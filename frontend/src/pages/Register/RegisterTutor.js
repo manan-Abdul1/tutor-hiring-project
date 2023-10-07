@@ -3,9 +3,7 @@ import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
 import PersonalInformation from './StepOne/StepOne';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 
 
 const RegisterTutor = () => {
@@ -77,7 +75,6 @@ const RegisterTutor = () => {
 
   return (
     <>
-      <ToastContainer />
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="w-full">
           {currentStep === 1 && (

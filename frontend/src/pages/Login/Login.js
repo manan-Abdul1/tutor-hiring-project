@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/features/auth/authSlice';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const [isStudent, setIsStudent] = useState(true);
@@ -153,7 +152,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </div>
     </div>
   );
