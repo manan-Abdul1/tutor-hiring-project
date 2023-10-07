@@ -29,6 +29,7 @@ const Meetings = () => {
               <MeetingItem key={meeting._id} meeting={meeting} />
             ))}
           </ul>
+          <div className='mt-16'>
           {meetings.length >= itemsPerPage ? (
             <Pagination
               itemsPerPage={itemsPerPage}
@@ -37,7 +38,7 @@ const Meetings = () => {
               paginate={paginate}
             />
           ) : null}
-
+        </div>
         </>
       ) : (
         <p>No meetings scheduled found.</p>
