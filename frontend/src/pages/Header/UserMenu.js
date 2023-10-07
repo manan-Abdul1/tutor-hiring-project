@@ -21,14 +21,20 @@ const UserMenu = ({ currentUser, toggleMenu, handleLogout, showMenu }) => {
           >
             Profile
           </Link>
-          <a
+          <Link
+            to={`${currentUser.role !== "tutor" ? "/student-scheduled-meetings" : "/teacher-scheduled-meetings"} `}
+            className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+          >
+            Meetings
+          </Link>
+          <Link
             id="logout-link"
             href="/login"
             className="block py-2 px-4 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             onClick={handleLogout}
           >
             Logout
-          </a>
+          </Link>
         </div>
       )}
     </div>

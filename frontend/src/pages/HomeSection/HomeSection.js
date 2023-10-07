@@ -14,7 +14,21 @@ export default function HomeSection() {
   const [classFilter, setClassFilter] = useState("");
   const [subjectFilter, setSubjectFilter] = useState("");
 
-  useEffect(() => {
+  const handleLocationSelect = (location) => {
+    setLocationFilter(location);
+  };
+  const handleClassSelect = (classFilter) => {
+    setClassFilter(classFilter);
+  };
+  const handleSubjectSelect = (subject) => {
+    setSubjectFilter(subject);
+  };
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   navigate("/tutors", { state: { filteredTutors } });
+  // };
+  const handleSearch = (e) => {
+    e.preventDefault();
     const filteredTutorsResult = tutors.filter((tutor) => {
       // Add your filtering logic here based on locationFilter, classFilter, and subjectFilter
       let isMatch = true;
@@ -35,23 +49,6 @@ export default function HomeSection() {
     });
 
     setFilteredTutors(filteredTutorsResult);
-  }, [locationFilter, classFilter, subjectFilter, tutors]);
-console.log(filteredTutors,'filteredTutors')
-  const handleLocationSelect = (location) => {
-    setLocationFilter(location);
-  };
-  const handleClassSelect = (classFilter) => {
-    setClassFilter(classFilter);
-  };
-  const handleSubjectSelect = (subject) => {
-    setSubjectFilter(subject);
-  };
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   navigate("/tutors", { state: { filteredTutors } });
-  // };
-  const handleSearch = (e) => {
-    e.preventDefault();
     navigate(`/tutors/${locationFilter}-${classFilter}-${subjectFilter}`);
   };
   

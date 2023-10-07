@@ -17,6 +17,7 @@ import PrivateRouting from "./components/PrivateRouting/PrivateRouting";
 import TeacherRequestList from "./pages/TeacherDashboard/TeacherRequestList";
 import Meetings from "./pages/Meetings/Meetings";
 import FeedbackPage from "./pages/Feedback/FeedbackPage";
+import StudentScheduledMeetings from "./pages/Meetings/StudentScheduledMeetings";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/teacher-home" element={<PrivateRouting><TeacherDashboard /></PrivateRouting>} />
         <Route path="/teacher-requests" element={<PrivateRouting><TeacherRequestList /></PrivateRouting>} />
         <Route path="/teacher-scheduled-meetings" element={<PrivateRouting><Meetings /></PrivateRouting>} />
+        <Route path="/student-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
         <Route path="/feedback" element={<FeedbackPage />}/>
         <Route path="/" element={<MainPageRegister />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />
