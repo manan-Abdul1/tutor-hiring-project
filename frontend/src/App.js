@@ -15,9 +15,10 @@ import TeacherDashboard from "./pages/TeacherDashboard/TeacherDashboard";
 import StudentProfile from "./pages/StudentProfile/StudentProfile";
 import PrivateRouting from "./components/PrivateRouting/PrivateRouting";
 import TeacherRequestList from "./pages/TeacherDashboard/TeacherRequestList";
-import Meetings from "./pages/Meetings/Meetings";
 import FeedbackPage from "./pages/Feedback/FeedbackPage";
 import StudentScheduledMeetings from "./pages/Meetings/StudentScheduledMeetings";
+import TutorScheduledMeetings from "./pages/Meetings/TutorScheduledMeetings";
+import UserRequests from "./pages/UserRequests/UserRequests";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
@@ -36,9 +37,10 @@ function App() {
         <Route path="/viewprofile/:id" element={<PrivateRouting><ViewProfile /></PrivateRouting>} />
         <Route path="/profile" element={<PrivateRouting><StudentProfile /></PrivateRouting>} />
         <Route path="/teacher-home" element={<PrivateRouting><TeacherDashboard /></PrivateRouting>} />
-        <Route path="/teacher-requests" element={<PrivateRouting><TeacherRequestList /></PrivateRouting>} />
-        <Route path="/teacher-scheduled-meetings" element={<PrivateRouting><Meetings /></PrivateRouting>} />
-        <Route path="/student-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
+        <Route path="/teacher-requests/:status" element={<PrivateRouting><TeacherRequestList /></PrivateRouting>} />
+        <Route path="/user-requests/:status" element={<PrivateRouting><UserRequests/></PrivateRouting>} />
+        <Route path="/teacher-scheduled-meetings" element={<PrivateRouting><TutorScheduledMeetings /></PrivateRouting>} />
+        <Route path="/user-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
         <Route path="/feedback" element={<FeedbackPage />}/>
         <Route path="/" element={<MainPageRegister />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />

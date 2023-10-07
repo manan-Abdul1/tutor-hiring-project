@@ -6,38 +6,41 @@ import { markNotificationAsRead } from "../../redux/features/notifications/notif
 import axios from "axios";
 
 const NotificationList = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const notifications = useSelector(
     (state) => state.notifications.notifications
   );
   const currentUser = useSelector((state) => state.auth.userData);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const requestId = notifications?.eventDetails?.requestId;
+
   const handleNotificationClick = async (notification) => {
-    console.log(notification._id,'notification')
     if (!notification.isRead) {
-      // Dispatch action to mark the notification as read in Redux store
       dispatch(markNotificationAsRead(notification._id));
-      
-      
+
       try {
-        
         axios
-        .put(`http://localhost:5500/api/notifications/mark-read?notificationId=${notification._id}`)
-        .then((response) => {
-          dispatch(markNotificationAsRead(notification._id));
-        })
-        .catch((error) => {
-          console.error("Error fetching notifications:", error);
-        });
+          .put(
+            `http://localhost:5500/api/notifications/mark-read?notificationId=${notification._id}`
+          )
+          .then((response) => {
+            dispatch(markNotificationAsRead(notification._id));
+          })
+          .catch((error) => {
+            console.error("Error fetching notifications:", error);
+          });
       } catch (error) {
-        console.error('Error marking notification as read:', error);
+        console.error("Error marking notification as read:", error);
       }
     }
-    navigate(`${currentUser.role !== 'tutor' ? '/student-scheduled-meetings' : '/teacher-requests'}`);
+    const notificationRoutes = {
+      new_hiring_request: "/teacher-requests/pending",
+      request_accepted: currentUser.role !== "tutor" ? "/user-scheduled-meetings" : "/teacher-requests/accepted",
+      request_completed: currentUser.role !== "tutor" ? "/user-requests/completed" : "/teacher-requests/completed",
+      request_rejected: currentUser.role !== "tutor" ? "/user-requests/rejected" : "/teacher-requests/rejected",
+    };
   
+    navigate(notificationRoutes[notification.eventType]);
   };
-  
 
   return (
     <div className="notification-list">

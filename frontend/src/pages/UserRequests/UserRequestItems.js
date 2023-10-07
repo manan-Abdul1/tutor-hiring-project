@@ -1,12 +1,8 @@
-import axios from "axios";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { markMeetingAsCompleted } from "../../redux/features/requests/requestSlice";
+import { useSelector } from "react-redux";
 
-const MeetingItem = ({ meeting }) => {
+const UserRequestItems = ({ request }) => {
   const userRole = useSelector((state) => state.auth.userData.role);
-  const { _id, studentId, teacherId, topic, status, timing, payment } = meeting;
-  const dispatch = useDispatch();
+  const { studentId, teacherId, topic, status, timing } = request;
 
   const studentName = studentId ? studentId.name : "Unknown";
   const teacherName = teacherId ? teacherId.name : "Unknown";
@@ -26,27 +22,16 @@ const MeetingItem = ({ meeting }) => {
 
     return `${day}/${month}/${year} ${hours12}:${minutes} ${ampm}`;
   };
-  const handleCompleteMeeting = () => {
-    if (userRole === "user") {
-      axios
-        .put(
-          `http://localhost:5500/api/hiringRequest/updateRequestStatusForUser?id=${_id}`
-        )
-        .then((response) =>
-          dispatch(markMeetingAsCompleted(_id))
-        )
-        .catch((error) => console.log(error));
-    } else {
-      axios
-        .put(
-          `http://localhost:5500/api/hiringRequest/updateRequestStatusForTutor?id=${_id}`
-        )
-        .then((response) =>
-          dispatch(markMeetingAsCompleted(_id))
-        )
-        .catch((error) => console.log(error));
-    }
-  };
+console.log(status,'stauts')
+  let statusColorClass = "";
+
+  if (status === "accepted") {
+    statusColorClass = "text-green-500";
+  } else if (status === "rejected") {
+    statusColorClass = "text-red-500";
+  } else if (status === "completed") {
+    statusColorClass = "text-blue-500";
+  }
 
   return (
     <li className="bg-white p-4 rounded shadow">
@@ -74,7 +59,7 @@ const MeetingItem = ({ meeting }) => {
         </div>
         <div>
           <p className="text-black font-medium mb-2">Status:
-            <span className="text-green-500 font-bold">
+            <span className={`${statusColorClass} font-bold`}>
               {" "}{status}
             </span>
           </p>
@@ -85,17 +70,8 @@ const MeetingItem = ({ meeting }) => {
           </p>
         </div>
       </div>
-      <div className="flex justify-between mt-2 flex-wrap">
-        <p className="text-black">Payment: <span className="font-bold"> {payment} </span></p>
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
-          onClick={handleCompleteMeeting}
-        >
-          Meeting Completed
-        </button>
-      </div>
     </li>
   );
 };
 
-export default MeetingItem;
+export default UserRequestItems;

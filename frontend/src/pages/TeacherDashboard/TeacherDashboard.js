@@ -9,23 +9,11 @@ const TeacherDashboard = () => {
   const teacherId = useSelector((state) => state.auth.userData._id);
   const dispatch = useDispatch();
   useEffect(() => {
-    // Make an API request to get teacher-specific requests
     axios
       .get(`http://localhost:5500/api/hiringRequest/getTeacherRequestsById?id=${teacherId}`)
       .then((response) => {
         console.log(response.data.requests,'response')
-        // setRequests(response.data.requests);
         dispatch(addRequests(response.data.requests));
-         // Fetch accepted meetings (you need to implement this endpoint on the server)
-         axios
-         .get(`http://localhost:5500/api/hiringRequest/getAcceptedMeetings?id=${teacherId}`)
-         .then((response) => {
-           console.log(response.data.acceptedRequests, 'meetingsResponse');
-           dispatch(getAcceptedMeetings(response.data.acceptedRequests));
-         })
-         .catch((error) => {
-           console.error("Error fetching accepted meetings:", error);
-         });
       })
       .catch((error) => {
         console.error("Error fetching teacher requests:", error);
