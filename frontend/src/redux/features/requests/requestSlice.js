@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   requests: [],
-  meetings: [], // New state property to hold accepted meetings
+  meetings: [], 
 };
 
 const requestSlice = createSlice({
@@ -32,6 +32,12 @@ const requestSlice = createSlice({
     getAcceptedMeetings: (state, action) => {
         state.meetings = action.payload;
       },
+    markMeetingAsCompleted: (state, action) => {
+        const _id = action.payload;
+        state.meetings = state.meetings.map((meeting) =>
+        meeting._id === _id ? { ...meeting, status: "completed" } : meeting
+        );
+      },
   },
 });
 
@@ -41,7 +47,8 @@ export const {
   requestRejected,
   getAcceptedRequests,
   addRequests,
-  getAcceptedMeetings
+  getAcceptedMeetings,
+  markMeetingAsCompleted
 } = requestSlice.actions;
 
 export default requestSlice.reducer;
