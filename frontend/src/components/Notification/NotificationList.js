@@ -16,10 +16,8 @@ const NotificationList = () => {
   const handleNotificationClick = async (notification) => {
     console.log(notification._id,'notification')
     if (!notification.isRead) {
-      // Dispatch action to mark the notification as read in Redux store
       dispatch(markNotificationAsRead(notification._id));
-      
-      
+            
       try {
         
         axios
@@ -34,7 +32,23 @@ const NotificationList = () => {
         console.error('Error marking notification as read:', error);
       }
     }
+    if (notification.eventType === "new_hiring_request") {
+      navigate( "/teacher-requests");
+    }
+    else if(notification.eventType === "request_accepted"){
+      // user-requests
     navigate(`${currentUser.role !== 'tutor' ? '/student-scheduled-meetings' : '/teacher-requests'}`);
+
+    }
+    else if(notification.eventType === "request_complete"){
+      navigate(`${currentUser.role !== 'tutor' ? '/user-requests/completed' : '/teacher-requests/:completed'}`); 
+    }
+    else if(notification.eventType === "request_rejected"){
+      navigate(
+        `${currentUser.role !== 'tutor' ? '/user-requests/rejected' : '/teacher-requests/:rejected'}`
+      );
+    }
+    // navigate(`${currentUser.role !== 'tutor' ? '/student-scheduled-meetings' : '/teacher-requests'}`);
   
   };
   
