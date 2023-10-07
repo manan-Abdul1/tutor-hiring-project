@@ -15,8 +15,8 @@ const FeedbackPage = () => {
     <div>
       <button className='bg-green-500 text-white text-center mt-20 ml-20 rounded-md px-2 py-2' onClick={() => setModalVisible(true)}>Leave Feedback</button>
       {modalVisible && (
-        <div className="modal active">
-          <div className="modal-content">
+        <div className="feedback-modal active">
+          <div className="feedback-modal-content">
             {/* <span
               className="close-button text-blue-500"
               onClick={() => setModalVisible(false)}

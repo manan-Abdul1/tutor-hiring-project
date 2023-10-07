@@ -35,7 +35,7 @@ const NotificationList = () => {
     const notificationRoutes = {
       new_hiring_request: "/teacher-requests/pending",
       request_accepted: currentUser.role !== "tutor" ? "/user-scheduled-meetings" : "/teacher-requests/accepted",
-      request_complete: currentUser.role !== "tutor" ? "/user-requests/completed" : "/teacher-requests/completed",
+      request_completed: currentUser.role !== "tutor" ? "/user-requests/completed" : "/teacher-requests/completed",
       request_rejected: currentUser.role !== "tutor" ? "/user-requests/rejected" : "/teacher-requests/rejected",
     };
   

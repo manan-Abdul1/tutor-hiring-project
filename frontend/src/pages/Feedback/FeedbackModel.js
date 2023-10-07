@@ -43,7 +43,7 @@ const FeedbackModel = ({ onSubmit, onClose }) => {
       <div className='flex'>
       <h2 className="text-lg font-bold mb-4 text-center ">Feedback Section</h2>
         <span
-          className="close-button text-[1em]"
+          className="feedback-close-button "
           onClick={onClose}
         >
           &times;

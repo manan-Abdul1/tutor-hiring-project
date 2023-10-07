@@ -22,6 +22,16 @@ const UserRequestItems = ({ request }) => {
 
     return `${day}/${month}/${year} ${hours12}:${minutes} ${ampm}`;
   };
+console.log(status,'stauts')
+  let statusColorClass = "";
+
+  if (status === "accepted") {
+    statusColorClass = "text-green-500";
+  } else if (status === "rejected") {
+    statusColorClass = "text-red-500";
+  } else if (status === "completed") {
+    statusColorClass = "text-blue-500";
+  }
 
   return (
     <li className="bg-white p-4 rounded shadow">
@@ -49,7 +59,7 @@ const UserRequestItems = ({ request }) => {
         </div>
         <div>
           <p className="text-black font-medium mb-2">Status:
-            <span className="text-green-500 font-bold">
+            <span className={`${statusColorClass} font-bold`}>
               {" "}{status}
             </span>
           </p>
