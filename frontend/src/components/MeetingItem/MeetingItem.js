@@ -10,8 +10,22 @@ const MeetingItem = ({ meeting }) => {
 
   const studentName = studentId ? studentId.name : "Unknown";
   const teacherName = teacherId ? teacherId.name : "Unknown";
-  console.log(meeting, 'student-namw');
+  
+  const formatTiming = (timestamp) => {
+    const dateTime = new Date(timestamp);
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0'); 
+    const year = dateTime.getFullYear();
+    
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    const hours12 = hours % 12 || 12;
 
+    return `${day}/${month}/${year} ${hours12}:${minutes} ${ampm}`;
+  };
   const handleCompleteMeeting = () => {
     if (userRole === "user") {
       axios
@@ -66,7 +80,7 @@ const MeetingItem = ({ meeting }) => {
           </p>
           <p className="text-black font-medium mb-2">Timing:
             <span className="text-gray-500 font-bold">
-              {" "}{timing}
+            {" "}{formatTiming(timing)}
             </span>
           </p>
         </div>
