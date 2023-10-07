@@ -6,14 +6,31 @@ import {
 } from "../../redux/features/notifications/notificationsSlice";
 import axios from "axios";
 import NotificationList from "./NotificationList";
+import { useEffect } from "react";
+import { addRequests } from "../../redux/features/requests/requestSlice";
 
 function NotificationPanel() {
-  const currentUserId = useSelector((state) => state.auth.userData._id);
+  const currentUser = useSelector((state) => state.auth.userData);
+  const currentUserId = currentUser._id;
+
   const notifications = useSelector(
     (state) => state.notifications.notifications
   )
-  const dispatch = useDispatch();
-
+  useEffect(() => {
+    if(currentUser.role==="user"){
+      axios
+      .get(`http://localhost:5500/api/hiringRequest/getUserRequestsById?id=${currentUser._id}`)
+      .then((response) => {
+        console.log(response.data.requests,'response')
+        dispatch(addRequests(response.data.requests));
+      })
+      .catch((error) => {
+        console.error("Error fetching teacher requests:", error);
+      });
+    }
+    }, []);
+    const dispatch = useDispatch();
+    
   const handleMarkAllAsRead = () => {
     axios
     .post(`http://localhost:5500/api/notifications/mark-all-as-read`, { userId: currentUserId })
