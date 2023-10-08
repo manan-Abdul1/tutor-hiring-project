@@ -11,6 +11,7 @@ const NotificationList = () => {
   const notifications = useSelector(
     (state) => state.notifications.notifications
   );
+  console.log(notifications,'notification')
   const currentUser = useSelector((state) => state.auth.userData);
 
   const handleNotificationClick = async (notification) => {
@@ -33,6 +34,7 @@ const NotificationList = () => {
       }
     }
     const notificationRoutes = {
+      feedback:`/getFeedbacks/${currentUser._id}`,
       new_hiring_request: "/teacher-requests/pending",
       request_accepted: currentUser.role !== "tutor" ? "/user-scheduled-meetings" : "/teacher-requests/accepted",
       request_completed: currentUser.role !== "tutor" ? "/user-requests/completed" : "/teacher-requests/completed",
