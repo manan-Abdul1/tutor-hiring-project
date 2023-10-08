@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import InputForm from '../Hire Input Field/InputForm';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Rating from '../Rating/Rating';
 
 export default function TutorCard({ id, name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
   const [show, setShow] = useState(false);
@@ -46,13 +47,7 @@ export default function TutorCard({ id, name, image, qualification, experience, 
           <h6 className="text-xl font-bold text-center">{name}</h6>
           <div className="flex justify-between">
             <div>
-              {[...Array(5)].map((_, i) => (
-                <i
-                  key={i}
-                  className={`fa fa-star${rating >= i + 1 ? '' : '-o'}`}
-                  style={{ color: rating >= i + 1 ? '#ffc107' : '' }}
-                ></i>
-              ))}
+              <Rating value={rating}/>
             </div>
             <span className="font-bold">{age}yr, {gender}</span>
           </div>
