@@ -30,7 +30,7 @@ const TeacherDashboard = () => {
           </div> 
         </div>
       </div>
-      <div className="w-full md:w-1/2 lg:w-1/4 p-4 cursor-pointer">
+      <div className="w-full md:w-1/2 lg:w-1/4 p-4 cursor-pointer" onClick={()=>navigate(`/getFeedbacks/${teacherId}`)}>
         <div className="bg-white shadow-lg rounded-lg overflow-hidden h-52 md:h-72 transform transition-transform hover:-translate-y-3 hover:text-green-400 hover:cursor-pointer hover:duration-500">
           <div className="p-6 flex justify-center flex-col items-center">
             <h2 className="text-4xl text-center font-semibold mb-2">Feedback</h2>
