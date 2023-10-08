@@ -22,9 +22,6 @@
   
   .feedback-close-button {
     font-size: 25px;
-    position: absolute;
-    top: 12px;
-    right: 21px;
     cursor: pointer;
   }
   

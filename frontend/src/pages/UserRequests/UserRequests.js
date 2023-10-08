@@ -10,7 +10,7 @@ const UserRequests = () => {
   const pendingRequests = allRequests.filter(
     (request) => request.status === status
   );
-  const itemsPerPage = 5;
+  const itemsPerPage = 4;
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -26,7 +26,7 @@ const UserRequests = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center mt-36">
+    <div className={`h-screen flex flex-col items-center ${allRequests.length >=4? 'mb-36': '' } mt-36`}>
       {currentRequests.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">

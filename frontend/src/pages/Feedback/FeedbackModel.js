@@ -1,6 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
-const FeedbackModel = ({ onSubmit, onClose }) => {
+const FeedbackModel = ({ userId, teacherId,  onClose }) => {
+  console.log(userId,'feedback userid')
+  console.log(teacherId,'feedback teacherId')
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
@@ -26,9 +30,26 @@ const FeedbackModel = ({ onSubmit, onClose }) => {
       alert('Please enter a comment.');
       return;
     }
+    const feedbackData = {
+      userId: userId,
+      teacherId: teacherId,
+      rating: rating,
+      comment: comment,
+    };
 
-    // Call the onSubmit function with the feedback data
-    onSubmit({ rating, comment });
+    axios
+      .post('http://localhost:5500/api/feedback', feedbackData)
+      .then((response) => {
+        // Handle success, you can show a success message or perform any other actions
+        console.log('Feedback submitted successfully:', response.data);
+        if(response.data.ok){
+          toast.success(response.data.message)
+        }
+      })
+      .catch((error) => {
+        // Handle errors, display an error message, or log the error
+        console.error('Error submitting feedback:', error);
+      });
 
     // Reset the form
     setRating(0);
@@ -39,11 +60,13 @@ const FeedbackModel = ({ onSubmit, onClose }) => {
   };
 
   return (
+    <div className="feedback-modal active">
+    <div className="feedback-modal-content">
     <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className='flex'>
+      <div className='flex flex-row justify-between'>
       <h2 className="text-lg font-bold mb-4 text-center ">Feedback Section</h2>
         <span
-          className="feedback-close-button "
+          className="feedback-close-button  "
           onClick={onClose}
         >
           &times;
@@ -85,6 +108,8 @@ const FeedbackModel = ({ onSubmit, onClose }) => {
           </button>
         </div>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
