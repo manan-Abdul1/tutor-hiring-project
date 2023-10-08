@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Pagination from '../../components/Pagination/Pagination'; 
+import Rating from "../../components/Rating/Rating";
 
 const TeacherFeedbackPage = () => {
   const { id } = useParams();
@@ -39,7 +40,8 @@ const TeacherFeedbackPage = () => {
             <div className="border p-4 rounded-lg shadow">
               <h3 className="text-xl font-semibold">{feedback.studentName}</h3>
               <p className="text-gray-700 text-lg">{feedback.comment}</p>
-              <p className="text-yellow-500 text-lg mt-2">Rating: {feedback.rating}/5</p>
+              <Rating value={feedback.rating}/>
+              {/* <p className="text-yellow-500 text-lg mt-2">Rating: {feedback.rating}/5</p> */}
             </div>
           </li>
         ))}

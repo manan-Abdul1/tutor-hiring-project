@@ -1,4 +1,5 @@
 import React from 'react'
+import Rating from '../../../components/Rating/Rating'
 
 export default function ImageHeader({teachersData}) {
     
@@ -25,13 +26,7 @@ export default function ImageHeader({teachersData}) {
             </h4>
             <div className="row">
                 <div className="col-lg-8 col-sm-12 col-12 text-left ">
-                <h6 className="text-warning font-semibold mb-2" id="stars">
-                    <i className="fa fa-star"></i>{" "}
-                    <i className="fa fa-star"></i>{" "}
-                    <i className="fa fa-star"></i>{" "}
-                    <i className="fa fa-star"></i>{" "}
-                    <i className="fa fa-star"></i>
-                </h6>
+                <Rating value={teachersData.rating}/>
                 <p className="text-center-sm">
                     <small>
                     <span className="alert alert-info p-1 m-0">

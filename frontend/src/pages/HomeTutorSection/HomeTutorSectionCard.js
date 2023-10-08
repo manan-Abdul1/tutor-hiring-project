@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import InputForm from '../../components/Hire Input Field/InputForm';
+import Rating from '../../components/Rating/Rating';
 export default function HomeTutorSectionCard({ name, image, qualification, experience, classes, subjects, rating, age, verified, gender }) {
   const [show,setShow]=useState(false)  
   const MAX_LENGTH = 12;
@@ -18,6 +19,7 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
     function handleClose(){
       setShow(false)
     }
+    console.log(rating,'rating')
   return (
     <>
          <div className="relative mb-4 overflow-hidden mx-2 py-[20px] bg-white rounded-md shadow-md hover:-translate-y-2 transition duration-300 ease-in-out hover:shadow-2xl cursor-pointer">
@@ -35,15 +37,7 @@ export default function HomeTutorSectionCard({ name, image, qualification, exper
       <div className="px-4 py-2 bg-white">
         <h6 className="text-xl font-bold text-center">{name}</h6>
         <div className="flex justify-between">
-            <div>
-            {[...Array(5)].map((_, i) => (
-                <i
-                key={i}
-                className={`fa fa-star${rating >= i + 1 ? '' : '-o'}`}
-                style={{ color: rating >= i + 1 ? '#ffc107' : '' }}
-                ></i>
-            ))}
-            </div>
+              <Rating  value={rating}/>
             <span className=' font-bold'>{age}yr, {gender}</span>
         </div>
         <div className="mt-3">
