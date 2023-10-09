@@ -9,10 +9,10 @@ export default function ImageHeader({teachersData}) {
         <div className="col-md-1"></div>
         <div className="col-xs-12 col-md-10 col-lg-10">
         <div className="row">
-            <div className="col-md-2 text-center">
+        <div className="col-md-2 rounded-full overflow-hidden w-40 h-40 p-2">
             <img
                 src={teachersData.profileImageUrl}
-                className="rounded-full"
+                className="object-cover rounded-full w-full h-full"
                 alt={`${teachersData.name}'s Avatar`}
             />
             </div>
