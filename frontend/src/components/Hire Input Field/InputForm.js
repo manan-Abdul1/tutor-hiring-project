@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 import LocationSelect from '../LocationSelect/LocationSelect';
 import MapLocationIq from './MapLocationIq';
 
-
 const InputForm = ({ userId, teacherId, handleClose }) => {
   const [location, setLocation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
@@ -41,9 +40,13 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
     axios
       .post('http://localhost:5500/api/hiringRequest', requestData)
       .then((response) => {
-        console.log(response,"request-send")
-        if(response.ok){
+        if(response.data.ok){
           toast.success(response.data.message)
+          setLocation('');
+          setTopic('');
+          setPayment('');
+          setPhysicalLocation('');
+          setMessage('');
           handleClose();
         }
       })
@@ -51,11 +54,6 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
         console.error('Error sending hiring request:', error);
       });
 
-    setLocation('');
-    setTopic('');
-    setPayment('');
-    setPhysicalLocation('');
-    setMessage('');
   };
 
   const handleLocationSelect = (selectedLocation) => {
@@ -89,7 +87,6 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
             <label htmlFor="map" className="block mb-2 font-semibold">
               Select Physical Location on Map:
             </label>
-            {/* <MapWithSearchLeaflet setPhysicalLocation={setPhysicalLocation}/> */}
             <MapLocationIq setPhysicalLocation={setPhysicalLocation}/>
           </div>
         </>
