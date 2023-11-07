@@ -4,13 +4,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import toast from 'react-hot-toast';
 import LocationSelect from '../LocationSelect/LocationSelect';
+import MapLocationIq from './MapLocationIq';
+
 
 const InputForm = ({ userId, teacherId, handleClose }) => {
   const [location, setLocation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [topic, setTopic] = useState('');
   const [payment, setPayment] = useState('');
-  const [physicalLocation, setPhysicalLocation] = useState(''); 
+  const [physicalLocation, setPhysicalLocation] = useState(); 
   const [message, setMessage] = useState(''); 
 
   const handleSubmit = (e) => {
@@ -70,7 +72,7 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
       </div>
       {(location === 'both' || location === 'physical') && (
         <>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label htmlFor="physicalLocation" className="block mb-2 font-semibold">
               Physical Location Preference:
             </label>
@@ -82,6 +84,13 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
               onChange={(e) => setPhysicalLocation(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm "
             />
+          </div> */}
+          <div className="mb-4">
+            <label htmlFor="map" className="block mb-2 font-semibold">
+              Select Physical Location on Map:
+            </label>
+            {/* <MapWithSearchLeaflet setPhysicalLocation={setPhysicalLocation}/> */}
+            <MapLocationIq setPhysicalLocation={setPhysicalLocation}/>
           </div>
         </>
       )}
