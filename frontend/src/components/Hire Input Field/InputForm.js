@@ -95,7 +95,7 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
         <label htmlFor="timing" className="block mb-2 font-semibold">
           Timing:
         </label>
-        <DatePicker
+        {/* <DatePicker
           required
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
@@ -104,7 +104,18 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
           timeIntervals={15}
           dateFormat="MMMM d, yyyy h:mm aa"
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
-        />
+        /> */}
+        <DatePicker
+          required
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          dateFormat="MMMM d, yyyy h:mm aa"
+          minDate={new Date()}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+/>
       </div>
       <div className="mb-4">
         <label htmlFor="topic" className="block mb-2 font-semibold">
