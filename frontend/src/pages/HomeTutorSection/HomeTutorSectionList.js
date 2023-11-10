@@ -7,6 +7,7 @@ export default function HomeTutorSectionList({tutor}) {
      <div className="mt-3">
      <HomeTutorSectionCard
           key={tutor.name}
+          id={tutor._id}
           name={tutor.name}
           image={tutor.profileImageUrl}
           qualification={tutor.education}
