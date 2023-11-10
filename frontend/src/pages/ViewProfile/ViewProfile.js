@@ -21,7 +21,9 @@ export default function ViewProfile() {
       console.error('Error fetching teacher by ID:', error);
     });
   },[])
-  console.log(teacherProfile,'id')
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="container mx-auto my-20">
