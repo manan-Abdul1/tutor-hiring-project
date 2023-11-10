@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Rating from '../../../components/Rating/Rating'
+import { useSelector } from 'react-redux';
+import Modal from 'react-bootstrap/Modal';
+import InputForm from '../../../components/Hire Input Field/InputForm';
 
 export default function ImageHeader({teachersData}) {
+    console.log(teachersData,'teachersData')
+  const [show, setShow] = useState(false);
+  const userId = useSelector(state=>state.auth.userData._id);
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
     
   return (
     <>
@@ -43,6 +56,8 @@ export default function ImageHeader({teachersData}) {
             <button
                 type="submit"
                 className="bg-green-500 text-white rounded-full hover:bg-blue-500 mb-2  px-4 py-2 mt-4 f"
+                onClick={handleShow}
+            
             >
                 Hire <u>{teachersData.name?.split(' ')[0]}</u>
             </button>
@@ -50,6 +65,14 @@ export default function ImageHeader({teachersData}) {
         </div>
         </div>
         </div>
+        <Modal show={show} onHide={handleClose} size="lg">
+        <Modal.Header className='btn btn-primary' closeButton>
+          <Modal.Title>Hire Now</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <InputForm userId={userId} teacherId={teachersData._id} handleClose={handleClose} />
+        </Modal.Body>
+      </Modal>
     </>
   )
 }
