@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import registerStudentValidationSchema from '../../validations/registerValidation/registerStudentValidation';
 
 function RegisterStudent() {
   const [name, setName] = useState('');
@@ -8,49 +9,40 @@ function RegisterStudent() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Perform form validation
-    if (!name || !email || !password || !confirmPassword) {
-      // Display an error message or perform any other necessary actions
-      toast.error('Please fill in all required fields');
-      return;
+    try {
+      await registerStudentValidationSchema.validate(
+        { name, email, password, confirmPassword },
+        { abortEarly: false }
+      );
+
+      // If validation passes, proceed with form submission
+      const formData = { name, email, password };
+
+      axios
+        .post('http://localhost:5500/api/users/register', formData)
+        .then((response) => {
+          console.log('Student registration successful:', response.data);
+          toast.success('Registration successful. Please log in.');
+        })
+        .catch((error) => {
+          console.error('Student registration error:', error);
+          if (error.response) {
+            toast.error(error.response.data.message);
+          } else {
+            toast.error('Error occurred during student registration');
+          }
+        });
+    } catch (error) {
+      // Validation failed, handle the error
+      error.inner.forEach((validationError) => {
+        toast.error(validationError.message);
+      });
     }
-
-    if (password !== confirmPassword) {
-      // Display an error message or perform any other necessary actions
-      toast.error('Passwords do not match');
-      return;
-    }
-    // if(password.length <= 8){
-    //   toast.error("Enter 8 digits Passowrd");
-    //   return;
-    // } 
-
-    // Create an object with the form data
-    const formData = {
-      name,
-      email,
-      password,
-    };
-
-    // Send the form data to the server for student registration
-    axios
-    .post('http://localhost:5500/api/users/register', formData)
-    .then((response) => {
-      console.log('Student registration successful:', response.data);
-      toast.success('Registration successful. Please log in.');
-    })
-    .catch((error) => {
-      console.error('Student registration error:', error);
-      if (error.response) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error('Error occurred during student registration');
-      }
-    });
   };
+
 
   return (
     <>
