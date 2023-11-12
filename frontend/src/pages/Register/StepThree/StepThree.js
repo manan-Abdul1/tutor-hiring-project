@@ -87,10 +87,10 @@ const StepThree = ({ formData, setFormData, navigation, handleSubmit, setImageUr
   //   handleSubmit();
   // }
   return (
-    <div className="mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8 mb-4 w-[700px]">
+    <div className="mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8 mb-4 max-w-screen-md mx-auto">
       <h1 className="text-2xl text-center text-green-600 font-bold mb-8">Areas & Subjects</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-4 mb-4">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <label htmlFor="class" className="block text-gray-700 font-bold mb-2">
               Select Class*
