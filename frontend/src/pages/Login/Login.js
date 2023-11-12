@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-hot-toast';
+import loginValidationSchema from '../../validations/loginValidation/loginValidation'; // Import the validation schema
 
 const Login = () => {
   const [isStudent, setIsStudent] = useState(true);
@@ -18,45 +19,43 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Create an object with the form data
-    const formData = {
-      email,
-      password,
-    };
-  
-    // Set the appropriate login route based on the toggle state
-    const loginRoute = isStudent ? 'http://localhost:5500/api/users/student-login' : 'http://localhost:5500/api/tutors/tutors-login';
-  
+
     try {
-      // Send the form data to the server for login
-      const response = await axios.post(loginRoute, formData);  
-      // Perform any necessary actions, such as storing the user token, redirecting to the home page, etc.
-      // console.log(response,'response')
+      await loginValidationSchema.validate({ email, password }, { abortEarly: false });
+
+      // If validation passes, proceed with form submission
+      const formData = {
+        email,
+        password,
+      };
+
+      const loginRoute = isStudent
+        ? 'http://localhost:5500/api/users/student-login'
+        : 'http://localhost:5500/api/tutors/tutors-login';
+
+      const response = await axios.post(loginRoute, formData);
       const result = response.data;
-      console.log(result,'result')
-      if(!result.ok){
-        toast.error(result.message)
+
+      if (!result.ok) {
+        toast.error(result.message);
       }
-      if(result.student){
-        dispatch(setUser(result.student))
+
+      if (result.student) {
+        dispatch(setUser(result.student));
         navigate('/home');
-      }else{
+      } else {
         dispatch(setUser(result.tutor));
         navigate('/teacher-home');
-      }     
+      }
+
       toast.success('Login successful');
     } catch (error) {
-      if (error.response) {
-        // Display an error message or perform any other necessary actions
-        const errorMessage = error.response.data.message;
-        toast.error(`Login failed: ${errorMessage}`);
-      } else {
-        // Display a generic error message or perform any other necessary actions
-        toast.error('Login failed. An error occurred.');
-      }
+      // Validation failed, handle the error
+      error.inner.forEach((validationError) => {
+        toast.error(validationError.message);
+      });
     }
-  };
-  
+  };  
 
   return (
     <div className="homepage min-h-screen bg-gray-100 flex items-center justify-center">
@@ -150,6 +149,14 @@ const Login = () => {
               Login
             </button>
           </div>
+          <div className="text-center mt-4">
+          <p className="text-gray-700">
+            If you are new, please register{' '}
+            <a href="/" className="text-green-500 underline">
+              here
+            </a>
+          </p>
+        </div>
         </form>
       </div>
     </div>
