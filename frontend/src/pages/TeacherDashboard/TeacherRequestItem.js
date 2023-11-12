@@ -2,18 +2,20 @@ import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestAccepted, requestRejected } from "../../redux/features/requests/requestSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const TeacherRequestItem = ({ request }) => {
   const { _id, studentId, payment, topic, status, timing } = request;
   const studentName = studentId ? studentId.name : "Unknown";
   const requestsData = useSelector(state=>state.requests.requests);
   const dispatch =useDispatch();
-
-  console.log(requestsData,'requestdata')
-
+  const uuid = uuidv4();
+  
   const handleAccept = () => {
     axios
-      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`)
+      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`, {
+        videoId: uuid,
+      })
       .then((response) => {
         console.log('Request accepted:', response.data);
         dispatch(requestAccepted(response.data.updatedRequest))
@@ -32,12 +34,8 @@ const TeacherRequestItem = ({ request }) => {
     .then((response) => {
       console.log('Request accepted:', response.data);
       dispatch(requestRejected(response.data.updatedRequest))
-
-      // Optionally, send a reply to the student
-      // sendReplyToStudent(requestId, 'accepted');
     })
     .catch((error) => {
-      // Handle errors, display an error message, or log the error
       console.error('Error accepting request:', error);
     });
   };

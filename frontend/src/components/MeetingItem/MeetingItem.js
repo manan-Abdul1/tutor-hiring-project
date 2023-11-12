@@ -2,11 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { markMeetingAsCompleted } from "../../redux/features/requests/requestSlice";
+import { useNavigate } from "react-router-dom";
 
 const MeetingItem = ({ meeting }) => {
   const userRole = useSelector((state) => state.auth.userData.role);
-  const { _id, studentId, teacherId, topic, status, timing, payment } = meeting;
+  const { _id, studentId, teacherId, topic, status, timing, payment, videoId } = meeting;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const studentName = studentId ? studentId.name : "Unknown";
   const teacherName = teacherId ? teacherId.name : "Unknown";
@@ -48,7 +50,12 @@ const MeetingItem = ({ meeting }) => {
     }
   };
 
+  const joinMeeting = ()=>{
+  navigate(`/video/${videoId}`)
+  }
+
   return (
+    <>
     <li className="bg-white p-4 rounded shadow">
       <div className="flex justify-between flex-wrap">
         <div>
@@ -94,7 +101,14 @@ const MeetingItem = ({ meeting }) => {
           Meeting Completed
         </button>
       </div>
+    {status==='accepted' && videoId && <button
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
+          onClick={joinMeeting}
+        >
+          Join the Meeting
+        </button>}
     </li>
+    </>
   );
 };
 

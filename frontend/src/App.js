@@ -21,6 +21,7 @@ import TutorScheduledMeetings from "./pages/Meetings/TutorScheduledMeetings";
 import UserRequests from "./pages/UserRequests/UserRequests";
 import { Toaster } from 'react-hot-toast';
 import TeacherFeedbackPage from "./pages/TeacherDashboard/TeacherFeedbackPage";
+import VideoMeeting from "./pages/Video/VideoMeeting";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
@@ -45,6 +46,7 @@ function App() {
         <Route path="/user-scheduled-meetings" element={<PrivateRouting><StudentScheduledMeetings /></PrivateRouting>} />
         <Route path="/getFeedbacks/:id" element={<PrivateRouting><TeacherFeedbackPage /></PrivateRouting>} />
         <Route path="/feedback" element={<FeedbackPage />}/>
+        <Route path="/video/:videoId" element={<PrivateRouting><VideoMeeting /></PrivateRouting>}/>
         <Route path="/" element={<MainPageRegister />} />
         <Route path="/register-tutor" element={<RegisterTutor />} />
         <Route path="/register-student" element={<RegisterStudent />} />
