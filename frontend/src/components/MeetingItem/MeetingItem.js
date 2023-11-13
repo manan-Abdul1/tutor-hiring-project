@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { markMeetingAsCompleted } from "../../redux/features/requests/requestSlice";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,17 @@ const MeetingItem = ({ meeting }) => {
   const { _id, studentId, teacherId, topic, status, timing, payment, videoId } = meeting;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    // Check if the meeting timing is now
+    const currentTimestamp = new Date().getTime();
+    const meetingTimestamp = new Date(timing).getTime();
+
+    // Set the join button state based on the comparison
+    setIsJoinButtonDisabled(currentTimestamp < meetingTimestamp);
+
+  }, [timing]);
 
   const studentName = studentId ? studentId.name : "Unknown";
   const teacherName = teacherId ? teacherId.name : "Unknown";
@@ -51,7 +62,7 @@ const MeetingItem = ({ meeting }) => {
   };
 
   const joinMeeting = ()=>{
-  navigate(`/video/${videoId}`)
+    navigate(`/video/${videoId}`)
   }
 
   return (
@@ -101,15 +112,19 @@ const MeetingItem = ({ meeting }) => {
           Meeting Completed
         </button>
       </div>
-    {status==='accepted' && videoId && <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
+      {status === 'accepted' && videoId && (
+        <button
+          className={`bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ${isJoinButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
           onClick={joinMeeting}
+          disabled={isJoinButtonDisabled}
         >
-          Join the Meeting
-        </button>}
+          {isJoinButtonDisabled ? 'Meeting not started yet' : 'Join the Meeting'}
+        </button>
+      )}
     </li>
     </>
   );
 };
 
 export default MeetingItem;
+
