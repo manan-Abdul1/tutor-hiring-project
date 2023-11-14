@@ -1,58 +1,67 @@
 import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestAccepted, requestRejected } from "../../redux/features/requests/requestSlice";
+import {
+  requestAccepted,
+  requestRejected,
+} from "../../redux/features/requests/requestSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const TeacherRequestItem = ({ request }) => {
-  const { _id, studentId, payment, topic, status, timing } = request;
+  const {
+    _id,
+    studentId,
+    topic,
+    status,
+    timing,
+    payment,
+    location,
+    message,
+    preferredLocation,
+  } = request;
   const studentName = studentId ? studentId.name : "Unknown";
-  const requestsData = useSelector(state=>state.requests.requests);
-  const dispatch =useDispatch();
-
-  console.log(requestsData,'requestdata')
+  const requestsData = useSelector((state) => state.requests.requests);
+  const dispatch = useDispatch();
+  const uuid = uuidv4();
 
   const handleAccept = () => {
     axios
-      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`)
+      .put(`http://localhost:5500/api/hiringRequest/acceptRequest?id=${_id}`, {
+        videoId: uuid,
+      })
       .then((response) => {
-        console.log('Request accepted:', response.data);
-        dispatch(requestAccepted(response.data.updatedRequest))
-
+        console.log("Request accepted:", response.data);
+        dispatch(requestAccepted(response.data.updatedRequest));
       })
       .catch((error) => {
         // Handle errors, display an error message, or log the error
-        console.error('Error accepting request:', error);
+        console.error("Error accepting request:", error);
       });
-
   };
 
   const handleReject = () => {
     axios
-    .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`)
-    .then((response) => {
-      console.log('Request accepted:', response.data);
-      dispatch(requestRejected(response.data.updatedRequest))
-
-      // Optionally, send a reply to the student
-      // sendReplyToStudent(requestId, 'accepted');
-    })
-    .catch((error) => {
-      // Handle errors, display an error message, or log the error
-      console.error('Error accepting request:', error);
-    });
+      .put(`http://localhost:5500/api/hiringRequest/rejectRequest?id=${_id}`)
+      .then((response) => {
+        console.log("Request accepted:", response.data);
+        dispatch(requestRejected(response.data.updatedRequest));
+      })
+      .catch((error) => {
+        console.error("Error accepting request:", error);
+      });
   };
 
   const formatTiming = (timestamp) => {
     const dateTime = new Date(timestamp);
-    const day = String(dateTime.getDate()).padStart(2, '0');
-    const month = String(dateTime.getMonth() + 1).padStart(2, '0'); 
+    const day = String(dateTime.getDate()).padStart(2, "0");
+    const month = String(dateTime.getMonth() + 1).padStart(2, "0");
     const year = dateTime.getFullYear();
-    
-    const hours = String(dateTime.getHours()).padStart(2, '0');
-    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
-    
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    
+
+    const hours = String(dateTime.getHours()).padStart(2, "0");
+    const minutes = String(dateTime.getMinutes()).padStart(2, "0");
+
+    const ampm = hours >= 12 ? "PM" : "AM";
+
     const hours12 = hours % 12 || 12;
 
     return `${day}/${month}/${year} ${hours12}:${minutes} ${ampm}`;
@@ -71,52 +80,64 @@ const TeacherRequestItem = ({ request }) => {
     <li className="bg-white p-4 rounded shadow">
       <div className="flex items-center justify-between">
         <div>
-        <p className="text-black mb-2">Name:
-                <span className="text-gray-500 font-bold">
-                  {" "}{studentName}
-                </span>
-              </p>
-              <p className="text-black mb-2">Topic:
-            <span className="text-gray-500 font-bold">
-              {" "}{topic}
-            </span>
+          <p className="text-black mb-2">
+            Name:
+            <span className="text-gray-500 font-bold"> {studentName}</span>
           </p>
-          <p className="text-black mb-2">Payment:
-            <span className="text-black font-bold">
-              {" "}{payment}
-            </span>
+          <p className="text-black mb-2">
+            Topic:
+            <span className="text-gray-500 font-bold"> {topic}</span>
+          </p>
+          <p className="text-black mb-2">
+            Payment:
+            <span className="text-black font-bold"> {payment}</span>
           </p>
         </div>
         <div>
-        <p className="text-black font-medium mb-2">Status:
-            <span className={`${statusColorClass} font-bold`}>
-              {" "}{status}
+          <p className="text-black font-medium mb-2">
+            Status:
+            <span className={`${statusColorClass} font-bold`}> {status}</span>
+          </p>
+          <p className="text-black font-medium mb-2">
+            Timing:
+            <span className="text-gray-600 font-bold">
+              {" "}
+              {formatTiming(timing)}
             </span>
           </p>
-          <p className="text-black font-medium mb-2">Timing:
-            <span className="text-gray-600 font-bold">
-            {" "}{formatTiming(timing)}
-            </span>
+          <p className="text-black">
+            Meeting:{" "}
+            <span className="font-bold">{location?.toUpperCase()}</span>
           </p>
         </div>
       </div>
-      {
-        status === "pending" && 
-      <div className="flex justify-end mt-4">
-        <button
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2"
-          onClick={handleAccept}
-        >
-          Accept
-        </button>
-        <button
-          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-          onClick={handleReject}
-        >
-          Reject
-        </button>
+      {message && (
+        <p className="text-black">
+          Message: {' '} 
+          <span className="font-bold"> {message}</span>
+        </p>
+      )}
+      <div className="mt-1">
+        {(location === "physical" || location === "both") && (
+          <p className="text-black">Location: {' '} {preferredLocation}</p>
+        )}
       </div>
-      }
+      {status === "pending" && (
+        <div className="flex justify-end mt-4">
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2"
+            onClick={handleAccept}
+          >
+            Accept
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+            onClick={handleReject}
+          >
+            Reject
+          </button>
+        </div>
+      )}
     </li>
   );
 };

@@ -26,7 +26,7 @@ const UserRequests = () => {
   };
 
   return (
-    <div className={`h-screen flex flex-col items-center ${allRequests.length >=4? 'mb-36': '' } mt-36`}>
+    <div className={`h-screen flex flex-col items-center ${allRequests.length >=4? 'mb-56': '' } mt-36`}>
       {currentRequests.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">
@@ -34,7 +34,7 @@ const UserRequests = () => {
               <UserRequestItems key={request._id} request={request} />
             ))}
           </ul>
-          <div className="mt-16">
+          <div className="mt-10">
             {pendingRequests.length >= itemsPerPage ? (
               <Pagination
                 itemsPerPage={itemsPerPage}

@@ -24,7 +24,7 @@ const Meetings = () => {
   };
 
   return (
-    <div className={`h-screen flex ${meetings.length>=4 && 'mb-36' } flex-col items-center mt-36`}>
+    <div className={`h-screen flex ${meetings.length>=4 && 'mb-48' } flex-col items-center mt-36`}>
       {currentMeetings.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">
@@ -32,7 +32,7 @@ const Meetings = () => {
               <MeetingItem key={meeting._id} meeting={meeting} />
             ))}
           </ul>
-          <div className="mt-16">
+          <div className="mt-10">
             {meetings.length >= itemsPerPage ? (
               <Pagination
                 itemsPerPage={itemsPerPage}
