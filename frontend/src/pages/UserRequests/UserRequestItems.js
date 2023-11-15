@@ -5,7 +5,18 @@ import FeedbackModel from "../Feedback/FeedbackModel";
 const UserRequestItems = ({ request }) => {
   const userRole = useSelector((state) => state.auth.userData);
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
-  const { studentId, teacherId, topic, status, timing } = request;
+  const {
+    _id,
+    studentId,
+    teacherId,
+    topic,
+    status,
+    timing,
+    payment,
+    location,
+    message,
+    preferredLocation,
+  } = request;
 
   const studentName = studentId ? studentId.name : "Unknown";
   const teacherName = teacherId ? teacherId.name : "Unknown";
@@ -57,6 +68,10 @@ const UserRequestItems = ({ request }) => {
             Topic:
             <span className="text-gray-500 font-bold"> {topic}</span>
           </p>
+          <p className="text-black mb-2">
+            Payment:
+            <span className="text-black font-bold"> {payment}</span>
+          </p>
         </div>
         <div>
           <p className="text-black font-medium mb-2">
@@ -70,7 +85,22 @@ const UserRequestItems = ({ request }) => {
               {formatTiming(timing)}
             </span>
           </p>
+          <p className="text-black">
+            Meeting:{" "}
+            <span className="font-bold">{location?.toUpperCase()}</span>
+          </p>
         </div>
+      </div>
+      {message && (
+        <p className="text-black">
+          Message: {' '} 
+          <span className="font-bold"> {message}</span>
+        </p>
+      )}
+      <div className="mt-1">
+        {(location === "physical" || location === "both") && (
+          <p className="text-black">Location: {' '} {preferredLocation}</p>
+        )}
       </div>
       {status === "completed" && (
         <div className="flex justify-end mt-2">

@@ -23,15 +23,15 @@ const TeacherRequestList = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center mt-36">
+    <div className={`h-screen flex flex-col ${allRequests.length>=4 && 'mb-56' } items-center mt-36`}>
       {currentRequests.length > 0 ? (
         <>
-          <ul className="space-y-4 w-[50%]">
+          <ul className="space-y-8 w-[50%]">
             {currentRequests.map((request) => (
               <TeacherRequestItem key={request._id} request={request} />
             ))}
           </ul>
-          <div className='mt-16'>
+          <div className='mt-10'>
           {pendingRequests.length >= itemsPerPage ? (
             <Pagination
               itemsPerPage={itemsPerPage}

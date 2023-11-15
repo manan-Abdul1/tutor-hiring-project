@@ -6,7 +6,20 @@ import { useNavigate } from "react-router-dom";
 
 const MeetingItem = ({ meeting }) => {
   const userRole = useSelector((state) => state.auth.userData.role);
-  const { _id, studentId, teacherId, topic, status, timing, payment, videoId } = meeting;
+  const {
+    _id,
+    studentId,
+    teacherId,
+    topic,
+    status,
+    timing,
+    payment,
+    videoId,
+    isVideoEnded,
+    location,
+    message,
+    preferredLocation,
+  } = meeting;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isJoinButtonDisabled, setIsJoinButtonDisabled] = useState(true);
@@ -61,70 +74,110 @@ const MeetingItem = ({ meeting }) => {
     }
   };
 
-  const joinMeeting = ()=>{
-    navigate(`/video/${videoId}`)
-  }
+  const joinMeeting = () => {
+    navigate(`/video/${videoId}`);
+  };
 
   return (
     <>
-    <li className="bg-white p-4 rounded shadow">
-      <div className="flex justify-between flex-wrap">
-        <div>
-
-          {
-            userRole === 'user' ?
-              <p className="text-black mb-2">Name:
-                <span className="text-gray-500 font-bold">
-                  {" "}{teacherName}
-                </span>
-              </p> :
-              <p className="text-black mb-2">Name:
-                <span className="text-gray-500 font-bold">
-                  {" "}{studentName}
-                </span>
+      <li className="bg-white p-4 rounded shadow">
+        <div className="flex justify-between flex-wrap">
+          <div>
+            {userRole === "user" ? (
+              <p className="text-black mb-2">
+                Name:
+                <span className="text-gray-500 font-bold"> {teacherName}</span>
               </p>
-          }
-          <p className="text-black mb-2">Topic:
-            <span className="text-gray-500 font-bold">
-              {" "}{topic}
-            </span>
-          </p>
+            ) : (
+              <p className="text-black mb-2">
+                Name:
+                <span className="text-gray-500 font-bold"> {studentName}</span>
+              </p>
+            )}
+            <p className="text-black mb-2">
+              Topic:
+              <span className="text-gray-500 font-bold"> {topic}</span>
+            </p>
+            <p className="text-black">
+              Payment: <span className="font-bold"> {payment} </span>
+            </p>
+          </div>
+          <div>
+            <p className="text-black font-medium mb-2">
+              Status:
+              <span className="text-green-500 font-bold"> {status}</span>
+            </p>
+            <p className="text-black font-medium mb-2">
+              Timing:
+              <span className="text-gray-500 font-bold">
+                {" "}
+                {formatTiming(timing)}
+              </span>
+            </p>
+            <p className="text-black">
+              Meeting: {' '}
+              <span className="font-bold">
+                {location.toUpperCase()}
+              </span>
+            </p>
+          </div>
+          
         </div>
-        <div>
-          <p className="text-black font-medium mb-2">Status:
-            <span className="text-green-500 font-bold">
-              {" "}{status}
-            </span>
-          </p>
-          <p className="text-black font-medium mb-2">Timing:
-            <span className="text-gray-500 font-bold">
-            {" "}{formatTiming(timing)}
-            </span>
-          </p>
-        </div>
-      </div>
+
+          <div className="mt-2">
+            {message && (
+              <p className="text-black">
+                Message:
+                <span className="font-bold"> {message}</span>
+              </p>
+            )}
+          </div>
+          <div className="mt-2">
+            {(location === "physical" || location === "both") && (
+              <p className="text-black">
+                Location:
+                 {preferredLocation}
+              </p>
+            )}
+          </div>
       <div className="flex justify-between mt-2 flex-wrap">
-        <p className="text-black">Payment: <span className="font-bold"> {payment} </span></p>
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
-          onClick={handleCompleteMeeting}
-        >
-          Meeting Completed
-        </button>
-      </div>
-      {status === 'accepted' && videoId && (
-        <button
-          className={`bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ${isJoinButtonDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-          onClick={joinMeeting}
-          disabled={isJoinButtonDisabled}
-        >
-          {isJoinButtonDisabled ? 'Meeting not started yet' : 'Join the Meeting'}
-        </button>
-      )}
-    </li>
+        
+        {status === "accepted" &&
+          (location === "online" || location === "both") &&
+          videoId &&
+          !isVideoEnded && (
+            <button
+              className={`bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ${
+                isJoinButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              onClick={joinMeeting}
+              disabled={isJoinButtonDisabled}
+            >
+              {isJoinButtonDisabled
+                ? "Meeting not started yet"
+                : "Join the Meeting"}
+            </button>
+          )}
+        {status === "accepted" && isVideoEnded && (
+          <button
+            className={`bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 ${
+              isVideoEnded ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={isVideoEnded}
+          >
+            Meeting has ended
+          </button>
+        )}
+          <button
+            className="text-white bg-violet-600 py-2 px-4 rounded-md hover:bg-violet-600 "
+            onClick={handleCompleteMeeting}
+          >
+            Mark as completed
+          </button>
+          </div>
+      </li>
     </>
   );
 };
 
 export default MeetingItem;
-
