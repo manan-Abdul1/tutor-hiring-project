@@ -123,31 +123,47 @@ const VideoMeeting = () => {
 
     return (
       <div className="container">
-        <div className="video-container">
-          <div className="video">
-          {stream && !callEnded && !isVideoEnded && (
-            <div>
-              <video playsInline ref={myVideo} autoPlay style={{ width: "300px" }} />
-              <button onClick={endMeeting}>End Meeting</button>
-            </div>
-          )}            {isVideoEnded && (
-  <div>
-    <p>The meeting has ended. Leave the meeting.</p>
-    <button onClick={endMeeting}>End Meeting</button>
-  </div>
-)}
-
-          </div>
-          {peer && !callEnded && (
+        <div className="flex flex-col items-center">
+          <div className="video-container">
             <div className="video">
-              <video playsInline ref={(ref) => ref && (ref.srcObject = peer.streams[0])} autoPlay style={{ width: "300px" }} />
+              {stream && !callEnded && !isVideoEnded && (
+                <div className="mb-4">
+                  <video playsInline ref={myVideo} autoPlay className="w-64 h-auto" />
+                  <button
+                    onClick={endMeeting}
+                    className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  >
+                    End Meeting
+                  </button>
+                </div>
+              )}
+              {isVideoEnded && (
+                <div className="mb-4">
+                  <p>The meeting has ended. Leave the meeting.</p>
+                  <button
+                    onClick={endMeeting}
+                    className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  >
+                    End Meeting
+                  </button>
+                </div>
+              )}
             </div>
-          )}
+            {peer && !callEnded && (
+              <div className="video">
+                <video
+                  playsInline
+                  ref={(ref) => ref && (ref.srcObject = peer.streams[0])}
+                  autoPlay
+                  className="w-64 h-auto"
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-
     );
   };
-
+  
   export default VideoMeeting;
 
