@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import TeacherRequestItem from './TeacherRequestItem';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader'; // Import your loader component
 
 const TeacherRequestList = () => {
   const { status } = useParams();
 
-  const allRequests = useSelector(state => state.requests.requests);
+  const allRequests = useSelector((state) => state.requests.requests);
 
-  const pendingRequests = allRequests.filter(request => request.status === status);
+  const [loading, setLoading] = useState(true);
+  const pendingRequests = allRequests.filter((request) => request.status === status);
   const itemsPerPage = 3;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,28 +24,44 @@ const TeacherRequestList = () => {
     setCurrentPage(pageNumber);
   };
 
+  useEffect(() => {
+
+    const fetchData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); 
+      setLoading(false); 
+    };
+
+    fetchData();
+  }, []); 
+
   return (
-    <div className={`h-screen flex flex-col ${allRequests.length>=4 && 'mb-56' } items-center mt-36`}>
-      {currentRequests.length > 0 ? (
-        <>
-          <ul className="space-y-8 w-[50%]">
-            {currentRequests.map((request) => (
-              <TeacherRequestItem key={request._id} request={request} />
-            ))}
-          </ul>
-          <div className='mt-10'>
-          {pendingRequests.length >= itemsPerPage ? (
-            <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={pendingRequests.length}
-              currentPage={currentPage}
-              paginate={paginate}
-            />
-          ) : null}
-        </div>
-        </>
+    <div className={`h-screen flex flex-col ${allRequests.length >= 4 && 'mb-56'} items-center mt-36`}>
+      {loading ? (
+        <Loader /> // Show loader while loading
       ) : (
-        <p className="my-40">No requests found.</p>
+        <>
+          {currentRequests.length > 0 ? (
+            <>
+              <ul className="space-y-8 w-[50%]">
+                {currentRequests.map((request) => (
+                  <TeacherRequestItem key={request._id} request={request} />
+                ))}
+              </ul>
+              <div className='mt-10'>
+                {pendingRequests.length >= itemsPerPage ? (
+                  <Pagination
+                    itemsPerPage={itemsPerPage}
+                    totalItems={pendingRequests.length}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                  />
+                ) : null}
+              </div>
+            </>
+          ) : (
+            <p className="my-40">No requests found.</p>
+          )}
+        </>
       )}
     </div>
   );

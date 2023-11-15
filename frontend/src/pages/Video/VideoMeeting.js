@@ -101,7 +101,7 @@ const VideoMeeting = () => {
     const checkVideoEnd = async () => {
       try {
         const response = await axios.get(`http://localhost:5500/api/hiringRequest/isVideoEnded?videoId=${videoId}`);
-        setIsVideoEnded(response.data.ok && response.data.isVideoEnded);
+setIsVideoEnded(prevState => response.data.ok && response.data.isVideoEnded);
         if(isVideoEnded){
           navigate('/home')
           window.location.reload();
