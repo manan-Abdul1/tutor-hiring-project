@@ -3,7 +3,7 @@ import React from 'react'
 export default function PereferredLocation() {
   return (
     <>
-          <section className="">
+          <section className="mt-4">
                 <h6 className="heading font-semibold mt-4 mb-4 uppercase">Preferred Locations</h6>
                 <div className="flex flex-col my-2">
                 <p className="text-left my-3 text-gray-500">

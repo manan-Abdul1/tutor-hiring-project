@@ -3,14 +3,13 @@ import SearchFilterCard from '../SearchFilterCard/SearchFilterCard';
 import { useSelector } from 'react-redux';
 import TutorList from '../../components/TutorList.js/TutorList';
 import { useParams } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader'
+import Loader from '../../components/Loader/Loader';
 
 export default function MainPageTutors() {
   const { filter } = useParams();
-  const tutors = useSelector((state) => state.tutor.teachers)|| [];
+  const tutors = useSelector((state) => state.tutor.teachers) || [];
   const [filteredTutors, setFilteredTutors] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     if (filter) {
@@ -18,30 +17,29 @@ export default function MainPageTutors() {
 
       const filteredTutorsResult = tutors.filter((tutor) => {
         let isMatch = true;
-  
+
         if (locationFilter && !tutor.location.includes(locationFilter)) {
           isMatch = false;
         }
-  
+
         if (classFilter && !tutor.classes.includes(classFilter)) {
           isMatch = false;
         }
-  
+
         if (subjectFilter && !tutor.subjects.includes(subjectFilter)) {
           isMatch = false;
         }
-  
+
         return isMatch;
       });
       setFilteredTutors(filteredTutorsResult);
     } else {
-
       setFilteredTutors(tutors);
     }
-  }, [filter, tutors]);
-  useEffect(() => {
+
+    // Set loading to false once data is fetched
     setLoading(false);
-  }, [filteredTutors]);
+  }, [filter, tutors]);
 
   return (
     <>
@@ -65,5 +63,4 @@ export default function MainPageTutors() {
       </div>
     </>
   );
-};
-
+}
