@@ -125,8 +125,18 @@ const VideoMeeting = () => {
       <div className="container">
         <div className="video-container">
           <div className="video">
-            {stream && !callEnded && !isVideoEnded && <video playsInline ref={myVideo} autoPlay style={{ width: "300px" }} />}
-            {isVideoEnded && <p>The meeting has ended. Leave the meeting.</p>}
+          {stream && !callEnded && !isVideoEnded && (
+            <div>
+              <video playsInline ref={myVideo} autoPlay style={{ width: "300px" }} />
+              <button onClick={endMeeting}>End Meeting</button>
+            </div>
+          )}            {isVideoEnded && (
+  <div>
+    <p>The meeting has ended. Leave the meeting.</p>
+    <button onClick={endMeeting}>End Meeting</button>
+  </div>
+)}
+
           </div>
           {peer && !callEnded && (
             <div className="video">
