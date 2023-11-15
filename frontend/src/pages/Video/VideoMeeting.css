@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .video-container {
+    display: flex;
+  }
+  
+  .video {
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .my-video-container {
+    position: relative;
+  }
+  
+  .my-video {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .end-meeting-button,
+  .leave-meeting-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .end-meeting-button:hover,
+  .leave-meeting-button:hover {
+    background-color: #c9302c;
+  }
+  
+  .peer-video {
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+  }
+  

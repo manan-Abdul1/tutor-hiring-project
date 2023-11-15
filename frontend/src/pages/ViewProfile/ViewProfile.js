@@ -4,9 +4,12 @@ import Introduction from "./introductionsection/Introduction";
 import ClassesAndSubjects from "./classes-subjects/ClassesAndSubjects";
 import PereferredLocation from "./perferredlocation/PereferredLocation";
 import TutorDetail from "./tutor-detail/TutorDetail";
+import EducationalApproach from "./educational-Approach/EducationalApproach";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
+import InstructionalZone from "./zone/InstructionalZone";
+import TeachingDetails from "./teaching-details/TeachingDetails";
 
 export default function ViewProfile() {
   const { id } = useParams();
@@ -43,7 +46,10 @@ export default function ViewProfile() {
             <div className="col-xs-12 col-md-10 col-lg-10">
               <Introduction teachersData={teacherProfile} />
               <ClassesAndSubjects teachersData={teacherProfile} />
+              <TeachingDetails teachersData={teacherProfile} />
               <PereferredLocation teachersData={teacherProfile} />
+              <EducationalApproach teachersData={teacherProfile} />
+              <InstructionalZone teachersData={teacherProfile} />
               <TutorDetail teachersData={teacherProfile} />
             </div>
             <div className="col-md-1"></div>
