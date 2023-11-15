@@ -134,11 +134,6 @@ const VideoMeeting = () => {
             </div>
           )}
         </div>
-        {peer && !callEnded && (
-          <div className="video">
-            <video playsInline ref={(ref) => ref && (ref.srcObject = peer.streams[0])} autoPlay style={{ width: "300px" }} />
-          </div>
-        )}
       </div>
 
     );
