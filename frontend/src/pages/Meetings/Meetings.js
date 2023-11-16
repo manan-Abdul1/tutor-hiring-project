@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Pagination from "../../components/Pagination/Pagination";
 import { useSelector } from "react-redux";
 import MeetingItem from "../../components/MeetingItem/MeetingItem";
+import Loader from "../../components/Loader/Loader"; // Update the path
 
 const Meetings = () => {
   const meetings = useSelector((state) =>
@@ -24,8 +25,8 @@ const Meetings = () => {
   };
 
   return (
-    <div className={`h-screen flex ${meetings.length>=4 && 'mb-48' } flex-col items-center mt-36`}>
-      {currentMeetings.length > 0 ? (
+    <div className={`h-screen flex ${meetings.length >= 4 && "mb-48"} flex-col items-center mt-36`}>
+      {meetings.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">
             {currentMeetings.map((meeting) => (
@@ -44,7 +45,9 @@ const Meetings = () => {
           </div>
         </>
       ) : (
-        <p>No meetings scheduled found.</p>
+        <div className="flex items-center justify-center h-full">
+          <Loader />
+        </div>
       )}
     </div>
   );

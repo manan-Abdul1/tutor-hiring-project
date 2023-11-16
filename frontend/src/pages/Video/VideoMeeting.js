@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -100,7 +101,7 @@ const VideoMeeting = () => {
     const checkVideoEnd = async () => {
       try {
         const response = await axios.get(`http://localhost:5500/api/hiringRequest/isVideoEnded?videoId=${videoId}`);
-        setIsVideoEnded(response.data.ok && response.data.isVideoEnded);
+setIsVideoEnded(prevState => response.data.ok && response.data.isVideoEnded);
         if(isVideoEnded){
           navigate('/home')
           window.location.reload();
@@ -124,8 +125,18 @@ const VideoMeeting = () => {
       <div className="container">
         <div className="video-container">
           <div className="video">
-            {stream && !callEnded && !isVideoEnded && <video playsInline ref={myVideo} autoPlay style={{ width: "300px" }} />}
-            {isVideoEnded && <p>The meeting has ended. Leave the meeting.</p>}
+          {stream && !callEnded && !isVideoEnded && (
+            <div>
+              <video playsInline ref={myVideo} autoPlay style={{ width: "300px" }} />
+              <button onClick={endMeeting}>End Meeting</button>
+            </div>
+          )}            {isVideoEnded && (
+  <div>
+    <p>The meeting has ended. Leave the meeting.</p>
+    <button onClick={endMeeting}>End Meeting</button>
+  </div>
+)}
+
           </div>
           {peer && !callEnded && (
             <div className="video">
@@ -133,9 +144,10 @@ const VideoMeeting = () => {
             </div>
           )}
         </div>
-        <button onClick={endMeeting}>End Meeting</button>
       </div>
+
     );
   };
 
   export default VideoMeeting;
+

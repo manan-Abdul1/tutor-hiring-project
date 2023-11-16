@@ -11,49 +11,57 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [topic, setTopic] = useState('');
   const [payment, setPayment] = useState('');
-  const [physicalLocation, setPhysicalLocation] = useState(); 
-  const [message, setMessage] = useState(''); 
+  const [physicalLocation, setPhysicalLocation] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(location===''){
-      toast.error("Please Enter how you want to learn");
-      return;
+
+    try {
+      setLoading(true);
+
+      if (location === '') {
+        toast.error('Please Enter how you want to learn');
+        return;
+      }
+
+      const currentDate = new Date();
+      if (selectedDate <= currentDate) {
+        toast.error('Selected date must be in the future.');
+        return;
+      }
+
+      const requestData = {
+        studentId: userId,
+        teacherId: teacherId,
+        location: location,
+        timing: selectedDate,
+        topic: topic,
+        preferredLocation: physicalLocation,
+        payment: payment,
+        message: message,
+      };
+
+      const response = await axios.post(
+        'http://localhost:5500/api/hiringRequest',
+        requestData
+      );
+
+      if (response.data.ok) {
+        toast.success(response.data.message);
+        setLocation('');
+        setTopic('');
+        setPayment('');
+        setPhysicalLocation('');
+        setMessage('');
+        handleClose();
+      }
+    } catch (error) {
+      console.error('Error sending hiring request:', error);
+    } finally {
+      setLoading(false);
     }
-    const currentDate = new Date();
-    if (selectedDate <= currentDate) {
-      toast.error('Selected date must be in the future.');
-      return;
-    }
-
-    const requestData = {
-      studentId: userId,
-      teacherId: teacherId,
-      location: location,
-      timing: selectedDate,
-      topic: topic,
-      preferredLocation:physicalLocation,
-      payment: payment,
-      message: message, 
-    };
-
-    axios
-      .post('http://localhost:5500/api/hiringRequest', requestData)
-      .then((response) => {
-        if(response.data.ok){
-          toast.success(response.data.message)
-          setLocation('');
-          setTopic('');
-          setPayment('');
-          setPhysicalLocation('');
-          setMessage('');
-          handleClose();
-        }
-      })
-      .catch((error) => {
-        console.error('Error sending hiring request:', error);
-      });
-
   };
 
   const handleLocationSelect = (selectedLocation) => {
@@ -68,29 +76,16 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
         </label>
         <LocationSelect onSelect={handleLocationSelect} width="w-full" />
       </div>
-      {(location === 'both' || location === 'physical') && (
+      {location === 'both' || location === 'physical' ? (
         <>
-          {/* <div className="mb-4">
-            <label htmlFor="physicalLocation" className="block mb-2 font-semibold">
-              Physical Location Preference:
-            </label>
-            <input
-              type="text"
-              id="physicalLocation"
-              value={physicalLocation}
-              required
-              onChange={(e) => setPhysicalLocation(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm "
-            />
-          </div> */}
           <div className="mb-4">
             <label htmlFor="map" className="block mb-2 font-semibold">
               Select Physical Location on Map:
             </label>
-            <MapLocationIq setPhysicalLocation={setPhysicalLocation}/>
+            <MapLocationIq setPhysicalLocation={setPhysicalLocation} />
           </div>
         </>
-      )}
+      ) : null}
       <div className="mb-4">
         <label htmlFor="timing" className="block mb-2 font-semibold">
           Timing:
@@ -129,27 +124,28 @@ const InputForm = ({ userId, teacherId, handleClose }) => {
           id="payment"
           value={payment}
           onChange={(e) => setPayment(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm "
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
         />
       </div>
       <div className="mb-4">
-            <label htmlFor="message" className="block mb-2 font-semibold">
-              Explanation/Message:
-            </label>
-            <textarea
-              placeholder='Any Explanation about topic or other anything you want to add?'
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
-              rows={2}
-            ></textarea>
-          </div>
+        <label htmlFor="message" className="block mb-2 font-semibold">
+          Explanation/Message:
+        </label>
+        <textarea
+          placeholder="Any Explanation about the topic or anything else you want to add?"
+          id="message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+          rows={2}
+        ></textarea>
+      </div>
       <button
         type="submit"
         className="block w-30 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+        disabled={loading} // Disable the button when loading
       >
-        Submit
+        {loading ? 'Submitting...' : 'Submit'}
       </button>
     </form>
   );

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "../../components/Pagination/Pagination";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import UserRequestItems from "./UserRequestItems";
+import Loader from "../../components/Loader/Loader"; // Update the path
 
 const UserRequests = () => {
   const { status } = useParams();
@@ -13,6 +14,7 @@ const UserRequests = () => {
   const itemsPerPage = 4;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const indexOfLastRequest = currentPage * itemsPerPage;
   const indexOfFirstRequest = indexOfLastRequest - itemsPerPage;
@@ -25,9 +27,26 @@ const UserRequests = () => {
     setCurrentPage(pageNumber);
   };
 
+  // Simulate loading data with setTimeout
+  const loadData = async () => {
+    setLoading(true);
+
+    // Simulate an asynchronous operation, replace this with your actual data fetching logic
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+
+  // Load data when the component mounts
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <div className={`h-screen flex flex-col items-center ${allRequests.length >=4? 'mb-56': '' } mt-36`}>
-      {currentRequests.length > 0 ? (
+      {loading ? (
+        <Loader />
+      ) : currentRequests.length > 0 ? (
         <>
           <ul className="space-y-4 w-[50%]">
             {currentRequests.map((request) => (
