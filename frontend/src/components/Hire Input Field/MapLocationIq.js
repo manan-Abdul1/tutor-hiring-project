@@ -92,7 +92,7 @@ const MapLocationIq = ({ setPhysicalLocation }) => {
       )}
       <MapContainer
         zoom={11}
-        style={{ height: '30vh', width: '100%' }}
+        style={{ height: '60vh', width: '100%' }}
         center={location ? [location.y, location.x] : [31.5204, 74.3587]}
       >
         <TileLayer
